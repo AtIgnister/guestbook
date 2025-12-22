@@ -1,0 +1,16 @@
+:root {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #01242e;
+    color: white;
+}
+
+a {
+    color: #8cc2dd;
+}
+
+a:visited {
+    color: #8cc2dd;
+}
