@@ -19,8 +19,9 @@ Route::resource("guestbooks", GuestbookController::class)
 
 Route::get('/entries/{guestbook_id}', [EntriesController::class, 'index'])
 ->name('entries.index');
-
 Route::get('/entries/{guestbook_id}/create', [EntriesController::class, 'create']);
+
+Route::view("privacy-policy", "legal.privacy");
 
 Route::post('/entries/{guestbook_id}/store', [EntriesController::class, 'store'])
 ->name('entries.store')

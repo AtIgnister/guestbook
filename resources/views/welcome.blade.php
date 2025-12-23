@@ -47,6 +47,7 @@
                             </a>
                         @endif
                     @endauth
+                    <a href="/privacy-policy" style="color: white;">Privacy Policy</a>
                 </nav>
             @endif
         </header>
