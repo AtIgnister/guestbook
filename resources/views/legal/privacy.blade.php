@@ -23,7 +23,7 @@
     <p>4. Your session data: Your session data is valid for a total of 2 hours. Sending new requests resets this timer.
         Your session data includes your IP, your user id (if you have an account and are currently logged in), your browsers user agent, and the last time you interacted with the website.
         A session cookie is also saved on your browser. Your session is <b>not</b> associated with any guestbook entries you create.
-        This information is used in order to determine if the browser you are using is currently logged into the website, and to be able to persist your logged in status even when you close and reopen the browser.
+        Your session information is used in order to determine if the browser you are using is currently logged into the website, and to be able to persist your logged in status even when you close and reopen the browser.
         Expired sessions are automatically ignored and periodically removed.
     </p>
     
