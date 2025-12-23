@@ -31,7 +31,7 @@
 
     <h2>How do I use your data?</h2>
     <p>I use your login info to let you log in and create new guestbooks, I use the data you enter into the guestbook creation form to create new guestbooks that are tied to your account, I use your session data to keep track of your login status, I use the data you enter into the guestbook entry creation form 
-        to create anonymous guestbook entries. As my personal email is hosted by tuta.com, you will 
+        to create anonymous guestbook entries.
     </p>
 
     <h2>Your rights:</h2>
