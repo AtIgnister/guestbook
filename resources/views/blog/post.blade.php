@@ -171,26 +171,24 @@
     }
           
 </style>
-    <body class="post " onload="(function() { document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone};path=/`; })()">  
-      <header>
-        <a class="title" href="/">
-          <h1>
-            The Guestbook Blog
-          </h1>
-        </a>
-        <nav>
-          <a href='/'>Home</a>
-          @auth
-          <a href='{{ route("dashboard") }}'>Dashboard</a>
-          @else
-          <a href='{{ route("login") }}'>Login</a>
-          @endauth
-          <a href="{{ route("legal.privacy") }}">Privacy Policy</a>
-        </nav>
-      </header>
-      <main>
-        <h1>@section("title")</h1>
-        {!! $content !!}
-      </main>
-    </body>
+<header>
+    <a class="title" href="/">
+        <h1>
+        The Guestbook Blog
+        </h1>
+    </a>
+    <nav>
+        <a href='/'>Home</a>
+        @auth
+        <a href='{{ route("dashboard") }}'>Dashboard</a>
+        @else
+        <a href='{{ route("login") }}'>Login</a>
+        @endauth
+        <a href="{{ route("legal.privacy") }}">Privacy Policy</a>
+    </nav>
+</header>
+<main>
+    <h1>@section("title")</h1>
+    {!! $content !!}
+</main>
 @endsection
