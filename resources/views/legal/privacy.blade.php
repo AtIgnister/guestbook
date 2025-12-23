@@ -14,7 +14,7 @@
     <p>guestbooks.kamiscorner.xyz collects the following data:</p>
     <p>1. Account information (Email, Password, etc. Everything you enter into the regstration form.)</p>
     <p>This is required in order to let you log in and create guestbooks that get associated with your account.</p>
-    <p>If you enable two-factor authentication (2FA), a secret key is stored with your account to allow secure login using a TOTP-supported application on your phone. This information is used solely for authentication and is not shared with third parties.</p>
+    <p>If you enable two-factor authentication (2FA), a secret key is stored with your account to allow secure login using a TOTP-supported application on your phone or desktop. This information is used solely for authentication and is not shared with third parties.</p>
     <p>2. Password reset data (Email, reset tokens, timestamp of request time)</p>
     <p>This is required to let users reset their passwords.</p>
     <p>3. The content of all guestbook entries you create. These are shown publicly. 
