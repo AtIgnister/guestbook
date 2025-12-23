@@ -14,9 +14,11 @@ class BlogController extends Controller
             $content = File::get($path);
             return view('blog.post', compact('content'));
         }
+
+        abort(404);
     }
 
-    public function post(Request $request, $post_name) { 
+    public function post(Request $request, $post_name) {
         // Allow only safe filenames (letters, numbers, dashes)
         if (!preg_match('/^[a-z0-9\-]+$/i', $post_name)) {
             abort(404);

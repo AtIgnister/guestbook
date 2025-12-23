@@ -60,5 +60,5 @@ Route::get('/register', function () {
     return redirect('/login');
 })->name('register');
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post_name}', [BlogController::class, 'post'])->name('blog.post');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');

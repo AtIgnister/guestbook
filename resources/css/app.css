@@ -76,7 +76,7 @@ select:focus[data-flux-control] {
         all: revert;
     }
 
-    ol, li {
+    ul, ol, li {
         all: revert;
     }
 
