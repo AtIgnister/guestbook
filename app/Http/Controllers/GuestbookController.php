@@ -75,6 +75,11 @@ class GuestbookController extends Controller
      */
     public function destroy(guestbook $guestbook)
     {
-        //
+        $guestbook->delete();
+        return redirect()->route('guestbooks.index')->with('success','Guestbook deleted successfully');
+    }
+
+    public function delete(guestbook $guestbook) {
+        return view('guestbooks.delete', compact(['guestbook']));
     }
 }

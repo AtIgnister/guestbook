@@ -60,3 +60,36 @@ textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
+
+@layer base {
+    button {
+      all: revert;
+    }
+  
+    input,
+    textarea,
+    select {
+      all: revert;
+    }
+
+    h1 {
+        all: revert;
+    }
+
+    :root {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    
+    body {
+        background-color: #01242e;
+        color: white;
+    }
+    
+    a {
+        color: #8cc2dd;
+    }
+    
+    a:visited {
+        color: #8cc2dd;
+    }
+}

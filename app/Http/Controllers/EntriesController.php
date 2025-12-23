@@ -29,11 +29,14 @@ class EntriesController extends Controller
         // Assuming you have a one-to-many relation 'entries'
         $guestbook->entries()->create($validated);
 
-        return redirect()->route('entries.index', ["guestbook_id" => $guestbook_id])->with('success','Guestbook created sucessfully');
+        return redirect()->route('entries.index', ["guestbook_id" => $guestbook_id])->with('success','Entry created sucessfully');
     }
 
     public function index(Request $request, $guestbook_id) { 
         $guestbook = Guestbook::find($guestbook_id);
+
+        if(!$guestbook) abort(404);
+
         $entries = $guestbook->entries;
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook]);
     }

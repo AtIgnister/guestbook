@@ -15,6 +15,7 @@
         </div>
     @endif
 
+    <a href="{{ route("dashboard") }}">Back to Dashboard</a>
     <main class="max-w-2xl mx-auto p-4">
         <!-- Header -->
         <h1 class="text-3xl md:text-4xl font-bold text-center my-6">

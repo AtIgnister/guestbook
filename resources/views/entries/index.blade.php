@@ -12,10 +12,6 @@
         <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>
     @endif
 
-    @if(session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
-
     @if (Auth::check())
         <a href="/guestbooks">Back to Guestbooks</a>
     @endif

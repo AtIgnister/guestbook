@@ -5,17 +5,19 @@ use App\Http\Controllers\GuestbookController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\AccountController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth'])
     ->name('dashboard');
 
 Route::resource("guestbooks", GuestbookController::class)
-->middleware(['auth', 'verified']);
+->middleware(['auth']);
+Route::get('/guestbooks/{guestbook}/delete', [GuestbookController::class,'delete']);
 
 Route::get('/entries/{guestbook_id}', [EntriesController::class, 'index'])
 ->name('entries.index');
@@ -25,7 +27,12 @@ Route::view("privacy-policy", "legal.privacy");
 
 Route::post('/entries/{guestbook_id}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
-->middleware(['auth', 'verified']);
+->middleware(['auth']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account/delete', [AccountController::class, 'showDeleteForm'])->name('account.delete');
+    Route::post('/account/delete', [AccountController::class, 'deleteAccount'])->name('account.destroy');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

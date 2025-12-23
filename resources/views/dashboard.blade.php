@@ -1,18 +1,23 @@
-<x-layouts.app :title="__('Dashboard')">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <a href="/guestbooks">Show Guestbooks</a>
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-        </div>
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-        </div>
-    </div>
-</x-layouts.app>
+@extends("components.layouts.layout")
+@section("title")
+    Dashboard
+@endsection
+@section("content")
+<main class="flex flex-col items-center gap-4">
+    <h1>Dashboard</h1>
+    <a class="block" href="{{ route('guestbooks.index')}}">View Guestbooks</a>
+    <a class="block">View all Entries</a>
+    <a class="block">Approve Entries</a>
+    <a class="block">Export Data</a>
+    <a class="block" href="{{ route('profile.edit') }}">Settings</a>
+    <br>
+    <p>Logged in as: {{ auth()->user()->name }}</p>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+    
+        <button type="submit" class="text-red-500">
+            Logout
+        </button>
+    </form>
+</main>
+@endsection
