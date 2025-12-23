@@ -191,7 +191,6 @@ Blog
     </nav>
 </header>
 <main>
-    <h1>@section("title")</h1>
     {!! $content !!}
 </main>
 @endsection
