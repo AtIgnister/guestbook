@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Entries</title>
-    <link rel="stylesheet" href="{{ asset('app.css') }}">
-    @vite('resources/css/app.css')
-</head>
-<body>
+@extends('components.layouts.layout')
+@section("content")
     @if ($guestbook->style)
         <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>
     @endif
@@ -32,4 +24,4 @@
             <a href="/entries/{{ $guestbook->id }}/create">Leave a comment!</a>
         @endif
     </div>
-</body>
+@endsection
