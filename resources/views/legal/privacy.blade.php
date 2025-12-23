@@ -55,7 +55,7 @@
     <p>If you have any security concerns, or find a vulnerability, please email me about it.</p>
 
     <h2>Changes to this policy:</h2>
-    <p>If this policy changes, you will be notified the next time you open this website. This websites also has a <a href="">seperate page</a> (TODO: implement this) as well as an RSS-Feed that keeps track of all policy updates which you can follow with a feed reader of your choice. If you have an account with a valid email, I will also send you an email whenever the policy changes. The email server this website uses is self-hosted to minimize the data that gets shared with third-parties. Due to this, the emails that get sent may end up in your spam-folder. To prevent this, you may want to consider explicitly whitelisting guestbooks@kamiscorner.xyz in your email client.</p>
+    <p>If this policy changes, you will be notified the next time you open this website. This website also has a <a href="">seperate page</a> (TODO: implement this) as well as an RSS-Feed that keeps track of all policy updates which you can follow with a feed reader of your choice. If you have an account with a valid email, I will also send you an email whenever the policy changes. The email server this website uses is self-hosted to minimize the data that gets shared with third-parties. Due to this, the emails that get sent may end up in your spam-folder. To prevent this, you may want to consider explicitly whitelisting guestbooks@kamiscorner.xyz in your email client.</p>
 
     <h2>Contact:</h2>
     <p>If you have any questions, you can contact me at kami@kamiscorner.xyz.</p>
