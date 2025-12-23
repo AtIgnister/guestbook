@@ -29,6 +29,8 @@ Route::post('/entries/{guestbook_id}/store', [EntriesController::class, 'store']
 ->name('entries.store')
 ->middleware(['auth']);
 
+//Route::get("/export/{guestbook_id}", "");
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/account/delete', [AccountController::class, 'showDeleteForm'])->name('account.delete');
     Route::post('/account/delete', [AccountController::class, 'deleteAccount'])->name('account.destroy');

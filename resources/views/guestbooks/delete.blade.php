@@ -1,16 +1,6 @@
 <!-- resources/views/guestbooks/create.blade.php -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit {{ $guestbook->name }}</title>
-    <link rel="stylesheet" href="{{ asset('app.css') }}">
-    @vite('resources/css/app.css')
-</head>
-<body>
-    
+@extends('components.layouts.layout')
+@section("content")
     <main class="flex flex-col items-center gap-4">
         <h1 class="text-xl font-semibold mt-6">
             Do you really want to delete {{ $guestbook->name }}?
@@ -37,5 +27,4 @@
             </a>
         </form>
     </main>
-</body>
-</html>
+@endsection

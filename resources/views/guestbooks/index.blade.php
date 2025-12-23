@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guestbooks</title>
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="{{ asset('app.css') }}">
-</head>
-<body class="min-h-screen">
-
+@extends('components.layouts.layout')
+@section("content")
     @if(session('success'))
         <div class="max-w-2xl mx-auto mt-4 p-4 bg-green-100 text-green-800 rounded">
             {{ session('success') }}
@@ -38,13 +29,13 @@
                         <tr>
                             <td class="px-4 py-2">{{ $guestbook->name }}</td>
                             <td class="px-4 py-2">
-                                <a href="/entries/{{ $guestbook->id }}" class="text-blue-600 hover:underline">Entries</a>
+                                <a href="/entries/{{ $guestbook->id }}" class="hover:underline">Entries</a>
                             </td>
                             <td class="px-4 py-2">
-                                <a href="/guestbooks/{{ $guestbook->id }}/edit" class="text-green-600 hover:underline">Edit</a>
+                                <a href="/guestbooks/{{ $guestbook->id }}/edit" class="hover:underline">Edit</a>
                             </td>
                             <td class="px-4 py-2">
-                                <a href="/guestbook/{{ $guestbook->id }}/delete" class="text-red-600 hover:underline">Delete</a>
+                                <a href="/guestbook/{{ $guestbook->id }}/delete" class="hover:underline">Delete</a>
                             </td>
                         </tr>
                     @empty
@@ -68,6 +59,4 @@
             </div>
         @endif
     </main>
-
-</body>
-</html>
+@endsection
