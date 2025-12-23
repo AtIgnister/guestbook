@@ -72,7 +72,15 @@ select:focus[data-flux-control] {
       all: revert;
     }
 
-    h1 {
+    h1, h2, b {
+        all: revert;
+    }
+
+    ol, li {
+        all: revert;
+    }
+
+    strong {
         all: revert;
     }
 

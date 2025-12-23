@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\GuestbookController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,7 @@ Route::get('/entries/{guestbook_id}', [EntriesController::class, 'index'])
 ->name('entries.index');
 Route::get('/entries/{guestbook_id}/create', [EntriesController::class, 'create']);
 
-Route::view("privacy-policy", "legal.privacy");
+Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
 
 Route::post('/entries/{guestbook_id}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
@@ -58,3 +59,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/register', function () {
     return redirect('/login');
 })->name('register');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{post_name}', [BlogController::class, 'post'])->name('blog.post');
