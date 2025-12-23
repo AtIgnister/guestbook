@@ -52,3 +52,7 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 });
+
+Route::get('/register', function () {
+    return redirect('/login');
+})->name('register');
