@@ -1,4 +1,7 @@
 @extends("components.layouts.layout")
+@section("title")
+Blog
+@endsection
 @section("content")
 <style>
     :root {
