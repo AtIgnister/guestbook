@@ -19,7 +19,9 @@
         @forelse ($entries as $entry)
         <div class="my-10 border-solid border-2 rounded-xl p-2">
                 <p>{{ $entry->name }} wrote...</p>
-                <sup>Website: <a href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
+                @if (filter_var($entry->website, FILTER_VALIDATE_URL))
+                    <sup>Website: <a href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
+                @endif
                 <p>{{ $entry->comment }}</p>
         </div>
         @empty

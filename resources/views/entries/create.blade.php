@@ -3,7 +3,7 @@
     <h1>Create a Guestbook Entry</h1>
 
     <!-- Guestbook form -->
-    <form action="{{ route('entries.store', ['guestbook_id' => $guestbook->id]) }}" method="POST">
+    <form action="{{ route('entries.store', ['guestbook' => $guestbook]) }}" method="POST">
         @csrf
         
         <div>

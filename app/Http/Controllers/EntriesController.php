@@ -15,10 +15,6 @@ class EntriesController extends Controller
 
     public function store(Request $request, Guestbook $guestbook)
     {
-        if ($request->user()->cannot('store', $guestbook)) {
-            abort(403);
-        }
-
         $validated = $request->validate([
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
