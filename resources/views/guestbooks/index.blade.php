@@ -1,12 +1,12 @@
 @extends('components.layouts.layout')
 @section("content")
+    <a href="{{ route("dashboard") }}">Back to Dashboard</a>
     @if(session('success'))
         <div class="max-w-2xl mx-auto mt-4 p-4 bg-green-100 text-green-800 rounded">
             {{ session('success') }}
         </div>
     @endif
 
-    <a href="{{ route("dashboard") }}">Back to Dashboard</a>
     <main class="max-w-2xl mx-auto p-4">
         <!-- Header -->
         <h1 class="text-3xl md:text-4xl font-bold text-center my-6">
@@ -29,13 +29,13 @@
                         <tr>
                             <td class="px-4 py-2">{{ $guestbook->name }}</td>
                             <td class="px-4 py-2">
-                                <a href="/entries/{{ $guestbook->id }}" class="hover:underline">Entries</a>
+                                <a href="{{ route("entries.index", compact("guestbook")) }}" class="hover:underline">Entries</a>
                             </td>
                             <td class="px-4 py-2">
-                                <a href="/guestbooks/{{ $guestbook->id }}/edit" class="hover:underline">Edit</a>
+                                <a href="{{ route("guestbooks.edit", compact("guestbook")) }}" class="hover:underline">Edit</a>
                             </td>
                             <td class="px-4 py-2">
-                                <a href="/guestbook/{{ $guestbook->id }}/delete" class="hover:underline">Delete</a>
+                                <a href="{{ route("guestbooks.delete", compact("guestbook")) }}" class="hover:underline">Delete</a>
                             </td>
                         </tr>
                     @empty

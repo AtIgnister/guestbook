@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EntriesController;
+use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\GuestbookController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -18,21 +19,39 @@ Route::view('dashboard', 'dashboard')
 
 Route::resource("guestbooks", GuestbookController::class)
 ->middleware(['auth']);
-Route::get('/guestbooks/{guestbook}/delete', [GuestbookController::class,'delete']);
 
-Route::get('/entries/{guestbook_id}', [EntriesController::class, 'index'])
+Route::get(
+    '/guestbooks/{guestbook}/delete',
+    [GuestbookController::class, 'delete']
+)->middleware('auth')
+->can('delete,guestbook')
+->name('guestbooks.delete');
+
+Route::get('/entries/{guestbook}', [EntriesController::class, 'index'])
 ->name('entries.index');
-Route::get('/entries/{guestbook_id}/create', [EntriesController::class, 'create'])
+Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
 ->middleware(['throttle:20,1']);
 
 Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
 
-Route::post('/entries/{guestbook_id}/store', [EntriesController::class, 'store'])
+Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
 ->middleware(['auth'])
 ->middleware(['throttle:20,1']);
 
-//Route::get("/export/{guestbook_id}", "");
+Route::middleware(['auth'])->group(function () { 
+    Route::get(
+        '/guestbooks/export/{guestbook}/json',
+        [ExportGuestbookJsonController::class, 'export']
+    );
+    
+    Route::get(
+        '/guestbooks/export/{guestbook}/json/raw',
+        [ExportGuestbookJsonController::class, 'exportRaw']
+    );
+})->middleware(['auth', 'can:view,guestbook', 'throttle:60,1']);
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account/delete', [AccountController::class, 'showDeleteForm'])->name('account.delete');
