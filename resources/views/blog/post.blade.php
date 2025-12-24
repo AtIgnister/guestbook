@@ -181,7 +181,6 @@ Blog
         </h1>
     </a>
     <nav>
-        <a href='/'>Home</a>
         @auth
         <a href='{{ route("dashboard") }}'>Dashboard</a>
         @else

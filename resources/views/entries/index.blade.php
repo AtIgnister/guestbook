@@ -9,11 +9,11 @@
     @endif
 
     <div class="max-w-2xl mx-auto">
+        <sub>Be reasonable, follow the <a href="/blog/tos">guestbook guidelines.</a></sub>
         @if ($entries && $entries->count())
             <div class="my-10 border-solid border-2 rounded-xl p-2">
                 <a class="mt-3" href="/entries/{{ $guestbook->id }}/create">Leave a comment!</a>
             </div>
-            
         @endif
 
         @forelse ($entries as $entry)
