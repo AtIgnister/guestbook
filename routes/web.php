@@ -41,12 +41,12 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 
 Route::middleware(['auth'])->group(function () { 
     Route::get(
-        '/guestbooks/export/{guestbook}/json',
+        '/guestbooks/{guestbook}/export/json',
         [ExportGuestbookJsonController::class, 'export']
     );
     
     Route::get(
-        '/guestbooks/export/{guestbook}/json/raw',
+        '/guestbooks/{guestbook}/export/json/raw',
         [ExportGuestbookJsonController::class, 'exportRaw']
     );
 })->middleware(['auth', 'can:view,guestbook', 'throttle:60,1']);
