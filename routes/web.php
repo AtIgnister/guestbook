@@ -22,7 +22,8 @@ Route::get('/guestbooks/{guestbook}/delete', [GuestbookController::class,'delete
 
 Route::get('/entries/{guestbook_id}', [EntriesController::class, 'index'])
 ->name('entries.index');
-Route::get('/entries/{guestbook_id}/create', [EntriesController::class, 'create']);
+Route::get('/entries/{guestbook_id}/create', [EntriesController::class, 'create'])
+->middleware(['throttle:20,1']);
 
 Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
 

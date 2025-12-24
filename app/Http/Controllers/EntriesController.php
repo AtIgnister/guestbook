@@ -37,7 +37,7 @@ class EntriesController extends Controller
 
         if(!$guestbook) abort(404);
 
-        $entries = $guestbook->entries;
+        $entries = $guestbook->entries()->orderBy('created_at', 'desc')->get();
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook]);
     }
 }

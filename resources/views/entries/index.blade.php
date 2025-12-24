@@ -9,6 +9,13 @@
     @endif
 
     <div class="max-w-2xl mx-auto">
+        @if ($entries && $entries->count())
+            <div class="my-10 border-solid border-2 rounded-xl p-2">
+                <a class="mt-3" href="/entries/{{ $guestbook->id }}/create">Leave a comment!</a>
+            </div>
+            
+        @endif
+
         @forelse ($entries as $entry)
         <div class="my-10 border-solid border-2 rounded-xl p-2">
                 <p>{{ $entry->name }} wrote...</p>
@@ -19,9 +26,5 @@
             <p class="text-gray-500">No entries yet.</p>
             <a href="/entries/{{ $guestbook->id }}/create">Be the first to leave a comment!</a>
         @endforelse
-
-        @if ($entries && $entries->count())
-            <a href="/entries/{{ $guestbook->id }}/create">Leave a comment!</a>
-        @endif
     </div>
 @endsection
