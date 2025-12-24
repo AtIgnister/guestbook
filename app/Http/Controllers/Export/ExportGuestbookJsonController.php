@@ -2,36 +2,18 @@
 
 namespace App\Http\Controllers\Export;
 
+use App\Helpers\GuestbookExportHelper;
 use App\Models\Guestbook;
 use Illuminate\Http\Request;
 use Response;
 
-class ExportGuestbookJsonController extends \App\Http\Controllers\Controller
-{
-    private function getData(Guestbook $guestbook)
-    {
-        $entries = $guestbook->entries()
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        return [
-            'guestbooks' => [
-                $guestbook->id => [
-                    'id'      => $guestbook->id,
-                    'name'    => $guestbook->name,
-                    'style'   => $guestbook->style,
-                    'entries' => $entries,
-                ],
-            ],
-        ];
-    }
-
+class ExportGuestbookJsonController extends \App\Http\Controllers\Controller {
     public function exportRaw(Request $request, Guestbook $guestbook) {
-        return response()->json($this->getData($guestbook));
+        return response()->json(GuestbookExportHelper::getData($guestbook));
     }
 
     public function export(Request $request, Guestbook $guestbook) {
-        $data = $this->getData($guestbook);
+        $data = GuestbookExportHelper::getData($guestbook);
     
         $json = json_encode($data, JSON_PRETTY_PRINT);
     
