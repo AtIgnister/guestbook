@@ -29,7 +29,8 @@ Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
 
 Route::post('/entries/{guestbook_id}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
-->middleware(['auth']);
+->middleware(['auth'])
+->middleware(['throttle:20,1']);
 
 //Route::get("/export/{guestbook_id}", "");
 
@@ -55,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
             ),
         )
         ->name('two-factor.show');
-});
+})->middleware(['throttle:30,1']);
 
 Route::get('/register', function () {
     return redirect('/login');
