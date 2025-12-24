@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\Export\ExportGuestbookCSVController;
+use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\GuestbookController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get(
         '/guestbooks/{guestbook}/export/csv',
         [ExportGuestbookCSVController::class, 'export']
+    );
+
+    Route::get(
+        '/guestbooks/{guestbook}/export/html',
+        [ExportGuestbookHTMLController::class, 'export']
+    );
+
+    Route::get(
+        '/guestbooks/{guestbook}/export/html/raw',
+        [ExportGuestbookHTMLController::class, 'exportRaw']
     );
 })->middleware(['auth', 'can:view,guestbook', 'throttle:60,1']);
 // <!-- Guestbook Export Routes --!>
