@@ -9,10 +9,6 @@ class EntriesController extends Controller
 {
     public function create(Request $request, Guestbook $guestbook)
     {
-        if ($request->user()->cannot('create', $guestbook)) {
-            abort(403);
-        }
-
         // Pass the guestbook to the view
         return view('entries.create', compact('guestbook'));
     }
