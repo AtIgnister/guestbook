@@ -22,7 +22,7 @@ class EntriesController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'comment' => 'required|max:3000',
+            'comment' => 'required|max:20000',
             'website' => 'nullable|url',
         ]);
 
