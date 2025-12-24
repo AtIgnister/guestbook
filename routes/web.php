@@ -9,6 +9,7 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\AccountController;
 
+// <!-- Dash and Home Routes --!>
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -19,7 +20,10 @@ Route::view('dashboard', 'dashboard')
 
 Route::resource("guestbooks", GuestbookController::class)
 ->middleware(['auth']);
+// <!-- Dash and Home Routes --!>
 
+
+// <!-- Guestbook Routes --!>
 Route::get(
     '/guestbooks/{guestbook}/delete',
     [GuestbookController::class, 'delete']
@@ -38,7 +42,10 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
 ->middleware(['auth'])
 ->middleware(['throttle:20,1']);
+// <!-- Guestbook Routes --!>
 
+
+// <!-- Guestbook Export Routes --!>
 Route::middleware(['auth'])->group(function () { 
     Route::get(
         '/guestbooks/{guestbook}/export/json',
@@ -50,9 +57,10 @@ Route::middleware(['auth'])->group(function () {
         [ExportGuestbookJsonController::class, 'exportRaw']
     );
 })->middleware(['auth', 'can:view,guestbook', 'throttle:60,1']);
+// <!-- Guestbook Export Routes --!>
 
 
-
+// <!-- Account Routes --!>
 Route::middleware(['auth'])->group(function () {
     Route::get('/account/delete', [AccountController::class, 'showDeleteForm'])->name('account.delete');
     Route::post('/account/delete', [AccountController::class, 'deleteAccount'])->name('account.destroy');
@@ -80,6 +88,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/register', function () {
     return redirect('/login');
 })->name('register');
+// <!-- Account Routes --!>
 
+
+// <!-- Blog Routes --!>
 Route::get('/blog/{post_name}', [BlogController::class, 'post'])->name('blog.post');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+// <!-- Blog Routes --!>
