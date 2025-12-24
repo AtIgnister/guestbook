@@ -22,7 +22,7 @@
         <br>
         <div>
             <label for="website">Website</label>
-            <input type="url" id="website" name="website" required>
+            <input type="url" id="website" name="website">
         </div>
         <br>
 

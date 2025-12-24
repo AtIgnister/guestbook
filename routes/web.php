@@ -5,6 +5,7 @@ use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\Export\ExportGuestbookCSVController;
 use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
+use App\Http\Controllers\Export\ExportGuestbookListController;
 use App\Http\Controllers\GuestbookController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -48,34 +49,38 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 
 
 // <!-- Guestbook Export Routes --!>
-Route::middleware(['auth'])->group(function () { 
+Route::middleware(['auth'])->group(function () {
+    Route::get(
+        '/guestbooks/export/dashboard',
+        [ExportGuestbookListController::class,'index']
+    )->name("guestbooks.export.index");
+
     Route::get(
         '/guestbooks/{guestbook}/export/json',
         [ExportGuestbookJsonController::class, 'export']
-    );
+    )->name("export.json");
     
     Route::get(
         '/guestbooks/{guestbook}/export/json/raw',
         [ExportGuestbookJsonController::class, 'exportRaw']
-    );
+    )->name("export.json.raw");
 
     Route::get(
         '/guestbooks/{guestbook}/export/csv',
         [ExportGuestbookCSVController::class, 'export']
-    );
+    )->name("export.csv");
 
     Route::get(
         '/guestbooks/{guestbook}/export/html',
         [ExportGuestbookHTMLController::class, 'export']
-    );
+    )->name("export.html");
 
     Route::get(
         '/guestbooks/{guestbook}/export/html/raw',
         [ExportGuestbookHTMLController::class, 'exportRaw']
-    );
-})->middleware(['auth', 'can:view,guestbook', 'throttle:60,1']);
+    )->name("export.html.raw");
+});
 // <!-- Guestbook Export Routes --!>
-
 
 // <!-- Account Routes --!>
 Route::middleware(['auth'])->group(function () {
