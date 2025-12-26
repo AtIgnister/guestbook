@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guestbook;
+use App\Models\GuestbookEntries;
 use Illuminate\Http\Request;
 
 class EntriesController extends Controller
@@ -30,5 +31,30 @@ class EntriesController extends Controller
     public function index(Request $request, Guestbook $guestbook) { 
         $entries = $guestbook->entries()->orderBy('created_at', 'desc')->get();
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook]);
+    }
+
+    public function edit(Request $request, Guestbook $guestbook) {
+        $entries = $guestbook->entries()->orderBy('created_at', 'desc')->get();
+        return view("entries.edit", ["entries" => $entries, "guestbook"=> $guestbook]);
+    }
+
+    public function editAll(Request $request)
+    {
+        $entries = GuestbookEntries::whereHas('guestbook', function ($query) use ($request) {
+            $query->where('user_id', $request->user()->id);
+        })
+        ->with('guestbook')
+        ->orderBy('created_at', 'desc')
+        ->get();
+    
+        return view('entries.editAll', compact('entries'));
+    }
+    public function destroy(GuestbookEntries $entry)
+    {
+        $entry->delete();
+
+        return redirect()
+            ->route('entries.editAll')
+            ->with('status', 'Entry deleted');
     }
 }

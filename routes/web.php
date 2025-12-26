@@ -38,6 +38,9 @@ Route::get('/entries/{guestbook}', [EntriesController::class, 'index'])
 ->name('entries.index');
 Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
 ->middleware(['throttle:20,1']);
+Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
+->can('delete', 'entry')
+->name('entries.destroy');
 
 Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
 
@@ -45,6 +48,9 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
 ->middleware(['auth'])
 ->middleware(['throttle:20,1']);
+
+Route::get('/entries/edit/all/', [EntriesController::class, 'editAll'])->name('entries.editAll')
+->middleware(['auth']);
 // <!-- Guestbook Routes --!>
 
 
