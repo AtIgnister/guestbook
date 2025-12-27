@@ -24,4 +24,4 @@ How to set up a local dev environment:
 How to contribute:  
 1. Make a new branch for the thing you're trying to add
 2. Create an issue for it, so I know that's what you're working on
-3. When you're finished, make a pull request so I can look over the changes and give feedback
+3. When you're finished, make a pull request so I can look over the changes and give feedback - Please don't push directly to main, I want a chance to review the code first
