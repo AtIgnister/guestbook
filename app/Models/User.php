@@ -9,11 +9,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles;
+
+    protected static function booted(): void
+    {
+        static::created(function (User $user) {
+            if (! $user->hasAnyRole(['user', 'admin', 'moderator'])) {
+                $user->assignRole('user');
+            }
+        });
+    }
 
     /**
      * The attributes that are mass assignable.

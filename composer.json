@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.9.0",
         "livewire/volt": "^1.7.0",
-        "sabberworm/php-css-parser": "^9.1"
+        "sabberworm/php-css-parser": "^9.1",
+        "spatie/laravel-permission": "^6.24"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
