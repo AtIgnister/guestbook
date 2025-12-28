@@ -42,7 +42,7 @@
                         @endif
                         <td class="px-4 py-2">
                             <div class="max-h-50 overflow-y-scroll">
-                                {{ $entry->comment }}
+                                {{ nl2br($entry->comment) }}
                             </div>
                         </td>
                         <td><time>{{ $entry->created_at }}</time></td>

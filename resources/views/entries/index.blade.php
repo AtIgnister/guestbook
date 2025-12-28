@@ -22,7 +22,7 @@
                 @if (filter_var($entry->website, FILTER_VALIDATE_URL))
                     <sup>Website: <a href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
                 @endif
-                <p>{{ $entry->comment }}</p>
+                <p>{{ nl2br($entry->comment) }}</p>
         </div>
         @empty
             <p class="text-gray-500">No entries yet.</p>
