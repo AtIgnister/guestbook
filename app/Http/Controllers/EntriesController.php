@@ -44,7 +44,7 @@ class EntriesController extends Controller
             $query->where('user_id', $request->user()->id);
         })
         ->with('guestbook')
-        ->orderBy('created_at', 'desc')
+        ->latest()
         ->get();
     
         return view('entries.editAll', compact('entries'));
