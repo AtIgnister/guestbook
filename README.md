@@ -9,7 +9,7 @@ This website is very much a WIP and not deployed anywhere yet, so right now the 
 6. add an option to require approval for new guestbook entries
 ~~ 7. change all regular IDs we use to UUIDs, and store them as ints~~ Done!
 8. Set up & test email sending with maileroo
-9. add admin users, and an admin dashboard that allows admin users to delete guestbook messages that violate TOS, and to ban people.
+9. add an admin dashboard that allows admin users to delete guestbook messages that violate TOS, and to ban people.
 10. let admin users create invites to the service, that regular users can use to create accounts (there's already an account registration process that is currently deactivated in the settings, maybe figure out how to modify that to need invites for signup?)
 11. figure out a way to automatically notify users of privacy policy changes (ideally i'd want both email and a message on the website itself. An RSS feed would be a nice bonus, but is not required.)  
 12. fix or update all currently failing tests. Currently I'm not sure which of these are because of actual bugs, and which are just because I've refactored some parts to be different to the default laravel template this started out as
