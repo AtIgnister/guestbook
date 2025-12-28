@@ -18,7 +18,7 @@ How to set up a local dev environment:
 1. clone repository
 2. composer install
 3. npm install
-4. php artisan migrate
+4. php artisan migrate --seed
 5. npm run dev
 6. php artisan serve
 
