@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\GuestbookEntries;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Guestbook extends Model
 {
+    use HasUuids;
     protected $fillable = [ 
         "name",
         "style"
@@ -21,4 +24,11 @@ class Guestbook extends Model
     public function entries(): HasMany { 
         return $this->hasMany(GuestbookEntries::class);
     }
+
+    public static function booted() {
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
+        });
+    }
+    
 }

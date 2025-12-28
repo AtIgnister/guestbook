@@ -7,7 +7,7 @@ This website is very much a WIP and not deployed anywhere yet, so right now the 
 5. Test the website to see if everything works and if the CSS is responsive. If not, either create issues for any of the problems you find or fix them yourself if they're easy fixes
 5. add site-wide and per-guestbook IP bans (they each last for 30 days total, don't store IPs directly, hash them instead)
 6. add an option to require approval for new guestbook entries
-7. change all regular IDs we use to UUIDs, and store them as ints
+~~ 7. change all regular IDs we use to UUIDs, and store them as ints~~ Done!
 8. Set up & test email sending with maileroo
 9. add admin users, and an admin dashboard that allows admin users to delete guestbook messages that violate TOS, and to ban people.
 10. let admin users create invites to the service, that regular users can use to create accounts (there's already an account registration process that is currently deactivated in the settings, maybe figure out how to modify that to need invites for signup?)

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guestbook;
 use Illuminate\Http\Request;
 use File;
 
