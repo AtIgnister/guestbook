@@ -9,7 +9,8 @@ This website is very much a WIP and not deployed anywhere yet, so right now the 
 7. Set up & test email sending with maileroo
 8. add an admin dashboard that allows admin users to delete guestbook messages that violate TOS, and to ban people.
 9. let admin users create invites to the service, that regular users can use to create accounts (there's already an account registration process that is currently deactivated in the settings, maybe figure out how to modify that to need invites for signup?)
-10. figure out a way to automatically notify users of privacy policy changes (ideally i'd want both email and a message on the website itself. An RSS feed would be a nice bonus, but is not required.)  
+10. Fix the remember me checkbox not working
+11. figure out a way to automatically notify users of privacy policy changes (ideally i'd want both email and a message on the website itself. An RSS feed would be a nice bonus, but is not required.)  
 
 
 How to set up a local dev environment:  
