@@ -45,9 +45,15 @@ class EntriesController extends Controller
         $perPage = (int) $request->query('per_page', $defaultPerPage);
         // Cap the maximum allowed per page
         $perPage = min($perPage, 50); // max 50 items per page
+        $search = $request->query('search'); // get search query
 
         if ($request->user()->hasRole('admin')) { 
             $entries = GuestbookEntries::with('guestbook')
+                ->when($search, function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('website', 'like', "%{$search}%")
+                        ->orWhere('comment', 'like', "%{$search}%");
+                })
                 ->latest()
                 ->paginate($perPage)
                 ->withQueryString();;
@@ -55,6 +61,10 @@ class EntriesController extends Controller
             $entries = GuestbookEntries::whereHas('guestbook', function ($query) use ($request) {
                 $query->where('user_id', $request->user()->id);
             })->with('guestbook')
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%")
+                      ->orWhere('comment', 'like', "%{$search}%");
+            })
             ->latest()
             ->paginate($perPage)
             ->withQueryString();
