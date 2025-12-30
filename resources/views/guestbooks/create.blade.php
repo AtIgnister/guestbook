@@ -14,6 +14,11 @@
         </div>
 
         <div class="md:flex flex-wrap">
+            <label class="w-1/4 max-w-40" for="description">Guestbook Description</label>
+            <textarea class="md:flex-1 w-full h-25" type="text" id="description" name="description"></textarea>
+        </div>
+
+        <div class="md:flex flex-wrap">
             <label class="w-1/4 max-w-40" for="style">Styles</label>
             <textarea class="md:flex-1 w-full h-50" id="style" name="style"></textarea>
         </div>

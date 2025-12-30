@@ -13,6 +13,11 @@
                 <label for="name">Guestbook Name</label>
                 <input type="text" id="name" name="name" value="{{ $guestbook->name }}" required>
             </div>
+
+            <div class="mb-2">
+                <label for="description">Guestbook Description</label>
+                <textarea  type="text" id="description" name="description">{{$guestbook->description}}</textarea>
+            </div>
     
             <div class="mb-2">
                 <label for="style">Styles</label>

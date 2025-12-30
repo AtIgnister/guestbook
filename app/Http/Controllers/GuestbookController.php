@@ -31,7 +31,8 @@ class GuestbookController extends Controller
     {
         $validated = $request->validate([
             'name' =>'required|max:255',
-            'style' => 'nullable'
+            'style' => 'nullable',
+            'description' => 'nullable|max:1000',
         ]);
 
         auth()->user()->guestbooks()->create($validated);
@@ -70,7 +71,8 @@ class GuestbookController extends Controller
 
         $validated = $request->validate([
             'name' =>'required|max:255',
-            'style' => 'nullable'
+            'style' => 'nullable',
+            'description' => 'nullable|max:1000',
         ]);
 
         $guestbook->update($validated);

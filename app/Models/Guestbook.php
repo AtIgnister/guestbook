@@ -14,7 +14,8 @@ class Guestbook extends Model
     use HasUuids;
     protected $fillable = [ 
         "name",
-        "style"
+        "style",
+        "description"
     ];
 
     public function user(): BelongsTo {
