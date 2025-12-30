@@ -1,5 +1,6 @@
 <?php
-
+use Spatie\Permission\PermissionRegistrar;
+use Spatie\Permission\Models\Role;
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -13,7 +14,15 @@
 
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+    ->in('Feature')
+    ->beforeEach(function () {
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
+
+        Role::firstOrCreate([
+            'name' => 'user',
+            'guard_name' => 'web',
+        ]);
+    });
 
 /*
 |--------------------------------------------------------------------------

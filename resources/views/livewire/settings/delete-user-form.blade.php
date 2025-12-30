@@ -43,6 +43,7 @@
 
             <form method="POST" action="{{ route('account.destroy') }}" class="space-y-4">
                 @csrf
+                @method("DELETE")
 
                 <div>
                     <label for="password" class="block text-sm font-medium ">{{ __('Password') }}</label>

@@ -1,10 +1,11 @@
 <?php
-
+// Registration is turned off, so we don't need these for now
+// TODO: write proper tests once we implement invites
 test('registration screen can be rendered', function () {
     $response = $this->get(route('register'));
 
     $response->assertStatus(200);
-});
+})->todo("write proper tests for this once we implement invites");
 
 test('new users can register', function () {
     $response = $this->post(route('register.store'), [
@@ -18,4 +19,4 @@ test('new users can register', function () {
         ->assertRedirect(route('dashboard', absolute: false));
 
     $this->assertAuthenticated();
-});
+})->todo("write proper tests once we implement invites");

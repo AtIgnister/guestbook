@@ -91,7 +91,7 @@ Route::middleware(['auth'])->group(function () {
 // <!-- Account Routes --!>
 Route::middleware(['auth'])->group(function () {
     Route::get('/account/delete', [AccountController::class, 'showDeleteForm'])->name('account.delete');
-    Route::post('/account/delete', [AccountController::class, 'deleteAccount'])->name('account.destroy');
+    Route::delete('/account/delete', [AccountController::class, 'deleteAccount'])->name('account.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
