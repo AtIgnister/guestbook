@@ -40,12 +40,25 @@ class EntriesController extends Controller
 
     public function editAll(Request $request)
     {
-        $entries = GuestbookEntries::whereHas('guestbook', function ($query) use ($request) {
-            $query->where('user_id', $request->user()->id);
-        })
-        ->with('guestbook')
-        ->latest()
-        ->get();
+        $defaultPerPage = 10; // TODO: change pagination template styling
+        // Get 'per_page' from URL query, cast to int
+        $perPage = (int) $request->query('per_page', $defaultPerPage);
+        // Cap the maximum allowed per page
+        $perPage = min($perPage, 50); // max 50 items per page
+
+        if ($request->user()->hasRole('admin')) { 
+            $entries = GuestbookEntries::with('guestbook')
+                ->latest()
+                ->paginate($perPage)
+                ->withQueryString();;
+        } else {
+            $entries = GuestbookEntries::whereHas('guestbook', function ($query) use ($request) {
+                $query->where('user_id', $request->user()->id);
+            })->with('guestbook')
+            ->latest()
+            ->paginate($perPage)
+            ->withQueryString();
+        }
     
         return view('entries.editAll', compact('entries'));
     }
