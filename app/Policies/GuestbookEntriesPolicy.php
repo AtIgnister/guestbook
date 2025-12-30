@@ -11,6 +11,10 @@ class GuestbookEntriesPolicy
      */
     public function viewAny(User $user): bool
     {
+        if($user->hasRole("admin")) {
+            return true;
+        }
+
         return true;
     }
 
@@ -19,6 +23,10 @@ class GuestbookEntriesPolicy
      */
     public function view(User $user, GuestbookEntries $guestbookEntries): bool
     {
+        if($user->hasRole("admin")) {
+            return true;
+        }
+
         return true;
     }
 
@@ -27,6 +35,10 @@ class GuestbookEntriesPolicy
      */
     public function create(User $user): bool
     {
+        if($user->hasRole("admin")) {
+            return true;
+        }
+
         return true; //TODO: change this when we implement per-guestbook bans
     }
 
@@ -43,6 +55,10 @@ class GuestbookEntriesPolicy
      */
     public function delete(User $user, GuestbookEntries $guestbookEntry): bool
     {
+        if($user->hasRole("admin")) {
+            return true;
+        }
+
         return $guestbookEntry->guestbook->user_id === $user->id;
     }
 
