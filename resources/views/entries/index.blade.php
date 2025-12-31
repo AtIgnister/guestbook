@@ -1,4 +1,11 @@
 @extends('components.layouts.layout')
+
+@section("hideBackToDashboard")
+@endsection
+
+@section("hideAdminBanner")
+@endsection
+
 @section("content")
     @if ($guestbook->style)
         <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>

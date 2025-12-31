@@ -1,6 +1,5 @@
 @extends('components.layouts.layout')
 @section("content")
-    <a class="top-2 left-2 absolute" href="{{ route("dashboard") }}">Back to Dashboard</a>
     @if(session('success'))
         <div class="max-w-2xl mx-auto mt-4 p-4 bg-green-100 text-green-800 rounded">
             {{ session('success') }}
