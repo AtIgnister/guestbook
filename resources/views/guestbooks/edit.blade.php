@@ -1,4 +1,3 @@
-<!-- resources/views/guestbooks/create.blade.php -->
 @extends('components.layouts.layout')
 @section("content")
     <main class="flex flex-col items-center gap-4">
@@ -22,6 +21,19 @@
             <div class="mb-2">
                 <label for="style">Styles</label>
                 <textarea id="style" name="style">{{ $guestbook->style }}</textarea>
+            </div>
+
+            <div class="md:flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    id="requires_approval"
+                    name="requires_approval"
+                    value="1"
+                    {{ old('requires_approval', $guestbook->requires_approval ?? false) ? 'checked' : '' }}
+                >
+                <label for="requires_approval">
+                    Require manual approval for new entries
+                </label>
             </div>
     
             <div>

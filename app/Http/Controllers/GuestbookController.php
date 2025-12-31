@@ -44,7 +44,10 @@ class GuestbookController extends Controller
             'name' =>'required|max:255',
             'style' => 'nullable',
             'description' => 'nullable|max:1000',
+            'requires_approval' => 'nullable|boolean',
         ]);
+        $validated['requires_approval'] = $request->boolean('requires_approval');
+        
 
         auth()->user()->guestbooks()->create($validated);
 
@@ -84,7 +87,9 @@ class GuestbookController extends Controller
             'name' =>'required|max:255',
             'style' => 'nullable',
             'description' => 'nullable|max:1000',
+            'requires_approval' => 'nullable|boolean',
         ]);
+        $validated['requires_approval'] = $request->boolean('requires_approval');
 
         $guestbook->update($validated);
 

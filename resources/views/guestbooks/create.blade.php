@@ -23,6 +23,19 @@
             <textarea class="md:flex-1 w-full h-50" id="style" name="style"></textarea>
         </div>
 
+        <div class="md:flex items-center gap-2">
+            <input
+                type="checkbox"
+                id="requires_approval"
+                name="requires_approval"
+                value="1"
+                {{ old('requires_approval', $guestbook->requires_approval ?? false) ? 'checked' : '' }}
+            >
+            <label for="requires_approval">
+                Require manual approval for new entries
+            </label>
+        </div>
+
         <div>
             <button type="submit">Create Guestbook</button>
         </div>

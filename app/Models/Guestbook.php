@@ -17,7 +17,8 @@ class Guestbook extends Model
     protected $fillable = [ 
         "name",
         "style",
-        "description"
+        "description",
+        'requires_approval',
     ];
     protected array $searchable = [
         'name',
