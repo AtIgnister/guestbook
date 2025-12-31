@@ -1,6 +1,3 @@
-@extends('components.layouts.layout')
-
-@section('content')
 <div class="max-w-lg mx-auto mt-10 space-y-6" x-data="{ open: false }">
     <h1 class="text-2xl font-bold">{{ __('Delete Account') }}</h1>
     <p class="text-red-600">
@@ -69,4 +66,3 @@
         </div>
     </div>
 </div>
-@endsection
