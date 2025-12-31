@@ -11,7 +11,7 @@
     <div class="max-w-2xl mx-auto">
         
         @if($guestbook->description)
-            <p>{{$guestbook->description}}</p>
+            <p class="whitespace-pre-line">{{$guestbook->description}}</p>
         @endif
 
         <sub>Be reasonable, follow the <a href="/blog/tos">guestbook guidelines.</a></sub>
