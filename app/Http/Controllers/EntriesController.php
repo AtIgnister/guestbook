@@ -77,6 +77,6 @@ class EntriesController extends Controller
         }
         $entry->save();
 
-        return view('entries.editAll', compact('entries'));
+        return back()->with('success', 'Entry approved!');
     }
 }

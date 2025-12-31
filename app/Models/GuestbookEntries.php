@@ -37,5 +37,17 @@ class GuestbookEntries extends Model
             $model->id = Str::uuid();
         });
     }
+
+    public function getIsApprovedLabel() {
+        return $this->guestbook->requires_approval
+            ? ($this->approved ? 'Yes' : 'No')
+            : '-';
+    }
+
+    public function isApproved(): bool { 
+        return $this->guestbook->requires_approval
+        ? ($this->approved ? true : false)
+        : true;
+    }
     
 }

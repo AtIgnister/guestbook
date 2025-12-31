@@ -17,7 +17,8 @@
             <table class="border shadow-sm rounded-lg">
                 <thead>
                     <tr>
-                    <th class="px-4 py-2 text-left">Guestbook</th>
+                        <th>Approved?</th>
+                        <th class="px-4 py-2 text-left">Guestbook</th>
                         <th class="px-4 py-2 text-left">Name</th>
                         <th class="px-4 py-2 text-left">Website</th>
                         <th class="px-4 py-2 text-left">Comment</th>
@@ -25,9 +26,26 @@
                         <th class="px-4 py-2 text-left">Delete</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200">
+                <tbody class="divide-y divide-gray-20">
                     @forelse ($entries as $entry)
-                    <tr>
+
+                    {{ "" /* TODO: use color that looks less bad */ }}
+                    <tr class="@if (!$entry->isApproved())
+                        bg-red-600
+                    @endif">
+                        <td class="px-4 py-2">
+                            @if (!$entry->isApproved() && auth()->user()->id === $entry->guestbook->user_id)
+                                <form method="POST" action="{{ route('entries.approve', $entry) }}">
+                                    @csrf
+                                
+                                    <button type="submit" class="hover:underline">
+                                        Approve
+                                    </button>
+                                </form
+                            @else
+                                {{ $entry->getIsApprovedLabel() }}
+                            @endif
+                        </td>
                         <td class="px-4 py-2">
                             <a href="{{ route('guestbooks.edit', $entry->guestbook->id) }}">
                                 {{ $entry->guestbook->name }}

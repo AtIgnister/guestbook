@@ -78,11 +78,7 @@ class GuestbookEntriesPolicy
         return false;
     }
 
-    public function approve(User $user, GuestbookEntries $guestbookEntries): bool {
-        if($user->hasRole("admin")) {
-            return true;
-        }
-
-        return $guestbookEntries->guestbook->user_id === $user->id;
+    public function approve(User $user, GuestbookEntries $guestbookEntry): bool {
+        return $guestbookEntry->guestbook->user_id === $user->id;
     }
 }
