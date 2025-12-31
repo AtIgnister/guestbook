@@ -15,12 +15,17 @@ class GuestbookEntries extends Model
     protected $fillable = [ 
         "name",
         "website",
-        "comment"
+        "comment",
+        "approved"
     ];
     protected array $searchable = [
         'name',
         'website',
         'comment',
+    ];
+
+    protected $casts = [
+        'approved' => 'boolean',
     ];
 
     public function guestbook(): BelongsTo {

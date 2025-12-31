@@ -21,15 +21,23 @@ class EntriesController extends Controller
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
         ]);
-
-        // Assuming you have a one-to-many relation 'entries'
-        $guestbook->entries()->create($validated);
+        
+        $guestbook->entries()->create(array_merge(
+            $validated,
+            [
+                'approved' => ! $guestbook->requires_approval,
+            ]
+        ));
 
         return redirect()->route('entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
     }
 
     public function index(Request $request, Guestbook $guestbook) { 
-        $entries = $guestbook->entries()->orderBy('created_at', 'desc')->get();
+        $entries = $guestbook->entries()
+            ->where('approved', true)
+            ->latest()
+            ->get();
+        
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook]);
     }
 

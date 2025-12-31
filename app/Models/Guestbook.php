@@ -24,6 +24,11 @@ class Guestbook extends Model
         'description',
     ];
 
+    protected $casts = [
+        'requires_approval' => 'boolean',
+    ];
+
+
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
