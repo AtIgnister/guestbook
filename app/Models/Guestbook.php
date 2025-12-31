@@ -8,14 +8,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\GuestbookEntries;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use App\Models\Concerns\VisibilityRestriction;
+use App\Models\Concerns\Searchable;
 
 class Guestbook extends Model
 {
-    use HasUuids;
+    use HasUuids, VisibilityRestriction, Searchable;
     protected $fillable = [ 
         "name",
         "style",
         "description"
+    ];
+    protected array $searchable = [
+        'name',
+        'description',
     ];
 
     public function user(): BelongsTo {

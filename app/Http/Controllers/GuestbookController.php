@@ -10,10 +10,21 @@ class GuestbookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $guestbooks = Guestbook::where("user_id", \Auth::id())->get();
-        return view("guestbooks.index", ["guestbooks" => $guestbooks]);
+        $perPage = min(
+            (int) $request->query('per_page', 10),
+            50
+        );
+        
+        $guestbooks = Guestbook::query()
+            ->visibilityRestriction($request->user())
+            ->search($request->query('search'))
+            ->latest()
+            ->paginate($perPage)
+            ->withQueryString();
+        
+        return view('guestbooks.index', compact('guestbooks'));
     }
 
     /**

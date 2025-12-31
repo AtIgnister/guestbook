@@ -6,14 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use App\Models\Concerns\VisibilityRestriction;
+use App\Models\Concerns\Searchable;
 
 class GuestbookEntries extends Model
 {
-    use HasUuids;
+    use HasUuids, VisibilityRestriction, Searchable;
     protected $fillable = [ 
         "name",
         "website",
         "comment"
+    ];
+    protected array $searchable = [
+        'name',
+        'website',
+        'comment',
     ];
 
     public function guestbook(): BelongsTo {

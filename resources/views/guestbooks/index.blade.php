@@ -19,6 +19,9 @@
                 <thead>
                     <tr>
                         <th class="px-4 py-2 text-left">Name</th>
+                        @role("admin")
+                            <th class="px-4 py-2 text-left">User</th>
+                        @endrole
                         <th class="px-4 py-2 text-left">Entries</th>
                         <th class="px-4 py-2 text-left">Edit</th>
                         <th class="px-4 py-2 text-left">Delete</th>
@@ -28,6 +31,11 @@
                     @forelse ($guestbooks as $guestbook)
                         <tr>
                             <td class="px-4 py-2">{{ $guestbook->name }}</td>
+                            @role("admin")
+                                <td class="px-4 py-2">
+                                    {{ $guestbook->user->name }}
+                                </td>
+                            @endrole
                             <td class="px-4 py-2">
                                 <a href="{{ route("entries.index", compact("guestbook")) }}" class="hover:underline">Entries</a>
                             </td>
@@ -48,6 +56,8 @@
                     @endforelse
                 </tbody>
             </table>
+            <x-search-filter />
+            {{ $guestbooks->links('pagination::simple-tailwind') }}
         </div>
 
         <!-- Add New Button -->
