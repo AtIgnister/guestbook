@@ -51,6 +51,11 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 
 Route::get('/entries/edit/all/', [EntriesController::class, 'editAll'])->name('entries.editAll')
 ->middleware(['auth']);
+
+Route::post('/entries/{entry}/approve', [EntriesController::class,'approve'])
+->name('entries.approve')
+->middleware(['auth', 'throttle:30,1'])
+->can('approve', 'entry');
 // <!-- Guestbook Routes --!>
 
 

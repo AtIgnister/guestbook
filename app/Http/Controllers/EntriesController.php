@@ -70,4 +70,13 @@ class EntriesController extends Controller
             ->route('entries.editAll')
             ->with('status', 'Entry deleted');
     }
+
+    public function approve(GuestbookEntries $entry) {
+        if($entry->approved === false) {
+            $entry->approved = true;
+        }
+        $entry->save();
+
+        return view('entries.editAll', compact('entries'));
+    }
 }
