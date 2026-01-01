@@ -128,3 +128,10 @@ Route::get('/register', function () {
 Route::get('/blog/{post_name}', [BlogController::class, 'post'])->name('blog.post');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 // <!-- Blog Routes --!>
+
+
+// <!-- Captcha --!>
+Route::get('/captcha-refresh', function () {
+    return response()->json(['captcha' => captcha_src()]);
+})->name('captcha.refresh');
+// <!-- Captcha --!>

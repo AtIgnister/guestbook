@@ -10,17 +10,17 @@
             
             <div class="mb-2">
                 <label for="name">Guestbook Name</label>
-                <input type="text" id="name" name="name" value="{{ $guestbook->name }}" required>
+                <input type="text" id="name" name="name" value="{{ old('name', $guestbook->name) }}" required>
             </div>
 
             <div class="mb-2">
                 <label for="description">Guestbook Description</label>
-                <textarea  type="text" id="description" name="description">{{$guestbook->description}}</textarea>
+                <textarea  type="text" id="description" name="description">{{ old('description', $guestbook->description) }}</textarea>
             </div>
     
             <div class="mb-2">
                 <label for="style">Styles</label>
-                <textarea id="style" name="style">{{ $guestbook->style }}</textarea>
+                <textarea id="style" name="style">{{ old('style', $guestbook->style) }}</textarea>
             </div>
 
             <div class="md:flex items-center gap-2">

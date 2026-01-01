@@ -20,6 +20,7 @@ class EntriesController extends Controller
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
+            'captcha' => ['required', 'captcha'],
         ]);
         
         $guestbook->entries()->create(array_merge(

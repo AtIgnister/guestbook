@@ -10,17 +10,17 @@
         
         <div class="md:flex flex-wrap">
             <label class="w-1/4 max-w-40" for="name">Guestbook Name</label>
-            <input class="md:flex-1 w-full md:max-w-1/3" type="text" id="name" name="name" required>
+            <input class="md:flex-1 w-full md:max-w-1/3" value="{{ old("name") }}" type="text" id="name" name="name" required>
         </div>
 
         <div class="md:flex flex-wrap">
             <label class="w-1/4 max-w-40" for="description">Guestbook Description</label>
-            <textarea class="md:flex-1 w-full h-25" type="text" id="description" name="description"></textarea>
+            <textarea class="md:flex-1 w-full h-25" type="text" id="description" name="description">{{ old("description") }}</textarea>
         </div>
 
         <div class="md:flex flex-wrap">
             <label class="w-1/4 max-w-40" for="style">Styles</label>
-            <textarea class="md:flex-1 w-full h-50" id="style" name="style"></textarea>
+            <textarea class="md:flex-1 w-full h-50" id="style" name="style">{{ old("style") }}</textarea>
         </div>
 
         <div class="md:flex items-center gap-2">
