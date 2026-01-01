@@ -8,6 +8,7 @@ This website is very much a WIP and not deployed anywhere yet, so right now the 
 6. let admin users create invites to the service, that regular users can use to create accounts (there's already an account registration process that is currently deactivated in the settings, maybe figure out how to modify that to need invites for signup?)
 7. figure out a way to automatically notify users of privacy policy changes (ideally i'd want both email and a message on the website itself. An RSS feed would be a nice bonus, but is not required.)  
 
+8. not mandatory, maybe do this post-release: when a user makes a message, give them a unique deletion token that gets saved to localstorage. Every subsequent post will also be using that deletion token. The token associated with the entry gets hashed on serverside. Users will be able to view a page listing all entries that got made that are associated with their token, and will be given the ability to delete them.
 
 How to set up a local dev environment:  
 1. clone repository
