@@ -7,7 +7,6 @@
     <h1>Dashboard</h1>
     <a class="block" href="{{ route('guestbooks.index')}}">View Guestbooks</a>
     <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>
-    <a class="block">Approve Entries</a>
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>
     <br>
