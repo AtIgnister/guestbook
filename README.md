@@ -1,6 +1,6 @@
 TODO: (In order of difficulty, as judged by me)  
 1. update the privacy policy to reflect us using maileroo for sending emails, and storing hashed Ip adresses for 30 days for moderation purposes. Also feel free to fix punctuation and grammar errors, and generally clean up the wording a bit if you've got ideas for improvements there (it's in resources/legal/privacy.blade.php)
-This website is very much a WIP and not deployed anywhere yet, so right now the privacy policy also talks about things we currently don't do, but are planning to implement. If you find anything like that, add it to this list. That should be fairly easy as all of those features are marked with a TODO: label.
+This website is very much a WIP and not deployed anywhere yet, so right now the privacy policy also talks about things we currently don't do, but are planning to implement. If you find anything like that, add it to this list. That should be fairly easy as all of those features are marked with a TODO: label. Also, we're storing old() form data with session as well.
 2. Test the website to see if everything works and if the CSS is responsive. If not, either create issues for any of the problems you find or fix them yourself if they're easy fixes
 3. add site-wide and per-guestbook IP bans (they each last for 30 days total, don't store IPs directly, hash them instead)
 4. Set up & test email sending with maileroo
