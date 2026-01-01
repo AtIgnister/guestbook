@@ -6,8 +6,14 @@
     <title>@yield('title', 'Guestbooks')</title>
     @vite('resources/css/app.css')
 </head>
-<body>
+<body @class([
 
+    'dark' => (session('theme')==='dark'),
+
+])>
+
+    <livewire:theme-toggle>
+    
     @php
         // Current route check
         $currentRoute = request()->route()->getName(); // assumes named routes
