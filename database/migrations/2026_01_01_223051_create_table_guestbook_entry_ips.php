@@ -10,7 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('guestbook_entry_ips', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
 
             $table->foreignIdFor(GuestbookEntries::class)
                 ->constrained()
