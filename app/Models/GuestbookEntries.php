@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Models\Concerns\VisibilityRestriction;
 use App\Models\Concerns\Searchable;
+use App\Helpers\IpHash;
+use Illuminate\Support\Facades\Request;
 
 class GuestbookEntries extends Model
 {
@@ -33,8 +34,10 @@ class GuestbookEntries extends Model
     }
 
     public static function booted() {
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
+        static::created(function (GuestbookEntries $entry) {
+            $entry->ips()->create([
+                'ip_hash' => IpHash::ipHash(Request::ip()),
+            ]);
         });
     }
 
@@ -50,4 +53,8 @@ class GuestbookEntries extends Model
         : true;
     }
     
+    public function ips()
+    {
+        return $this->hasMany(GuestbookEntryIp::class);
+    }
 }
