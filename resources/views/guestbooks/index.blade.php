@@ -14,7 +14,7 @@
 
         <!-- Table -->
         <div class="overflow-x-auto">
-            <table class="min-w-full border  shadow-sm rounded-lg">
+            <table class="overflow-x-auto min-w-full border  shadow-sm rounded-lg">
                 <thead>
                     <tr>
                         <th class="px-4 py-2 text-left">Name</th>
@@ -55,10 +55,10 @@
                     @endforelse
                 </tbody>
             </table>
-            <x-search-filter />
+            
             {{ $guestbooks->links('pagination::simple-tailwind') }}
         </div>
-
+        <x-search-filter />
         <!-- Add New Button -->
         @if ($guestbooks && $guestbooks->count())
             <div class="flex justify-end mt-4">
