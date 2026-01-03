@@ -6,16 +6,15 @@
     <title>@yield('title', 'Guestbooks')</title>
     @vite('resources/css/app.css')
 </head>
-<body>
+<body class="flex flex-col h-screen justify-between">
 
     @php
-        // Current route check
-        $currentRoute = request()->route()->getName(); // assumes named routes
+        $currentRoute = request()->route()->getName();
     @endphp
 
     @if (! request()->routeIs('home') && ! request()->routeIs('dashboard') && !View::hasSection('hideBackToDashboard'))
         <a href="{{ route('dashboard') }}"
-        class="top-2 left-2 absolute {{ auth()->user() && auth()->user()->hasRole('admin') ? 'text-black' : '' }}">
+           class="top-2 left-2 absolute {{ auth()->user() && auth()->user()->hasRole('admin') ? 'text-black' : '' }}">
             Back to Dashboard
         </a>
     @endif
@@ -28,6 +27,11 @@
         @endrole
     @endif
 
-    @yield('content')
+    <main class="flex-grow">
+        @yield('content')
+    </main>
+
+    <x-agpl-footer></x-agpl-footer>
+
 </body>
 </html>

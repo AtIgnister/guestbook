@@ -17,6 +17,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Source URL
+    |--------------------------------------------------------------------------
+    |
+    | This value contains a link to the source code of the application, as is required under AGPLv3.
+    | If you are conveying a modified version of this software, or making it remotely available through a computer network,
+    | please change this value to point to a place users can download your modified source code.
+    |
+    */
+    'source_url' => env('SOURCE_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
