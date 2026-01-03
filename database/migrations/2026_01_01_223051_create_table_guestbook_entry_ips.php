@@ -12,9 +12,8 @@ return new class extends Migration
         Schema::create('guestbook_entry_ips', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->foreignIdFor(GuestbookEntries::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('guestbook_entries_id')->references('id')->on('guestbook_entries')
+            ->cascadeOnDelete()->cascadeOnUpdate();
 
             // SHA-256 HMAC stored as binary (32 bytes)
             $table->binary('ip_hash', 32);

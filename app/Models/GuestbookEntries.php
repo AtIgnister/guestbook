@@ -35,7 +35,7 @@ class GuestbookEntries extends Model
 
     public static function booted() {
         static::created(function (GuestbookEntries $entry) {
-            $entry->ips()->create([
+            $entry->ip()->create([
                 'ip_hash' => IpHash::ipHash(Request::ip()),
             ]);
         });
@@ -53,8 +53,8 @@ class GuestbookEntries extends Model
         : true;
     }
     
-    public function ips()
+    public function ip()
     {
-        return $this->hasMany(GuestbookEntryIp::class);
+        return $this->hasOne(GuestbookEntryIp::class);
     }
 }

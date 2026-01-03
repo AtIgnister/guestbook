@@ -24,6 +24,7 @@
                         <th class="px-4 py-2 text-left">Comment</th>
                         <th class="px-4 py-2 text-left">Date</th>
                         <th class="px-4 py-2 text-left">Delete</th>
+                        <th class="px-4 py-2 text-left">Ban User</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-20">
@@ -72,6 +73,11 @@
                                     Delete
                                 </button>
                             </form>
+                        </td>
+                        <td>
+                            @if ($entry->ip)
+                                <a href="{{ route('ipBans.create', ["entry_ip" => $entry->ip->id]) }}">Ban User</a>
+                            @endif
                         </td>
                     </tr>
                     @empty

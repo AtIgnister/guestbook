@@ -7,6 +7,7 @@ use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\Export\ExportGuestbookListController;
 use App\Http\Controllers\GuestbookController;
+use App\Http\Controllers\IpBanController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -57,6 +58,13 @@ Route::post('/entries/{entry}/approve', [EntriesController::class,'approve'])
 ->middleware(['auth', 'throttle:30,1'])
 ->can('approve', 'entry');
 // <!-- Guestbook Routes --!>
+
+// <!-- IP Ban Routes --!>
+Route::get('/ip/ban/{entry_ip}', [IpBanController::class, 'create'])
+->name('ipBans.create');
+
+Route::post("/ip/ban/store", [IpBanController::class, 'store'])->name("ipBans.store");
+// <!-- IP Ban Routes --!>
 
 
 // <!-- Guestbook Export Routes --!>
