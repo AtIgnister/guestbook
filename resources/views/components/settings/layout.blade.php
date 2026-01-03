@@ -28,3 +28,5 @@
         </div>
     </div>
 </div>
+
+<x-agpl-footer></x-agpl-footer>
