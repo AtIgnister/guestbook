@@ -3,7 +3,7 @@ namespace App\Helpers;
 
 use App\Models\Guestbook;
 use App\Models\IpBan;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class IpHelper {
     public static function ipHash(string $ip): string
