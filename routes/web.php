@@ -31,15 +31,16 @@ Route::resource("guestbooks", GuestbookController::class)
 Route::get(
     '/guestbooks/{guestbook}/delete',
     [GuestbookController::class, 'delete']
-)->middleware('auth')
+)->middleware('auth', 'BanCheck')
 ->can('delete,guestbook')
 ->name('guestbooks.delete');
 
 Route::get('/entries/{guestbook}', [EntriesController::class, 'index'])
 ->name('entries.index');
 Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
-->middleware(['throttle:20,1']);
+->middleware(['throttle:20,1', 'BanCheck:guestbook']);
 Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
+->middleware('auth', 'BanCheck')
 ->can('delete', 'entry')
 ->name('entries.destroy');
 
@@ -47,23 +48,26 @@ Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
 
 Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
-->middleware(['auth'])
+->middleware(['auth', 'BanCheck:guestbook'])
 ->middleware(['throttle:20,1']);
 
 Route::get('/entries/edit/all/', [EntriesController::class, 'editAll'])->name('entries.editAll')
-->middleware(['auth']);
+->middleware(['auth', 'BanCheck']);
 
 Route::post('/entries/{entry}/approve', [EntriesController::class,'approve'])
 ->name('entries.approve')
-->middleware(['auth', 'throttle:30,1'])
+->middleware(['auth', 'BanCheck', 'throttle:30,1'])
 ->can('approve', 'entry');
 // <!-- Guestbook Routes --!>
 
 // <!-- IP Ban Routes --!>
 Route::get('/ip/ban/{entry_ip}', [IpBanController::class, 'create'])
+->middleware('auth', 'BanCheck')
 ->name('ipBans.create');
 
-Route::post("/ip/ban/store", [IpBanController::class, 'store'])->name("ipBans.store");
+Route::post("/ip/ban/store", [IpBanController::class, 'store'])
+->middleware('auth', 'BanCheck')
+->name("ipBans.store");
 // <!-- IP Ban Routes --!>
 
 
