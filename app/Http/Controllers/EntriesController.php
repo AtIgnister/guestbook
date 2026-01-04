@@ -61,11 +61,6 @@ class EntriesController extends Controller
             ->paginate($perPage)
             ->withQueryString();
 
-
-        $firstEntry = $entries->first();
-        $ip = $firstEntry->ip;
-        $comment = $ip->guestbookEntry->comment;
-    
         return view('entries.editAll', compact('entries'));
     }
     public function destroy(GuestbookEntries $entry)
