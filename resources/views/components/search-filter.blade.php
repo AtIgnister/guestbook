@@ -9,7 +9,7 @@
     </button> 
 </section>
  
-<section class="flex space-x-2 md:w-1/2">
+<section class="flex space-x-2 md:w-1/2 max-h-8">
     <label for="per_page" class="font-medium ml-auto ">Items per page:</label>
     <input type="number" name="per_page" id="per_page" min="1" max="50"
            value="{{ request('per_page', 10) }}"
