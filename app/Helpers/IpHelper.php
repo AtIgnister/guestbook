@@ -17,16 +17,14 @@ class IpHelper {
     }
 
     public static function isBanned(Request $request, IpBan $ipBan, ?Guestbook $guestbook) {
-        if ($request->ip() !== $ipBan->guestbookEntryIp) {
-            return false;
-        }
+        $ipHash = self::ipHash($request->ip());
 
-        if ($ipBan->is_global) {
-            return true;
-        }
-
-        return $guestbook !== null
-            && $ipBan->guestbook !== null
-            && $guestbook->id === $ipBan->guestbook->id;
-        }
+        return IpBan::query()
+            ->where('ip_hash', $ipHash)
+            ->where(function ($query) use ($guestbook) {
+                $query->where('is_global', true)
+                    ->orWhere('guestbook_id', $guestbook?->id);
+            })
+            ->exists();
+    }
 }
