@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Models\Concerns\VisibilityRestriction;
 use App\Models\Concerns\Searchable;
-use App\Helpers\IpHash;
+use App\Helpers\IpHelper;
 use Illuminate\Support\Facades\Request;
 
 class GuestbookEntries extends Model
@@ -36,7 +36,7 @@ class GuestbookEntries extends Model
     public static function booted() {
         static::created(function (GuestbookEntries $entry) {
             $entry->ip()->create([
-                'ip_hash' => IpHash::ipHash(Request::ip()),
+                'ip_hash' => IpHelper::ipHash(Request::ip()),
             ]);
         });
     }
