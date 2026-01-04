@@ -16,7 +16,7 @@ class IpHelper {
         );
     }
 
-    public static function isBanned(Request $request, ?Guestbook $guestbook) {
+    public static function isBanned(Request $request, ?Guestbook $guestbook): bool {
         $ipHash = self::ipHash($request->ip());
 
         return IpBan::query()
