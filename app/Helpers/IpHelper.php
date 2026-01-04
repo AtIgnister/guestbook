@@ -20,10 +20,15 @@ class IpHelper {
         $ipHash = self::ipHash($request->ip());
 
         return IpBan::query()
-            ->where('ip_hash', $ipHash)
+            ->whereHas('guestbookEntryIp', function ($query) use ($ipHash) {
+                $query->where('ip_hash', $ipHash);
+            })
             ->where(function ($query) use ($guestbook) {
-                $query->where('is_global', true)
-                    ->orWhere('guestbook_id', $guestbook?->id);
+                $query->where('is_global', true);
+
+                if ($guestbook) {
+                    $query->orWhere('guestbook_id', $guestbook->id);
+                }
             })
             ->exists();
     }
