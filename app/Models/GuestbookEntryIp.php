@@ -13,7 +13,7 @@ class GuestbookEntryIp extends Model
 
     public function guestbookEntry()
     {
-        return $this->belongsTo(GuestbookEntries::class);
+        return $this->belongsTo(GuestbookEntries::class, 'guestbook_entries_id');
     }
 
     public $timestamps = true;

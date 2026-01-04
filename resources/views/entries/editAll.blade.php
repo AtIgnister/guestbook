@@ -76,7 +76,7 @@
                         </td>
                         <td>
                             @if ($entry->ip)
-                                <a href="{{ route('ipBans.create', ["entry_ip" => $entry->ip->id]) }}">Ban User</a>
+                                <a href="{{ route('ipBans.create', ["entry_ip" => $entry->ip]) }}">Ban User</a>
                             @endif
                         </td>
                     </tr>
