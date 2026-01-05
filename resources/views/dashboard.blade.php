@@ -9,6 +9,10 @@
     <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>
+
+    @role("user")
+        <a class="block" href="{{route('admin.invite')}}">Create invite</a>
+    @endrole
     <br>
     <p>Logged in as: {{ auth()->user()->name }}</p>
     <form method="POST" action="{{ route('logout') }}">

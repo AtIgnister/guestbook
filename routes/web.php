@@ -7,6 +7,7 @@ use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\Export\ExportGuestbookListController;
 use App\Http\Controllers\GuestbookController;
+use App\Http\Controllers\InviteController;
 use App\Http\Controllers\IpBanController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -147,3 +148,14 @@ Route::get('/captcha-refresh', function () {
     return response()->json(['captcha' => captcha_src()]);
 })->name('captcha.refresh');
 // <!-- Captcha --!>
+
+// <!-- Admin Routes --!>
+ Route::get('/admin/invite', [InviteController::class, 'show'])
+    ->middleware(['auth','ValidateAdmin'])
+    ->name('admin.invite');
+
+ Route::post('/admin/invite', [InviteController::class, 'create'])
+    ->middleware(['auth','ValidateAdmin'])
+    ->name('admin.invite.create');
+
+// <!-- Admin Routes --!>
