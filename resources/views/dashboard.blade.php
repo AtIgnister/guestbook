@@ -10,7 +10,7 @@
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>
 
-    @role("user")
+    @role("admin")
         <a class="block" href="{{route('admin.invite')}}">Create invite</a>
     @endrole
     <br>
