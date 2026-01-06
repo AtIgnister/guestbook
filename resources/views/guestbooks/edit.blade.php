@@ -1,26 +1,26 @@
 @extends('components.layouts.layout')
 @section("content")
-    <main class="flex flex-col items-center gap-4">
+    <main class="md:flex flex-col items-center gap-4 p-4 md:p-0" >
         <h1>Edit {{ $guestbook->name }}</h1>
 
         <!-- Guestbook form -->
-        <form action="{{ route('guestbooks.update', $guestbook) }}" method="POST">
+        <form action="{{ route('guestbooks.update', $guestbook) }}" method="POST" class="flex-col space-y-4 md:w-130">
             @csrf
             @method('PUT')
             
-            <div class="mb-2">
-                <label for="name">Guestbook Name</label>
-                <input type="text" id="name" name="name" value="{{ old('name', $guestbook->name) }}" required>
+            <div class="flex flex-wrap space-x-4 space-y-2 md:space-y-0">
+                <label for="name" class="w-full md:w-fit">Guestbook Name</label>
+                <input type="text" id="name" name="name" value="{{ old('name', $guestbook->name) }}" class="flex-1" required>
             </div>
 
-            <div class="mb-2">
-                <label for="description">Guestbook Description</label>
-                <textarea  type="text" id="description" name="description">{{ old('description', $guestbook->description) }}</textarea>
+            <div class="flex flex-wrap space-y-2">
+                <label for="description" class="w-full">Guestbook Description</label>
+                <textarea  type="text" id="description" name="description" class="flex-1 h-15">{{ old('description', $guestbook->description) }}</textarea>
             </div>
     
-            <div class="mb-2">
-                <label for="style">Styles</label>
-                <textarea id="style" name="style">{{ old('style', $guestbook->style) }}</textarea>
+            <div class="flex flex-wrap 2">
+                <label for="style" class="w-full">Styles</label>
+                <textarea id="style" name="style" class="flex-1 h-60">{{ old('style', $guestbook->style) }}</textarea>
             </div>
 
             <div class="md:flex items-center gap-2">
@@ -36,7 +36,7 @@
                 </label>
             </div>
     
-            <div>
+            <div class="flex space-x-4 justify-between md:justify-start">
                 <button type="submit">Save Guestbook</button>
                 <a href="{{ route('guestbooks.index') }}" class="btn btn-secondary">Cancel</a>
             </div>

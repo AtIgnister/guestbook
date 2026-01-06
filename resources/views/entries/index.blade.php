@@ -15,7 +15,7 @@
         <a href="/guestbooks">Back to Guestbooks</a>
     @endif
 
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-2xl mx-auto p-4 md:p-0">
         
         @if($guestbook->description)
             <p class="whitespace-pre-line">{{$guestbook->description}}</p>
