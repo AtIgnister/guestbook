@@ -32,12 +32,17 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => $input['password'],
-            'role' => Role::where('name', $input['role'])->first(), //TO FIX: Role isn't set properly
             'email_verified_at' => now(),
         ]);
+
+        if(Role::exists($input['role'])) {
+            $user->assignRole($input['role']);
+        }
+
+        return $user;
     }
 }
