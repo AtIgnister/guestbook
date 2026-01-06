@@ -4,6 +4,21 @@
 @endsection
 @section("content")
 <main class="flex flex-col items-center gap-4">
+
+    <!-- MESSAGES -->
+    @if(session('success'))
+        <p class="p-2" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 30000)" x-transition>
+            {!! session('success') !!}
+        </p>
+    @endif
+
+     @if(session('error'))
+        <p class="p-2" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 30000)" x-transition>
+            {!! session('error') !!}
+        </p>
+    @endif
+   <!-- MESSAGES -->
+
     <h1>Dashboard</h1>
     <a class="block" href="{{ route('guestbooks.index')}}">View Guestbooks</a>
     <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>

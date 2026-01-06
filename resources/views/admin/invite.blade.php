@@ -8,6 +8,7 @@
     <h1>Create invite</h1>
 
     <form action="{{route('admin.invite.create')}}" method="POST" class="w-65 flex-col space-y-2">
+        @csrf
         <div class="flex space-x-2 flex-wrap">
             <label for="role" class="w-12">Role</label>
             <select name="role" id="role" class="flex-1">

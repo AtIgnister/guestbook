@@ -6,6 +6,7 @@ use App\Http\Controllers\Export\ExportGuestbookCSVController;
 use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\Export\ExportGuestbookListController;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\IpBanController;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\AccountController;
+use Laravel\Fortify\RoutePath;
 
 // <!-- Dash and Home Routes --!>
 Route::get('/', function () {
@@ -131,11 +133,14 @@ Route::middleware(['auth'])->group(function () {
         ->name('two-factor.show');
 })->middleware(['throttle:30,1']);
 
-Route::get('/register', function () {
-    return redirect('/login');
-})->name('register');
 // <!-- Account Routes --!>
 
+//Overwrite registration route to use signed middleware
+
+Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])
+    ->middleware(['guest:'.config('fortify.guard')])
+    ->middleware('signed')
+    ->name('register');
 
 // <!-- Blog Routes --!>
 Route::get('/blog/{post_name}', [BlogController::class, 'post'])->name('blog.post');

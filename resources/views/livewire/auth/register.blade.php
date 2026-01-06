@@ -23,12 +23,13 @@
             <flux:input
                 name="email"
                 :label="__('Email address')"
-                :value="old('email')"
+                :value="$email"
                 type="email"
                 required
-                autocomplete="email"
-                placeholder="email@example.com"
+                readonly
             />
+
+        <input type="hidden" id="role" name="role" value="{{$role}}"> 
 
             <!-- Password -->
             <flux:input
