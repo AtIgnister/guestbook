@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_privacy_policy', function (Blueprint $table) {
+        Schema::create('privacy_policies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->timestamp("published_at")->nullable();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_privacy_policy');
+        Schema::dropIfExists('privacy_policies');
     }
 };
