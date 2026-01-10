@@ -12,13 +12,8 @@ class PrivacyPolicyController extends Controller
      */
     public function index()
     {
-        $policyContent = PrivacyPolicy::where('visible', true)
-            ->where('is_draft', false)
-            ->orderByDesc('published_at') // latest first
-            ->first();
-
         return view('legal.privacy', [
-            'policy' => $policyContent,
+            'policy' => PrivacyPolicy::getCurrent(),
         ]);
     }
 

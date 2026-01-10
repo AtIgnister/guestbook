@@ -29,4 +29,11 @@ class PrivacyPolicy extends Model
         $this->published_at = now();
         $this->save();
     }
+
+    public static function getCurrent() {
+        return PrivacyPolicy::where('visible', true)
+            ->where('is_draft', false)
+            ->orderByDesc('published_at') // latest first
+            ->first();
+    }
 }
