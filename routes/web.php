@@ -6,6 +6,7 @@ use App\Http\Controllers\Export\ExportGuestbookCSVController;
 use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\Export\ExportGuestbookListController;
+use App\Http\Controllers\PrivacyPolicyController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\InviteController;
@@ -47,7 +48,7 @@ Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
 ->can('delete', 'entry')
 ->name('entries.destroy');
 
-Route::view("privacy-policy", "legal.privacy")->name("legal.privacy");
+Route::resource("/privacy-policy", PrivacyPolicyController::class)->only("index");
 
 Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
