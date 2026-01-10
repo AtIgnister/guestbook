@@ -137,7 +137,9 @@ Route::middleware(['auth'])->group(function () {
 // <!-- Account Routes --!>
 
 //Overwrite registration route to use signed middleware
-
+// currently this isnt secure, and TODO: we should replace this with something that stores the invite info in a database instead of using signed urls
+// ive just merge this in temporarily because i accidentally made some changes on that branch that dont have anything to do with this
+// professional dev hours over here.
 Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])
     ->middleware(['guest:'.config('fortify.guard')])
     ->middleware('signed')
