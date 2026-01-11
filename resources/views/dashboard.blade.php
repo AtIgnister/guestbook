@@ -22,11 +22,14 @@
     <h1>Dashboard</h1>
     <a class="block" href="{{ route('guestbooks.index')}}">View Guestbooks</a>
     <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>
+    @role("admin")
+        <a class="block" href="">Update Privacy Policy</a>
+    @endrole
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>
 
     @role("admin")
-        <a class="block" href="{{route('admin.invite')}}">Create invite</a>
+        <a class="block" href="{{route('admin.invite')}}">WIP, fix before release: Create invite</a>
     @endrole
     <br>
     <p>Logged in as: {{ auth()->user()->name }}</p>
