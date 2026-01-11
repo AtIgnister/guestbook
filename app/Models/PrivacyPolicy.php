@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Builder;
 
 class PrivacyPolicy extends Model
 {
@@ -30,10 +31,13 @@ class PrivacyPolicy extends Model
         $this->save();
     }
 
-    public static function getCurrent() {
+    public static function publicList(): Builder {
         return PrivacyPolicy::where('visible', true)
             ->where('is_draft', false)
-            ->orderByDesc('published_at') // latest first
-            ->first();
+            ->orderByDesc('published_at');
+    }
+
+    public static function getCurrent() {
+        return self::publicList()->first();
     }
 }

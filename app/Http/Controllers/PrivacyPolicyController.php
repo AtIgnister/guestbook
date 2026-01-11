@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 class PrivacyPolicyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Displaz current policy
      */
     public function index()
     {
         return view('legal.privacy', [
             'policy' => PrivacyPolicy::getCurrent(),
+        ]);
+    }
+
+    public function list() {
+        return view('legal.privacyHistory', [
+            'policies' => PrivacyPolicy::publicList()->get()
         ]);
     }
 
@@ -38,7 +44,9 @@ class PrivacyPolicyController extends Controller
      */
     public function show(PrivacyPolicy $privacyPolicy)
     {
-        //
+        return view('legal.privacy', [
+            'policy' => $privacyPolicy,
+        ]);
     }
 
     /**

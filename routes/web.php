@@ -48,7 +48,11 @@ Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
 ->can('delete', 'entry')
 ->name('entries.destroy');
 
-Route::resource("/privacy-policy", PrivacyPolicyController::class)->only("index");
+// <!-- Privacy Policy Routes --!>
+Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index']);
+Route::get("/privacy-policy/history", [PrivacyPolicyController::class, 'list'])->name("privacy-policy.list");
+Route::get("/privacy-policy/history/{privacyPolicy}", [PrivacyPolicyController::class, 'show'])->name("privacy-policy.show");
+// <!-- Privacy Policy Routes --!>
 
 Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
 ->name('entries.store')
