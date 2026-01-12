@@ -52,6 +52,26 @@ Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
 Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index']);
 Route::get("/privacy-policy/history", [PrivacyPolicyController::class, 'list'])->name("privacy-policy.list");
 Route::get("/privacy-policy/history/{privacyPolicy}", [PrivacyPolicyController::class, 'show'])->name("privacy-policy.show");
+
+Route::get("privacy-policy/create", [PrivacyPolicyController::class, 'create'])
+->name("privacy-policy.create")
+->middleware(['auth','ValidateAdmin']);
+
+Route::get("privacy-policy/editAll/drafts", [PrivacyPolicyController::class, 'editAllDrafts'])
+->name("privacy-policy.editAllDrafts")
+->middleware(['auth','ValidateAdmin']);
+
+Route::post("/privacy-policy/store", [PrivacyPolicyController::class, 'store'])
+->name("privacy-policy.store")
+->middleware(['auth','ValidateAdmin']);
+
+Route::patch("/privacy-policy/{privacyPolicy}/publish", [PrivacyPolicyController::class, 'publish'])
+->name("privacy-policy.publish")
+->middleware(['auth','ValidateAdmin']);
+
+Route::delete("/privacy-policy/destroy/{privacyPolicy}", [PrivacyPolicyController::class, 'destroy'])
+->name("privacy-policy.destroy")
+->middleware(['auth','ValidateAdmin']);
 // <!-- Privacy Policy Routes --!>
 
 Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])

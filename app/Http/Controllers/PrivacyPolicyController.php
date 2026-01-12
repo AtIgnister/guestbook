@@ -19,7 +19,7 @@ class PrivacyPolicyController extends Controller
 
     public function list() {
         return view('legal.privacyHistory', [
-            'policies' => PrivacyPolicy::publicList()->get()
+            'policies' => PrivacyPolicy::publicList()->get(),
         ]);
     }
 
@@ -28,7 +28,15 @@ class PrivacyPolicyController extends Controller
      */
     public function create()
     {
-        //
+        return view('legal.createPrivacyPolicy');
+    }
+
+    public function publish(PrivacyPolicy $privacyPolicy) {
+        $privacyPolicy->publish();
+
+        return redirect()
+        ->route('privacy-policy.editAllDrafts')
+        ->with('success', 'Policy published successfully.');
     }
 
     /**
@@ -36,7 +44,16 @@ class PrivacyPolicyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'content' => 'required|max:20000',
+            'change_summary' => 'required|max:2000',
+        ]);
+        
+        PrivacyPolicy::create(
+            $validated
+        );
+
+        return redirect()->route('privacy-policy.editAllDrafts')->with('success','Policy draft created sucessfully.');
     }
 
     /**
@@ -46,6 +63,16 @@ class PrivacyPolicyController extends Controller
     {
         return view('legal.privacy', [
             'policy' => $privacyPolicy,
+        ]);
+    }
+
+    /**
+     * Display view of all drafts
+     */
+    public function editAllDrafts() {
+        return view('legal.editAll', [
+            "privacyPolicies" => PrivacyPolicy::getDrafts(),
+            "enableDraftView" => true
         ]);
     }
 
@@ -70,6 +97,11 @@ class PrivacyPolicyController extends Controller
      */
     public function destroy(PrivacyPolicy $privacyPolicy)
     {
-        //
+        if($privacyPolicy->published_at) {
+            return redirect()->route('privacy-policy.editAllDrafts')->with('failure',"Don't try to delete already published policies. I'm not even sure how you managed to get here.");
+        }
+
+        $privacyPolicy->delete();
+        return redirect()->route('privacy-policy.editAllDrafts')->with('success','Policy draft deleted sucessfully.');
     }
 }

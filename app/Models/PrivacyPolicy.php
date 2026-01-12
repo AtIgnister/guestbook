@@ -31,6 +31,10 @@ class PrivacyPolicy extends Model
         $this->save();
     }
 
+    public static function getDrafts() {
+        return PrivacyPolicy::where('is_draft', true)->get();
+    }
+
     public static function publicList(): Builder {
         return PrivacyPolicy::where('visible', true)
             ->where('is_draft', false)

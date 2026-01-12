@@ -23,7 +23,7 @@
     <a class="block" href="{{ route('guestbooks.index')}}">View Guestbooks</a>
     <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>
     @role("admin")
-        <a class="block" href="">Update Privacy Policy</a>
+        <a class="block" href="{{ route("privacy-policy.editAllDrafts") }}">View privacy policy drafts</a>
     @endrole
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>

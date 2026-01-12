@@ -9,6 +9,7 @@
 <body>
     <main>
         <a href="{{ route("privacy-policy.list") }}">View Revisions</a>
+        <h1>Privacy Policy</h1>
         {!! $policy->content !!}
     </main>
 </body>
