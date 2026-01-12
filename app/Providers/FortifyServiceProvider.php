@@ -53,10 +53,11 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::registerView(function (Request $request) {
             $validated = $request->validate([
-            'email' =>'required|string|email|max:255|unique:users',
-            'role' => 'required'
+            'token' => 'required'
             ]);
-            return view('livewire.auth.register', ['email' => $validated['email'], 'role' => $validated['role']]);
+
+            session(['token_invitation' => $validated['token']]);
+            return view('livewire.auth.register');
         });
         
         Fortify::resetPasswordView(fn () => view('livewire.auth.reset-password'));

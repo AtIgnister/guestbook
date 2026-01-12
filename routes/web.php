@@ -172,9 +172,10 @@ Route::middleware(['auth'])->group(function () {
 // currently this isnt secure, and TODO: we should replace this with something that stores the invite info in a database instead of using signed urls
 // ive just merge this in temporarily because i accidentally made some changes on that branch that dont have anything to do with this
 // professional dev hours over here.
+// I think we don't need to overwrite this anymore?
 Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])
     ->middleware(['guest:'.config('fortify.guard')])
-    ->middleware('signed')
+   # ->middleware('signed')
     ->name('register');
 
 // <!-- Blog Routes --!>
