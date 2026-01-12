@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PublishedPrivacyPolicyNotification;
 class PrivacyPolicy extends Model
 {
     use HasUuids;
@@ -29,6 +29,11 @@ class PrivacyPolicy extends Model
         $this->is_draft = false;
         $this->published_at = now();
         $this->save();
+
+        $users = User::all();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new PublishedPrivacyPolicyNotification($this));
+        }
     }
 
     public static function getDrafts() {

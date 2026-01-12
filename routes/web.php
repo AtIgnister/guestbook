@@ -49,7 +49,7 @@ Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
 ->name('entries.destroy');
 
 // <!-- Privacy Policy Routes --!>
-Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index']);
+Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index'])->name("privacy-policy.index");;
 Route::get("/privacy-policy/history", [PrivacyPolicyController::class, 'list'])->name("privacy-policy.list");
 Route::get("/privacy-policy/history/{privacyPolicy}", [PrivacyPolicyController::class, 'show'])->name("privacy-policy.show");
 
