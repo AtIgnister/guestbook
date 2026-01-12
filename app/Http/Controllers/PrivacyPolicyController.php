@@ -81,7 +81,7 @@ class PrivacyPolicyController extends Controller
      */
     public function edit(PrivacyPolicy $privacyPolicy)
     {
-        //
+        return view('legal.editPrivacyPolicy', compact('privacyPolicy'));
     }
 
     /**
@@ -89,7 +89,18 @@ class PrivacyPolicyController extends Controller
      */
     public function update(Request $request, PrivacyPolicy $privacyPolicy)
     {
-        //
+        if($privacyPolicy->published_at) {
+            return redirect()->route('privacy-policy.editAllDrafts')->with('failure',"Don't try to update already published policies. I'm not even sure how you managed to get here.");
+        }
+
+        $validated = $request->validate([
+            'content' => 'required|max:20000',
+            'change_summary' => 'required|max:2000',
+        ]);
+
+        $privacyPolicy->update($validated);
+
+        return redirect()->route('privacy-policy.editAllDrafts')->with('success','Policy draft updated sucessfully.');
     }
 
     /**

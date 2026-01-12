@@ -22,6 +22,7 @@
                         <th class="px-4 py-2 text-left">Visible?</th>
                         <th class="px-4 py-2 text-left">Link</th>
                         @if ($enableDraftView)
+                            <th class="px-4 py-2 text-left">Edit</th>
                             <th class="px-4 py-2 text-left">Delete</th>
                         @endif
                     </tr>
@@ -50,6 +51,9 @@
                             <td class="px-4 py-2">{{ $privacyPolicy->visible ? "Yes" : "No" }}</td>
                             <td class="px-4 py-2"><a href="{{ route("privacy-policy.show", compact("privacyPolicy")) }}">Link</a></td>
                             @if ($enableDraftView)
+                                <td>
+                                    <a href="{{ route("privacy-policy.edit", compact("privacyPolicy")) }}">Edit</a>
+                                </td>
                                 <td>
                                     <form action="{{ route('privacy-policy.destroy', $privacyPolicy) }}" method="POST" class="flex gap-3">
                                         @csrf

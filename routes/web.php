@@ -57,6 +57,10 @@ Route::get("privacy-policy/create", [PrivacyPolicyController::class, 'create'])
 ->name("privacy-policy.create")
 ->middleware(['auth','ValidateAdmin']);
 
+Route::get("privacy-policy/edit/{privacyPolicy}", [PrivacyPolicyController::class, 'edit'])
+->name("privacy-policy.edit")
+->middleware(['auth','ValidateAdmin']);
+
 Route::get("privacy-policy/editAll/drafts", [PrivacyPolicyController::class, 'editAllDrafts'])
 ->name("privacy-policy.editAllDrafts")
 ->middleware(['auth','ValidateAdmin']);
@@ -65,7 +69,11 @@ Route::post("/privacy-policy/store", [PrivacyPolicyController::class, 'store'])
 ->name("privacy-policy.store")
 ->middleware(['auth','ValidateAdmin']);
 
-Route::patch("/privacy-policy/{privacyPolicy}/publish", [PrivacyPolicyController::class, 'publish'])
+Route::put("/privacy-policy/edit/{privacyPolicy}", [PrivacyPolicyController::class, 'update'])
+->name("privacy-policy.update")
+->middleware(['auth','ValidateAdmin']);
+
+Route::patch("/privacy-policy/publish/{privacyPolicy}", [PrivacyPolicyController::class, 'publish'])
 ->name("privacy-policy.publish")
 ->middleware(['auth','ValidateAdmin']);
 
