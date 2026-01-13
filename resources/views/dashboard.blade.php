@@ -24,7 +24,7 @@
     <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>
     @role("admin")
         <a class="block" href="{{ route("privacy-policy.editAllDrafts") }}">View privacy policy drafts</a>
-        <a class="block" href="{{ route("privacy-policy.editAllDrafts") }}">WIP: edit published policies</a>
+        <a class="block" href="{{ route("privacy-policy.editAllPublished") }}">Edit published policies</a>
     @endrole
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>

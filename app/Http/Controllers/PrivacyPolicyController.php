@@ -39,6 +39,15 @@ class PrivacyPolicyController extends Controller
         ->with('success', 'Policy published successfully.');
     }
 
+    public function toggleVisibility(PrivacyPolicy $privacyPolicy) {
+        $privacyPolicy->visible = !$privacyPolicy->visible;
+        $privacyPolicy->save();
+
+        return redirect()
+        ->route('privacy-policy.editAllPublished')
+        ->with('success', 'Visibility changed successfully.');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -61,6 +70,10 @@ class PrivacyPolicyController extends Controller
      */
     public function show(PrivacyPolicy $privacyPolicy)
     {
+        if(!$privacyPolicy->visible) {
+            return view('legal.policyHidden');
+        }
+
         return view('legal.privacy', [
             'policy' => $privacyPolicy,
         ]);
@@ -73,6 +86,13 @@ class PrivacyPolicyController extends Controller
         return view('legal.editAll', [
             "privacyPolicies" => PrivacyPolicy::getDrafts(),
             "enableDraftView" => true
+        ]);
+    }
+
+    public function editAllPublished() {
+        return view('legal.editAll', [
+            "privacyPolicies" => PrivacyPolicy::getPublished(),
+            "enableDraftView" => false
         ]);
     }
 

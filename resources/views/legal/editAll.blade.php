@@ -48,7 +48,30 @@
                                 @endif
                             </td>
                             <td class="px-4 py-2">{{ $privacyPolicy->created_at }}</td>
-                            <td class="px-4 py-2">{{ $privacyPolicy->visible ? "Yes" : "No" }}</td>
+                            <td class="px-4 py-2">
+                                {{ $privacyPolicy->visible ? "Yes" : "No" }}
+                                    @if (!$enableDraftView)
+                                        @php
+                                            $hideText = "";
+                                            if($privacyPolicy->visible) {
+                                                $hideText = "hide";
+                                            } else {
+                                                $hideText = "unhide";
+                                            }
+                                        @endphp
+                                        (<form action="{{ route('privacy-policy.toggleVisibility', $privacyPolicy) }}" method="POST" class="inline-flex items-center gap-1">
+                                            @csrf
+                                            @method('PATCH')
+                                        
+                                            <button
+                                                type="submit"
+                                                class="text-red-500"
+                                            >
+                                                {{ $hideText }}
+                                            </button>
+                                        </form>)
+                                    @endif
+                            </td>
                             <td class="px-4 py-2"><a href="{{ route("privacy-policy.show", compact("privacyPolicy")) }}">Link</a></td>
                             @if ($enableDraftView)
                                 <td>

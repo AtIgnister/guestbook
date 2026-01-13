@@ -65,6 +65,13 @@ Route::get("privacy-policy/editAll/drafts", [PrivacyPolicyController::class, 'ed
 ->name("privacy-policy.editAllDrafts")
 ->middleware(['auth','ValidateAdmin']);
 
+Route::get("privacy-policy/editAll/published", [PrivacyPolicyController::class, 'editAllPublished'])
+->name("privacy-policy.editAllPublished")
+->middleware(['auth','ValidateAdmin']);
+
+Route::patch("privacy-policy/toggleVisibility/{privacyPolicy}", [PrivacyPolicyController::class, 'toggleVisibility'])
+->name("privacy-policy.toggleVisibility");
+
 Route::post("/privacy-policy/store", [PrivacyPolicyController::class, 'store'])
 ->name("privacy-policy.store")
 ->middleware(['auth','ValidateAdmin']);

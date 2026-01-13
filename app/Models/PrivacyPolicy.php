@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PublishedPrivacyPolicyNotification;
+use Illuminate\Database\Eloquent\Builder;
 class PrivacyPolicy extends Model
 {
     use HasUuids;
@@ -38,6 +39,12 @@ class PrivacyPolicy extends Model
 
     public static function getDrafts() {
         return PrivacyPolicy::where('is_draft', true)->get();
+    }
+
+    public static function getPublished() {
+        return PrivacyPolicy::where('is_draft', false)
+            ->orderByDesc('published_at')
+            ->get();
     }
 
     public static function publicList(): Builder {
