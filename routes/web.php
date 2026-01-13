@@ -190,7 +190,7 @@ Route::get('/captcha-refresh', function () {
 })->name('captcha.refresh');
 // <!-- Captcha --!>
 
-// <!-- Admin Routes --!>
+// <!-- Invite Routes --!>
  Route::get('/admin/invite', [InviteController::class, 'show'])
     ->middleware(['auth','ValidateAdmin'])
     ->name('admin.invite');
@@ -199,4 +199,4 @@ Route::get('/captcha-refresh', function () {
     ->middleware(['auth','ValidateAdmin'])
     ->name('admin.invite.create');
 
-// <!-- Admin Routes --!>
+// <!-- Invite Routes --!>
