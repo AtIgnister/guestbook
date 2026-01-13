@@ -30,6 +30,12 @@
             “Sensitive information” refers specifically to data that could compromise the security of the platform
             (for example, private keys or credentials).
         </p>
+
+        @role("admin")
+            <br>
+            <h1>Original Policy Content (Admin Only)</h1>
+            {!! $privacyPolicy->content !!}
+        @endrole
     </main>
 </body>
 </html>

@@ -71,7 +71,7 @@ class PrivacyPolicyController extends Controller
     public function show(PrivacyPolicy $privacyPolicy)
     {
         if(!$privacyPolicy->visible) {
-            return view('legal.policyHidden');
+            return view('legal.policyHidden', compact('privacyPolicy'));
         }
 
         return view('legal.privacy', [

@@ -70,7 +70,8 @@ Route::get("privacy-policy/editAll/published", [PrivacyPolicyController::class, 
 ->middleware(['auth','ValidateAdmin']);
 
 Route::patch("privacy-policy/toggleVisibility/{privacyPolicy}", [PrivacyPolicyController::class, 'toggleVisibility'])
-->name("privacy-policy.toggleVisibility");
+->name("privacy-policy.toggleVisibility")
+->middleware(['auth','ValidateAdmin']);
 
 Route::post("/privacy-policy/store", [PrivacyPolicyController::class, 'store'])
 ->name("privacy-policy.store")
