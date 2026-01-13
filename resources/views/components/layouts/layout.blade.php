@@ -21,11 +21,13 @@
 
     @if (!View::hasSection('hideAdminBanner'))
         @role("admin")
-            <div class="bg-red-600 text-black px-4 py-2 text-center font-semibold relative">
-                <a href="{{ route('dashboard') }}" class="absolute left-2 top-2 mb-3 text-black">
+            <div class=" text-black font-semibold relative">
+                <p class="bg-red-600 p-2 mb-3 text-center">You are logged in as an <strong>Admin</strong></p>
+                @if(!request()->routeIs('dashboard'))
+                <a href="{{ route('dashboard') }}" class="ml-3">
                     Back to Dashboard
-                </a>
-                You are logged in as an <strong>Admin</strong>
+                </a> 
+                @endif               
             </div>
         @endrole
     @endif

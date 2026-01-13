@@ -6,15 +6,15 @@
         </div>
     @endif
 
-    <main class="max-w-2xl mx-auto p-4">
+    <main class="max-w-200 mx-auto p-4">
         <!-- Header -->
         <h1 class="text-3xl md:text-4xl font-bold text-center my-6">
             View Entries
         </h1>
 
         <!-- Table -->
-        <div class="">
-            <table class="border shadow-sm rounded-lg">
+        <div class="overflow-x-auto">
+            <table class="border shadow-sm rounded-lg overflow-auto">
                 <thead>
                     <tr>
                         <th>Approved?</th>
@@ -87,8 +87,8 @@
                     @endforelse
                 </tbody>
             </table>
-            <x-search-filter />
             {{ $entries->links('pagination::simple-tailwind') }}
         </div>
+        <x-search-filter />
     </main>
 @endsection
