@@ -41,6 +41,8 @@ class CreateNewUser implements CreatesNewUsers
             $user->assignRole($invite->role);
         }
 
+        $invite->delete();
+
         return $user;
     }
 }
