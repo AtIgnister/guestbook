@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use App\Models\Invite;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -21,27 +22,26 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
-            'role' => ['required'],
             'password' => $this->passwordRules(),
         ])->validate();
 
+        $invite = Invite::where('id',session('token_invitation'))->first();
+        if(!$invite){
+            abort(403);
+        }
+
         $user = User::create([
             'name' => $input['name'],
-            'email' => $input['email'],
+            'email' => $invite->email,
             'password' => $input['password'],
             'email_verified_at' => now(),
         ]);
 
-        if(Role::exists($input['role'])) {
-            $user->assignRole($input['role']);
+        if(Role::exists($invite->role)) {
+            $user->assignRole($invite->role);
         }
+
+        $invite->delete();
 
         return $user;
     }

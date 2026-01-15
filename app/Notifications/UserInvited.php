@@ -9,6 +9,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\Invite;
 
 class UserInvited extends Notification
 {
@@ -17,9 +18,9 @@ class UserInvited extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public $userRol, public User $sender)
+    public function __construct(public $userRol, public User $sender, Invite $invite)
     {
-        //
+        $this->invite = $invite;
     }
 
     /**
@@ -40,14 +41,13 @@ class UserInvited extends Notification
     {
         $appName = env('APP_NAME');
 
-        $url = $this->generateInvitationUrl($notifiable->routes['mail']);
+        $url = route('register', ['token'=>$this->invite->id]);
 
         return (new MailMessage)
             ->subject("{$appName} Invitation")
             ->greeting('Hello!')
             ->line("You have been invited by {$this->sender->name} to join the {$appName} application!")
-            ->action('Click here to register your account', url($url))
-            ->line('Importat: this link expires after 24 hours.');
+            ->action('Click here to register your account', $url);
     }
 
     /**
@@ -62,19 +62,5 @@ class UserInvited extends Notification
         ];
     }
 
-    /**
-     * Generates a unique signed URL that the mail receiver can user to register.
-     * The URL contains the UserLevel and the receiver's email address, and will be valid for 1 day.
-     *
-     * @param $notifiable
-     * @return string
-     */
-    public function generateInvitationUrl(string $email)
-    {
-        return URL::temporarySignedRoute('register', now()->addDay(), [
-            'role' => $this->userRol,
-            'email' => $email
-        ]);
-    }
 
 }

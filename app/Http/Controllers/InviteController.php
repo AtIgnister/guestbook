@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Notification;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Notifications\UserInvited;
 use Illuminate\Http\Request;
+use App\Mail\InviteCreated;
+use App\Models\Invite;
 
 class InviteController extends Controller
 {
@@ -25,7 +28,13 @@ class InviteController extends Controller
         $email = $validated['email'];
         try
         {
-            Notification::route('mail', $email)->notify(new UserInvited($userRole, $request->user())); 
+            $invite = Invite::create([
+                'email' => $email,
+                'role' => $userRole
+            ]);
+            
+            Notification::route('mail', $email)->notify(new UserInvited($userRole, $request->user(),$invite)); 
+            
         }
         catch(Exception $e)
         {

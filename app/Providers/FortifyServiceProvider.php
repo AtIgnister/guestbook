@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use App\Models\Invite;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -53,10 +54,16 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::registerView(function (Request $request) {
             $validated = $request->validate([
-            'email' =>'required|string|email|max:255|unique:users',
-            'role' => 'required'
+            'token' => 'required'
             ]);
-            return view('livewire.auth.register', ['email' => $validated['email'], 'role' => $validated['role']]);
+
+            $invite = Invite::where('id',$validated['token'])->first();
+            if($invite){
+                session(['token_invitation' => $validated['token']]);
+                return view('livewire.auth.register'); 
+            }
+            return redirect('/');
+            
         });
         
         Fortify::resetPasswordView(fn () => view('livewire.auth.reset-password'));

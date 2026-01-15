@@ -9,3 +9,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('guestbook:clear-ips')->monthly();
+Schedule::command('admin:clear-invites')->monthly();

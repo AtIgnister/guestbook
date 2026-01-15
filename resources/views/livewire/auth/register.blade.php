@@ -19,18 +19,6 @@
                 :placeholder="__('Full name')"
             />
 
-            <!-- Email Address -->
-            <flux:input
-                name="email"
-                :label="__('Email address')"
-                :value="$email"
-                type="email"
-                required
-                readonly
-            />
-
-        <input type="hidden" id="role" name="role" value="{{$role}}"> 
-
             <!-- Password -->
             <flux:input
                 name="password"
