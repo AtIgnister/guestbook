@@ -16,6 +16,7 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\AccountController;
 use Laravel\Fortify\RoutePath;
+use App\Http\Controllers\UserController;
 
 // <!-- Dash and Home Routes --!>
 Route::get('/', function () {
@@ -199,12 +200,20 @@ Route::get('/captcha-refresh', function () {
 // <!-- Captcha --!>
 
 // <!-- Invite Routes --!>
- Route::get('/admin/invite', [InviteController::class, 'show'])
+Route::get('/admin/invite', [InviteController::class, 'show'])
     ->middleware(['auth','ValidateAdmin'])
     ->name('admin.invite');
 
- Route::post('/admin/invite', [InviteController::class, 'create'])
+Route::post('/admin/invite', [InviteController::class, 'create'])
     ->middleware(['auth','ValidateAdmin'])
     ->name('admin.invite.create');
 
 // <!-- Invite Routes --!>
+
+// <!-- User Routes --!>
+
+Route::get("users", [UserController::class, 'index'])->name('user.index');
+Route::get("users/delete/{user}", [UserController::class, 'delete'])->name('user.delete');
+Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('user.destroy');
+
+// <!-- User Routes --!>

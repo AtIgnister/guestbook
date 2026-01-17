@@ -30,7 +30,8 @@
     <a class="block" href="{{ route('profile.edit') }}">Settings</a>
 
     @role("admin")
-        <a class="block" href="{{route('admin.invite')}}">WIP, fix before release: Create invite</a>
+        <a class="block" href="{{route('admin.invite')}}">Create invite</a>
+        <a class="block" href="{{ route('user.index') }}">Manage Users</a>
     @endrole
     <br>
     <p>Logged in as: {{ auth()->user()->name }}</p>
