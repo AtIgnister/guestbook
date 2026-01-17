@@ -12,17 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_user_bans', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id') // the user being banned
-                ->constrained('users')
-                ->cascadeOnDelete();
-            $table->foreignId('banned_by') // the admin who banned
-                ->constrained('users')
-                ->cascadeOnDelete();
+        Schema::create('user_bans', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('banned_by')->constrained('users');
             $table->timestamps();
-
-            $table->unique('user_id');
         });
     }
 

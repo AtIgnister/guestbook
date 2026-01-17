@@ -4,9 +4,9 @@ namespace App\Policies;
 
 use App\Models\User;
 
-class UserPolicy
+class UserBanPolicy
 {
-    /**
+     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool

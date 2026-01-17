@@ -11,6 +11,11 @@ class UserBan extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $fillable = [
+        'user_id',
+        'banned_by',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

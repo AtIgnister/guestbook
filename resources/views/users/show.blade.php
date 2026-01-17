@@ -11,6 +11,7 @@
             <p>Name: {{ $user->name }}</p>
             <p>Email: {{ $user->email }}</p>
             <p>Created at: {{ $user->created_at }}</p>
+            <p>Banned: {{ $user->userBan()->exists() ? "Yes" : "No" }}</p>
         </div>
 
         <div>
