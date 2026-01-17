@@ -27,12 +27,11 @@
         <a class="block" href="{{ route("privacy-policy.editAllPublished") }}">Edit published policies</a>
     @endrole
     <a class="block" href="{{ route('guestbooks.export.index') }}">Export Data</a>
-    <a class="block" href="{{ route('profile.edit') }}">Settings</a>
-
     @role("admin")
         <a class="block" href="{{route('admin.invite')}}">Create invite</a>
         <a class="block" href="{{ route('users.index') }}">Manage Users</a>
     @endrole
+    <a class="block" href="{{ route('profile.edit') }}">Settings</a>
     <br>
     <p>Logged in as: {{ auth()->user()->name }}</p>
     <form method="POST" action="{{ route('logout') }}">
