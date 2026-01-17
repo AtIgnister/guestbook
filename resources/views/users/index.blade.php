@@ -28,7 +28,20 @@
                         <tr>
                             <td class="px-4 py-2"><a href="{{ route('users.show', compact('user')) }}">{{ $user->name }}</a></td>
                             <td class="px-4 py-2">{{ $user->email }}</td>
-                            <td><a class="block text-red-500" href="{{ route('userBans.create', compact('user')) }}">Ban User</a></td>
+                            <td>
+                                @php
+                                    $userBan = $user->userBan;
+                                @endphp
+                                @if (!$userBan)
+                                    <a class="block text-red-500" href="{{ route('userBans.create', $user) }}">
+                                        Ban User
+                                    </a>
+                                @else
+                                    <a class="block text-red-500" href="{{ route('userBans.delete', $userBan) }}">
+                                        Unban User
+                                    </a>
+                                @endif
+                            </td>
                             <td class="px-4 py-2"><a href="{{ route('users.delete', compact('user')) }}"><p class="text-red-500">Delete</p></td>
                         </tr>
                     @endforeach

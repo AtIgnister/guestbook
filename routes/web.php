@@ -7,7 +7,7 @@ use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\Export\ExportGuestbookListController;
 use App\Http\Controllers\PrivacyPolicyController;
-use App\Http\Controllers\userBanController;
+use App\Http\Controllers\UserBanController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\InviteController;
@@ -225,8 +225,10 @@ Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () 
 
     Route::get("users/show/{user}", [UserController::class, 'show'])->name('users.show');
 
-    Route::get("users/ban/{user}", [userBanController::class, 'create'])->name('userBans.create');
-    Route::post("users/ban/{user}", [userBanController::class, 'store'])->name('userBans.store');
+    Route::get("users/ban/{user}", [UserBanController::class, 'create'])->name('userBans.create');
+    Route::get('users/unban/{userBan}', [UserBanController::class, 'delete'])->name('userBans.delete');
+    Route::delete("users/unban/{userBan}", [UserBanController::class, 'destroy'])->name('userBans.destroy');
+    Route::post("users/ban/{user}", [UserBanController::class, 'store'])->name('userBans.store');
 });
 
 // <!-- User Routes --!>

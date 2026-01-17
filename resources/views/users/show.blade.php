@@ -15,7 +15,18 @@
         </div>
 
         <div>
-            <a class="block" href="{{ route('userBans.create', compact('user')) }}">Ban User</a>
+            @php
+                $userBan = $user->userBan;
+            @endphp
+            @if (!$userBan)
+                <a class="block" href="{{ route('userBans.create', $user) }}">
+                    Ban User
+                </a>
+            @else
+                <a class="block" href="{{ route('userBans.delete', $userBan) }}">
+                    Unban User
+                </a>
+            @endif
             <a class="block" href="{{ route('users.delete', compact('user')) }}">Delete</a>
         </div>
     </div>
