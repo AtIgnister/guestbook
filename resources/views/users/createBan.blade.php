@@ -3,19 +3,17 @@
 @section("content")
     <main class="flex flex-col items-center gap-4">
         <h1 class="text-xl font-semibold mt-6">
-            Do you really want to delete {{ $user->name }}?
+            Do you really want to ban {{ $user->name }}?
         </h1>
-        <p>To confirm, type "{{ __('users.delete_prompt', ['name' => $user->name]) }}"</p>
-    
+
         <p class="text-red-400">
             This action is permanent.
         </p>
 
-        <form action="{{ route('users.destroy', $user) }}" method="POST" class="flex gap-3">
+        <form action="{{ route('userBans.store', $user) }}" method="POST" class="flex gap-3">
             @csrf
-            @method('DELETE')
         
-            <input type="text" name="deletion_confirmation">
+            <button type="submit">Ban User</button>
     
             <a
                 href="{{ route('users.index') }}"

@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -97,7 +97,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('user.index')
+        return redirect()->route('users.index')
             ->with('status', 'User deleted successfully.');
     }
 }

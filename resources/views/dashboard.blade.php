@@ -31,7 +31,7 @@
 
     @role("admin")
         <a class="block" href="{{route('admin.invite')}}">Create invite</a>
-        <a class="block" href="{{ route('user.index') }}">Manage Users</a>
+        <a class="block" href="{{ route('users.index') }}">Manage Users</a>
     @endrole
     <br>
     <p>Logged in as: {{ auth()->user()->name }}</p>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Export\ExportGuestbookHTMLController;
 use App\Http\Controllers\Export\ExportGuestbookJsonController;
 use App\Http\Controllers\Export\ExportGuestbookListController;
 use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\userBanController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\GuestbookController;
 use App\Http\Controllers\InviteController;
@@ -212,9 +213,14 @@ Route::post('/admin/invite', [InviteController::class, 'create'])
 
 // <!-- User Management Routes --!>
 Route::middleware(['auth', 'ValidateAdmin'])->group(function () { 
-    Route::get("users", [UserController::class, 'index'])->name('user.index');
-    Route::get("users/delete/{user}", [UserController::class, 'delete'])->name('user.delete');
-    Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get("users", [UserController::class, 'index'])->name('users.index');
+    Route::get("users/delete/{user}", [UserController::class, 'delete'])->name('users.delete');
+    Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get("users/show/{user}", [UserController::class, 'show'])->name('users.show');
+
+    Route::get("users/ban/{user}", [userBanController::class, 'create'])->name('userBans.create');
+    Route::post("users/ban/{user}", [userBanController::class, 'store'])->name('userBans.store');
 });
 
 // <!-- User Routes --!>
