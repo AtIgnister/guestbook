@@ -29,7 +29,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::resource("guestbooks", GuestbookController::class)
-->middleware(['auth']);
+->middleware(['auth', 'UserBanCheck']);
 // <!-- Dash and Home Routes --!>
 
 

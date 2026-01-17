@@ -1,4 +1,3 @@
-<!-- resources/views/guestbooks/create.blade.php -->
 @extends('components.layouts.layout')
 @section("content")
 <section class="m-3">

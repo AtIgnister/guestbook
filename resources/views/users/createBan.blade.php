@@ -6,10 +6,6 @@
             Do you really want to ban {{ $user->name }}?
         </h1>
 
-        <p class="text-red-400">
-            This action is permanent.
-        </p>
-
         <form action="{{ route('userBans.store', $user) }}" method="POST" class="flex gap-3">
             @csrf
         

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\UserBanHelper;
 use App\Models\Guestbook;
 use App\Models\GuestbookEntries;
 use Illuminate\Http\Request;
@@ -33,7 +34,12 @@ class EntriesController extends Controller
         return redirect()->route('entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
     }
 
-    public function index(Request $request, Guestbook $guestbook) { 
+    public function index(Request $request, Guestbook $guestbook) {
+        $guestbookAdmin = $guestbook->user()->first();
+        if(UserBanHelper::isBanned($guestbookAdmin)) {
+            return view('guestbooks.adminIsBanned');
+        }
+
         $entries = $guestbook->entries()
             ->where('approved', true)
             ->latest()

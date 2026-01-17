@@ -19,6 +19,7 @@
                     <tr>
                         <th class="px-4 py-2 text-left">Username</th>
                         <th class="px-4 py-2 text-left">Email</th>
+                        <th class="px-4 py-2 text-left">Bans</th>
                         <th class="px-4 py-2 text-left">Delete</th>
                     </tr>
                 </thead>
@@ -27,7 +28,8 @@
                         <tr>
                             <td class="px-4 py-2"><a href="{{ route('users.show', compact('user')) }}">{{ $user->name }}</a></td>
                             <td class="px-4 py-2">{{ $user->email }}</td>
-                            <td class="px-4 py-2 text-red-500"><a href="{{ route('users.delete', compact('user')) }}">Delete</a></td>
+                            <td><a class="block text-red-500" href="{{ route('userBans.create', compact('user')) }}">Ban User</a></td>
+                            <td class="px-4 py-2"><a href="{{ route('users.delete', compact('user')) }}"><p class="text-red-500">Delete</p></td>
                         </tr>
                     @endforeach
                 </tbody>
