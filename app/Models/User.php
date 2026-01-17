@@ -3,8 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Concerns\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -14,7 +16,12 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles, Searchable;
+
+    protected array $searchable = [
+        'name',
+        'email',
+    ];
 
     protected static function booted(): void
     {
@@ -75,5 +82,10 @@ class User extends Authenticatable
 
     public function guestbooks(): HasMany {
         return $this->hasMany(Guestbook::class);
+    }
+
+    public function userBan(): HasOne
+    {
+        return $this->hasOne(UserBan::class);
     }
 }

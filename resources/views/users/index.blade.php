@@ -1,0 +1,55 @@
+@extends('components.layouts.layout')
+@section("content")
+    @if(session('success'))
+        <div class="max-w-2xl mx-auto mt-4 p-4 bg-green-100 text-green-800 rounded">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <main class="max-w-2xl mx-auto p-4">
+        <!-- Header -->
+        <h1 class="text-3xl md:text-4xl font-bold text-center my-6">
+            Users
+        </h1>
+
+        <!-- Table -->
+        <div class="overflow-x-auto">
+            <table class="overflow-x-auto min-w-full border  shadow-sm rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-left">Username</th>
+                        <th class="px-4 py-2 text-left">Email</th>
+                        <th class="px-4 py-2 text-left">Bans</th>
+                        <th class="px-4 py-2 text-left">Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @foreach ($users as $user)
+                        <tr>
+                            <td class="px-4 py-2"><a href="{{ route('users.show', compact('user')) }}">{{ $user->name }}</a></td>
+                            <td class="px-4 py-2">{{ $user->email }}</td>
+                            <td>
+                                @php
+                                    $userBan = $user->userBan;
+                                @endphp
+                                @if (!$userBan)
+                                    <a class="block text-red-500" href="{{ route('userBans.create', $user) }}">
+                                        Ban User
+                                    </a>
+                                @else
+                                    <a class="block text-red-500" href="{{ route('userBans.delete', $userBan) }}">
+                                        Unban User
+                                    </a>
+                                @endif
+                            </td>
+                            <td class="px-4 py-2"><a href="{{ route('users.delete', compact('user')) }}"><p class="text-red-500">Delete</p></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
+            {{ $users->links('pagination::simple-tailwind') }}
+        </div>
+        <x-search-filter />
+    </main>
+@endsection

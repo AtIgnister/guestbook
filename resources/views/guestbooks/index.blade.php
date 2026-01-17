@@ -32,7 +32,9 @@
                             <td class="px-4 py-2">{{ $guestbook->name }}</td>
                             @role("admin")
                                 <td class="px-4 py-2">
-                                    {{ $guestbook->user->name }}
+                                    <a href="{{ route('users.show', $guestbook->user) }}">
+                                        {{ $guestbook->user->name }}
+                                    </a>
                                 </td>
                             @endrole
                             <td class="px-4 py-2">
