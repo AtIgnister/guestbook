@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -76,8 +77,27 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
-        //
+        if (Auth::user()->cannot('delete', User::class)) {
+            abort(403);
+        }
+
+        $expected = __('users.delete_prompt', ['name' => $user->name]);
+
+        $request->validate([
+            'deletion_confirmation' => ['required', 'string'],
+        ]);
+
+        if ($request->deletion_confirmation !== $expected) {
+            return back()->withErrors([
+                'deletion_confirmation' => 'Confirmation text does not match.',
+            ]);
+        }
+
+        $user->delete();
+
+        return redirect()->route('user.index')
+            ->with('status', 'User deleted successfully.');
     }
 }

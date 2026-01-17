@@ -210,10 +210,11 @@ Route::post('/admin/invite', [InviteController::class, 'create'])
 
 // <!-- Invite Routes --!>
 
-// <!-- User Routes --!>
-
-Route::get("users", [UserController::class, 'index'])->name('user.index');
-Route::get("users/delete/{user}", [UserController::class, 'delete'])->name('user.delete');
-Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('user.destroy');
+// <!-- User Management Routes --!>
+Route::middleware(['auth', 'ValidateAdmin'])->group(function () { 
+    Route::get("users", [UserController::class, 'index'])->name('user.index');
+    Route::get("users/delete/{user}", [UserController::class, 'delete'])->name('user.delete');
+    Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('user.destroy');
+});
 
 // <!-- User Routes --!>

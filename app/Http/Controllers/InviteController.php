@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Support\Facades\Notification;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,10 @@ class InviteController extends Controller
     }
 
     public function create(Request $request){
+        if (Auth::user()->cannot('create')) {
+            abort(403);
+        }
+
 
         $validated = $request->validate([
             'email' =>'required|string|email|max:255|unique:users',
