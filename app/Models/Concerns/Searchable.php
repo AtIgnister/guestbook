@@ -2,6 +2,7 @@
 namespace App\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
+use Str;
 
 trait Searchable
 {
@@ -16,9 +17,19 @@ trait Searchable
             return $query;
         }
 
-        return $query->where(function ($q) use ($search) {
+        return $query->where(function (Builder $q) use ($search) {
             foreach ($this->searchable as $column) {
-                $q->orWhere($column, 'like', "%{$search}%");
+                // Relation search: user.username
+                if (Str::contains($column, '.')) {
+                    [$relation, $field] = explode('.', $column, 2);
+
+                    $q->orWhereHas($relation, function (Builder $relQuery) use ($field, $search) {
+                        $relQuery->where($field, 'like', "%{$search}%");
+                    });
+                } else {
+                    // Direct column
+                    $q->orWhere($column, 'like', "%{$search}%");
+                }
             }
         });
     }

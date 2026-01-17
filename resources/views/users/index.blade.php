@@ -19,6 +19,7 @@
                     <tr>
                         <th class="px-4 py-2 text-left">Username</th>
                         <th class="px-4 py-2 text-left">Email</th>
+                        <th class="px-4 py-2 text-left">Guestbooks</th>
                         <th class="px-4 py-2 text-left">Delete</th>
                     </tr>
                 </thead>
@@ -27,7 +28,8 @@
                         <tr>
                             <td class="px-4 py-2">{{ $user->name }}</td>
                             <td class="px-4 py-2">{{ $user->email }}</td>
-                            <td class="px-4 py-2"><a href="{{ route('user.delete', compact('user')) }}">Delete</a></td>
+                            <td class="px-4 py-2"><a href="{{ route('guestbooks.index', ['search' => $user->name]) }}">Show</a></td>
+                            <td class="px-4 py-2 text-red-500"><a href="{{ route('user.delete', compact('user')) }}">Delete</a></td>
                         </tr>
                     @endforeach
                 </tbody>

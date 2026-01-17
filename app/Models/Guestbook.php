@@ -23,6 +23,7 @@ class Guestbook extends Model
     protected array $searchable = [
         'name',
         'description',
+        'user.name',
     ];
 
     protected $casts = [
