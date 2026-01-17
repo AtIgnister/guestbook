@@ -48,7 +48,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $guestbooks = $user->guestbooks()
+        ->latest()
+        ->paginate(10);
+
+        $user->load('userBan');
+
+        return view('users.show', compact('user', 'guestbooks'));
     }
 
     /**
