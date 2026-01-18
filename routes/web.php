@@ -125,6 +125,12 @@ Route::middleware(['UserBanCheck'])->group(function() {
     ->name("ipBans.store");
 
     Route::delete('/ip/unban/{ipBan}', [IpBanController::class, 'destroy'])->name('ipBans.destroy');
+
+    Route::delete('/guestbooks/{guestbook}/clear-bans', [IpBanController::class, 'clearBans'])
+    ->name('guestbooks.clearBans');
+
+    Route::delete('/ip/global-bans/clear', [IpBanController::class, 'clearGlobalBans'])
+    ->name('ipBans.clearGlobal');
 });
 // <!-- IP Ban Routes --!>
 
@@ -208,7 +214,7 @@ Route::get('/captcha-refresh', function () {
 // <!-- Captcha --!>
 
 // <!-- Invite Routes --!>
-Route::middleware(['auth'. 'UserBanCheck'])->group(function () {
+Route::middleware(['auth', 'UserBanCheck'])->group(function () {
     Route::get('/admin/invite', [InviteController::class, 'show'])
     ->middleware(['auth','ValidateAdmin'])
     ->name('admin.invite');

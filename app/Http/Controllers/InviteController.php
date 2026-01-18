@@ -19,7 +19,7 @@ class InviteController extends Controller
     }
 
     public function create(Request $request){
-        if (Auth::user()->cannot('create')) {
+        if (Auth::user()->cannot('create', Invite::class)) {
             abort(403);
         }
 

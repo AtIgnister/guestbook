@@ -2,13 +2,13 @@
 
 namespace App\Policies;
 
-use App\Models\Guestbook;
+use App\Models\Invite;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\Models\UserBan;
 
-class GuestbookPolicy
+class InvitePolicy
 {
-    /**
+     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
@@ -19,9 +19,17 @@ class GuestbookPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Guestbook $guestbook): bool
+    public function view(User $user, Invite $model): bool
     {
-        return $guestbook->user_id === $user->id;
+        if($user->userBan()->exists()) {
+            return false;
+        }
+
+        if($user->hasRole("admin")) {
+            return true;
+        }
+
+        return $model->id === $user->id;
     }
 
     /**
@@ -29,29 +37,33 @@ class GuestbookPolicy
      */
     public function create(User $user): bool
     {
-        return !$user->guestbooks()->count() > 5;
+        if($user->userBan()->exists()) {
+            return false;
+        }
+
+        return $user->hasRole("admin");
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Guestbook $guestbook): bool
+    public function update(User $user, Invite $model): bool
     {
-        return $guestbook->user_id === $user->id;
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Guestbook $guestbook): bool
+    public function delete(User $user, Invite $model): bool
     {
-        return $guestbook->user_id === $user->id;
+        return false;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Guestbook $guestbook): bool
+    public function restore(User $user, Invite $model): bool
     {
         return false;
     }
@@ -59,12 +71,8 @@ class GuestbookPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Guestbook $guestbook): bool
+    public function forceDelete(User $user, Invite $model): bool
     {
         return false;
-    }
-
-    public function clearBans(User $user, Guestbook $guestbook):bool {
-        return $guestbook->user_id === $user->id;
     }
 }

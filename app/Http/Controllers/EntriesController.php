@@ -60,12 +60,21 @@ class EntriesController extends Controller
             50
         );
         
-        $entries = GuestbookEntries::query()
-            ->visibilityRestriction($request->user())
-            ->search($request->query('search'))
-            ->latest()
-            ->paginate($perPage)
-            ->withQueryString();
+        if($request->user()->hasRole('admin')) {
+            $entries = GuestbookEntries::query()
+                ->search($request->query('search'))
+                ->latest()
+                ->paginate($perPage)
+                ->withQueryString();
+        } else {
+            $entries = GuestbookEntries::query()
+                ->ownedBy($request->user())
+                ->search($request->query('search'))
+                ->latest()
+                ->paginate($perPage)
+                ->withQueryString();
+        }
+
 
         return view('entries.editAll', compact('entries'));
     }

@@ -11,6 +11,13 @@
         <h1 class="text-3xl md:text-4xl font-bold text-center my-6">
             Guestbooks
         </h1>
+        @if (auth()->user()->hasRole('admin'))
+            <form class="mb-2" method="POST" action="{{ route('ipBans.clearGlobal') }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to clear all global IP bans?')">Clear All Global IP Bans</button>
+            </form>
+        @endif
 
         <!-- Table -->
         <div class="overflow-x-auto">
@@ -24,6 +31,9 @@
                         <th class="px-4 py-2 text-left">Entries</th>
                         <th class="px-4 py-2 text-left">Edit</th>
                         <th class="px-4 py-2 text-left">Delete</th>
+                        @if (!auth()->user()->hasRole('admin'))
+                            <th class="px-4 py-2 text-left">Clear Bans</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -46,6 +56,16 @@
                             <td class="px-4 py-2">
                                 <a href="{{ route("guestbooks.delete", compact("guestbook")) }}" class="hover:underline">Delete</a>
                             </td>
+                            @if (!auth()->user()->hasRole('admin'))
+                                <td class="px-4 py-2"><form class="mb-2" method="POST" action="{{ route('guestbooks.clearBans', $guestbook) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-warning"
+                                            onclick="return confirm('Are you sure you want to clear all bans for this guestbook?')">
+                                        Clear All IP Bans for This Guestbook
+                                    </button>
+                                </form></td>
+                            @endif
                         </tr>
                     @empty
                         <tr>

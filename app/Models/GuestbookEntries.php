@@ -83,4 +83,11 @@ class GuestbookEntries extends Model
     {
         return $this->hasOne(GuestbookEntryIp::class);
     }
+
+    public function scopeOwnedBy($query, $user)
+    {
+        return $query->whereHas('guestbook', fn ($q) =>
+            $q->whereBelongsTo($user)
+        );
+    }
 }

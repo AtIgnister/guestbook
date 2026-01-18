@@ -92,4 +92,31 @@ class IpBanController extends Controller
             ->back()
             ->with('success', 'IP ban removed.');
     }
+
+
+    public function clearBans(Request $request, Guestbook $guestbook)
+    {
+        // Optional authorization
+        if ($request->user()->cannot('clearBans', $guestbook)) {
+            abort(403);
+        }
+
+        // Delete all bans linked to this guestbook
+        IpBan::whereHas('guestbookEntryIp', function ($query) use ($guestbook) {
+            $query->where('guestbook_entries_id', $guestbook->id);
+        })->delete();
+
+        return redirect()->back()->with('success', 'All IP bans for this guestbook have been cleared.');
+    }
+
+    public function clearGlobalBans(Request $request)
+    {
+        if (! $request->user()->hasRole('admin')) {
+            abort(403);
+        }
+
+        IpBan::where('is_global', true)->delete();
+
+        return redirect()->back()->with('success', 'All global IP bans have been cleared.');
+    }
 }
