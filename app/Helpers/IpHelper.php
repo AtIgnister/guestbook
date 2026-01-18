@@ -11,8 +11,7 @@ class IpHelper {
         return hash_hmac(
             'sha256',
             inet_pton($ip),
-            config('app.key'),
-            true
+            config('app.key')
         );
     }
 

@@ -75,7 +75,17 @@
                             </form>
                         </td>
                         <td>
-                            <p>Banned</p>
+                            @if (!$entry->entryUserIsBanned())
+                                <a href="{{ route('ipBans.create', ["entry_ip" => $entry->ip]) }}">Ban IP</a>
+                            @else
+                                @if ($ipBan = $entry->ip->ipBans->first())
+                                    <form method="POST" action="{{ route('ipBans.destroy', $ipBan->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Unban IP</button>
+                                    </form>
+                                @endif
+                            @endif
                         </td>
                     </tr>
                     @empty

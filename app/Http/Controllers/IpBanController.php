@@ -50,7 +50,7 @@ class IpBanController extends Controller
         // Save the model
         $ipBan->save();
 
-        return redirect('/entries/editAll')->with('success', 'User banned.');
+        return redirect()->route('entries.editAll')->with('success', 'User banned.');
     }
 
     /**
@@ -80,8 +80,16 @@ class IpBanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, IpBan $ipBan)
     {
-        //
+        if ($request->user()->cannot('delete', $ipBan)) {
+            abort(403);
+        }
+
+        $ipBan->delete();
+
+        return redirect()
+            ->back()
+            ->with('success', 'IP ban removed.');
     }
 }

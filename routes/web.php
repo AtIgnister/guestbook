@@ -124,7 +124,7 @@ Route::middleware(['UserBanCheck'])->group(function() {
     ->middleware('auth', 'BanCheck')
     ->name("ipBans.store");
 
-    Route::delete('/ip/unban/{IpBan}', [IpBanController::class, 'destroy']);
+    Route::delete('/ip/unban/{ipBan}', [IpBanController::class, 'destroy'])->name('ipBans.destroy');
 });
 // <!-- IP Ban Routes --!>
 

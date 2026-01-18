@@ -15,8 +15,7 @@ return new class extends Migration
             $table->foreignId('guestbook_entries_id')->references('id')->on('guestbook_entries')
             ->cascadeOnDelete()->cascadeOnUpdate();
 
-            // SHA-256 HMAC stored as binary (32 bytes)
-            $table->binary('ip_hash', 32);
+            $table->char('ip_hash', 64);
 
             $table->timestamps();
             $table->index('ip_hash');
