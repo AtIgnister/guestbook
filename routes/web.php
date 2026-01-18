@@ -123,6 +123,8 @@ Route::middleware(['UserBanCheck'])->group(function() {
     Route::post("/ip/ban/store", [IpBanController::class, 'store'])
     ->middleware('auth', 'BanCheck')
     ->name("ipBans.store");
+
+    Route::delete('/ip/unban/{IpBan}', [IpBanController::class, 'destroy']);
 });
 // <!-- IP Ban Routes --!>
 

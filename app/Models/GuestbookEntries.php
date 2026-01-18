@@ -9,6 +9,7 @@ use App\Models\Concerns\VisibilityRestriction;
 use App\Models\Concerns\Searchable;
 use App\Helpers\IpHelper;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GuestbookEntries extends Model
 {
@@ -51,6 +52,31 @@ class GuestbookEntries extends Model
         return $this->guestbook->requires_approval
         ? ($this->approved ? true : false)
         : true;
+    }
+    public function entryUserIsBanned() {
+        if(Auth::user()->hasRole('admin')) {
+            return IpHelper::isBannedByIpHash($this, null);
+        }
+
+        $guestbook = $this->guestbook;
+        return IpHelper::isBannedByIpHash($this, $guestbook);
+    }
+
+    public function getIpBan()
+    {
+        if (!$this->ip) {
+            return null;
+        }
+
+        return IpBan::query()
+            ->whereHas('guestbookEntryIp', function ($query) {
+                $query->where('ip_hash', $this->ip->ip_hash);
+            })
+            ->where(function ($query) {
+                $query->where('is_global', true)
+                    ->orWhere('guestbook_id', $this->guestbook_id);
+            })
+        ->first();
     }
     
     public function ip()

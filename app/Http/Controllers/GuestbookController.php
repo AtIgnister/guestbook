@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guestbook;
+use App\Helpers\IpHelper;
+use Auth;
 use Illuminate\Http\Request;
 
 class GuestbookController extends Controller

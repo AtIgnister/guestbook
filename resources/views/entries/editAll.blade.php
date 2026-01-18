@@ -30,7 +30,7 @@
                 <tbody class="divide-y divide-gray-20">
                     @forelse ($entries as $entry)
 
-                    {{ "" /* TODO: use color that looks less bad */ }}
+                    {{-- TODO: use color that looks less bad --}}
                     <tr class="@if (!$entry->isApproved())
                         bg-red-600
                     @endif">
@@ -42,7 +42,7 @@
                                     <button type="submit" class="hover:underline">
                                         Approve
                                     </button>
-                                </form
+                                </form>
                             @else
                                 {{ $entry->getIsApprovedLabel() }}
                             @endif
@@ -60,7 +60,7 @@
                         @endif
                         <td class="px-4 py-2">
                             <div class="max-h-50 overflow-y-scroll">
-                                {{ nl2br($entry->comment) }}
+                                {{ $entry->comment }}
                             </div>
                         </td>
                         <td><time>{{ $entry->created_at }}</time></td>
@@ -75,9 +75,7 @@
                             </form>
                         </td>
                         <td>
-                            @if ($entry->ip)
-                                <a href="{{ route('ipBans.create', ["entry_ip" => $entry->ip]) }}">Ban IP</a>
-                            @endif
+                            <p>Banned</p>
                         </td>
                     </tr>
                     @empty

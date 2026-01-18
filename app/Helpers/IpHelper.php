@@ -32,4 +32,21 @@ class IpHelper {
             })
             ->exists();
     }
+
+    public static function isBannedByIpHash($entry, $guestbook) {
+        $ipHash = $entry->ip->ip_hash;
+
+        return IpBan::query()
+            ->whereHas('guestbookEntryIp', function ($query) use ($ipHash) {
+                $query->where('ip_hash', $ipHash);
+            })
+            ->where(function ($query) use ($guestbook) {
+                $query->where('is_global', true);
+
+                if ($guestbook) {
+                    $query->orWhere('guestbook_id', $guestbook->id);
+                }
+            })
+            ->exists();
+    }
 }
