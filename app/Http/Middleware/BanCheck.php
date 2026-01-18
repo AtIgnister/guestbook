@@ -21,7 +21,7 @@ class BanCheck
             : null;
 
         if(IpHelper::isBanned($request, $guestbook)) {
-            //abort(403);
+            abort(403);
         }
 
         return $next($request);
