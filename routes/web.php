@@ -120,7 +120,7 @@ Route::middleware(['UserBanCheck'])->group(function() {
     ->middleware('auth', 'BanCheck')
     ->name('ipBans.create');
 
-    Route::post("/ip/ban/store", [IpBanController::class, 'store'])
+    Route::post("/ip/ban/{guestbookEntry}", [IpBanController::class, 'store'])
     ->middleware('auth', 'BanCheck')
     ->name("ipBans.store");
 

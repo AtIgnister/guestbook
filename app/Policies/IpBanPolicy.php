@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\GuestbookEntries;
 use App\Models\User;
 use App\Models\IpBan;
 
@@ -10,13 +11,17 @@ class IpBanPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user, IpBan $ipBan): bool
+    public function create(User $user, IpBan $ipBan = null): bool
     {
-        if ($ipBan->is_global) {
-            return $user->hasRole('admin');
+        // Admins can always create
+        if ($user->hasRole('admin')) {
+            return true;
         }
 
-        return true;
+        // Local bans require an IpBan instance
+        return $ipBan
+            && $ipBan->guestbook
+            && $user->id === $ipBan->guestbook->user_id;
     }
 
     /**
@@ -40,7 +45,8 @@ class IpBanPolicy
             return $user->hasRole("admin");
         }
 
-        return $user->id === $ipBan->guestbook->user_id;
+        return $ipBan->guestbook
+            && $user->id === $ipBan->guestbook->user_id;
     }
 
 }
