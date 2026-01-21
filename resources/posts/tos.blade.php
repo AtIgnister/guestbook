@@ -62,7 +62,7 @@
 <blockquote>Your account has expired. Contact support over at guestbooks@sketchy-domain.local to prevent your guestbook from being deleted permanently.</blockquote>
 <blockquote>BILL GATES IS DOUBLING CRYPTO TO ANYONE WHO SENDS $ETH TO {insert wallet here}. ONLY 24 HOURS LEFT.</blockquote>
 <br>
-<p>These are an examples of what kind of speech is allowed:</p>
+<p>These are examples of what kind of speech is allowed:</p>
 <blockquote>For the longest time, someone was domain-squatting goggle.com and serving a malicious login page there. Wild stuff.</blockquote>
 <blockquote>NextJS got compromised recently. I saw you were using Next for your site, so you should probably check if you got affected.</blockquote>
 <blockquote>I've only had good experiences with g2a, I don't really get all the fearmongering.</blockquote>
