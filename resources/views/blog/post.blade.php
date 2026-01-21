@@ -175,7 +175,7 @@ Blog
           
 </style>
 <header>
-    <a class="title" href="/">
+    <a class="title" href="{{ route('blog.index') }}">
         <h1>
         The Guestbook Blog
         </h1>

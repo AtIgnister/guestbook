@@ -8,7 +8,7 @@ use File;
 class BlogController extends Controller
 {
     public function index(Request $request) {
-        $path = resource_path("posts/index.html");
+        $path = resource_path("posts/index.blade.php") ?? resource_path("posts/index.html");
         if(File::exists($path)) {
             $content = File::get($path);
             return view('blog.post', compact('content'));
@@ -33,7 +33,5 @@ class BlogController extends Controller
         }
 
         return view('blog.post', compact('content'));
-
-        abort(404);
     }
 }
