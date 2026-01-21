@@ -186,7 +186,7 @@ Blog
         @else
         <a href='{{ route("login") }}'>Login</a>
         @endauth
-        <a href="{{ route("legal.privacy") }}">Privacy Policy</a>
+        <a href="{{ route("privacy-policy.index") }}">Privacy Policy</a>
     </nav>
 </header>
 <main>
