@@ -23,14 +23,17 @@ class BlogController extends Controller
             abort(404);
         }
 
-        $path = resource_path('posts/' . $post_name . '.html');
+        $htmlPath  = resource_path("posts/{$post_name}.html");
+        $bladePath = resource_path("posts/{$post_name}.blade.php");
 
-        if (!File::exists($path)) {
-            abort(404);
+        if (File::exists($bladePath)) {
+            $content = view()->file($bladePath)->render();
+        } else if (File::exists($htmlPath)) {
+            $content = File::get($htmlPath);
         }
 
-        $content = File::get($path);
-
         return view('blog.post', compact('content'));
+
+        abort(404);
     }
 }
