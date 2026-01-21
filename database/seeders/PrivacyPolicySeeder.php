@@ -16,8 +16,7 @@ class PrivacyPolicySeeder extends Seeder
             return;
         }
 
-        $defaultPolicyFile = config_path(env("DEFAULT_PRIVACY_POLICY"));
-        $content = file_get_contents($defaultPolicyFile);
+        $content = view('default')->render();
 
         $policy = PrivacyPolicy::create(
             [

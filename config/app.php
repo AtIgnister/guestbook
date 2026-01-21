@@ -29,15 +29,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Privacy Policy
+    | Contact
     |--------------------------------------------------------------------------
     |
-    | This value contains the filename of the file containing the default privacy policy.
-    | The contents of the file will be used as the default content of the privacy policy page, and get autopublished
-    | as the first entry there (if none exist yet) when you initially seed the app.
-    | Content gets output as HTML.
+    | This value contains the contact email of the instance. Set it to whatever email you want to use for public support inquiries/invite requests.
     */
-    'default_privacy_policy' => env('DEFAULT_PRIVACY_POLICY'),
+    'contact' => env('CONTACT'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Site Name
+    |--------------------------------------------------------------------------
+    |
+    | This value contains the name of your website that is used in public-facing material like the privacy policy and code of conduct.
+    */
+    'site_name' => env('SITE_NAME'),
 
     /*
     |--------------------------------------------------------------------------

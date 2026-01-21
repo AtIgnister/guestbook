@@ -1,5 +1,5 @@
 <h2>What data does this website collect?</h2>
-<p>guestbooks.kamiscorner.xyz collects the following data:</p>
+<p>{{ config('app.site_name') }} collects the following data:</p>
 <ol>
     <li>
         <strong>Account information (Email, Password, etc. Everything you enter into the registration form.)</strong>
@@ -55,11 +55,11 @@
         delete account button. This will delete any data that is associated with your account. Because guestbook
         entries are anonymous and not linked to accounts, I cannot verify authorship. However, if an entry contains
         personal information, you may request its removal.</li>
-    <li><strong>Restriction & Objection:</strong> Ask guestbooks.kamiscorner.xyz to limit how your data is used.
+    <li><strong>Restriction & Objection:</strong> Ask {{ config('site_name') }} to limit how your data is used.
     </li>
     <li><strong>Portability:</strong> Request your data in a portable format. This website currently offers JSON,
         CSV and HTML exports, which are all accessible from your dashboard. If you want to export your data in a
-        format that currently isn't offered, you can email me at kami@kamiscorner.xyz, and I may manually export it
+        format that currently isn't offered, you can email me at {{ config('contact') }}, and I may manually export it
         for you or add another export type. Exported data does not include your password in a usable form.</li>
 </ol>
 
@@ -77,13 +77,7 @@
 
 <h2>Changes to this policy:</h2>
 <p>If this policy changes, you will be notified the next time you open this website. This website also has a <a
-        href="">separate page</a> (TODO: implement this) as well as an RSS-Feed that keeps track of all policy
-    updates which you can follow with a feed reader of your choice. If you have an account with a valid email, I
-    will also send you an email whenever the policy changes. The email server this website uses is self-hosted to
-    minimize the data that gets shared with third-parties. Due to this, the emails that get sent may end up in your
-    spam-folder. To prevent this, you may want to consider explicitly whitelisting guestbooks@kamiscorner.xyz in
-    your email client.</p>
+        href="">separate page</a>.</p>
 
 <h2>Contact:</h2>
-<p>If you have any questions, you can contact me at kami@kamiscorner.xyz.</p>
-<p>My personal contact email (kami@kamiscorner.xyz) is provided by tuta.com.</p>
+<p>If you have any questions, you can contact me at {{ config('app.contact') }}.</p>

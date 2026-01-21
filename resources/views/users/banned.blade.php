@@ -17,7 +17,7 @@
             <li>Edit your account information</li>
             <li>Delete your account</li>
         </ul>
-        <p>You can contact guestbooks@kamiscorner.xyz if you feel you have been unfairly banned, or wish to request any additional information about your ban.</p>
+        <p>You can contact me at {{ config('app.contact') }} if you feel you have been unfairly banned, or wish to request any additional information about your ban.</p>
     </main>
 </body>
 </html>
