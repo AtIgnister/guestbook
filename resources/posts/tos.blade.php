@@ -17,7 +17,7 @@
 <br>
 <p>I may add to these rules as we go, but in general: Just be reasonable. I try to interpret messages charitably. If you use guestbooks for their intended purpose of giving feedback or reaching out and initiating a conversation, you will never get your account banned.</p>
 <br>
-<p>I try to only act when it is very clear that someone is doing stuff that is blatantly against the rules. Guestbook owners have their own moderation tools, so if it won't get the site in trouble or is blatant hate speech, I'll leave it up to them.</p>
+<p>I try to only act when it is very clear that someone is doing stuff that is blatantly against the rules. Guestbook owners have their own moderation tools, so if it won't get the site in trouble and isn't blatant hate speech, I'll leave it up to them.</p>
 
 <h2>Examples</h2>
 <p>In case you're still confused, here are some examples for which things do and don't fall under each respective rule:</p>
