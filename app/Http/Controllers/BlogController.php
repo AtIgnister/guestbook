@@ -8,9 +8,15 @@ use File;
 class BlogController extends Controller
 {
     public function index(Request $request) {
-        $path = resource_path("posts/index.blade.php") ?? resource_path("posts/index.html");
-        if(File::exists($path)) {
-            $content = File::get($path);
+        $htmlPath = resource_path("posts/index.html");
+        $bladePath = resource_path("posts/index.blade.php");
+        if(File::exists($bladePath)) {
+            $content = view()->file($bladePath)->render();
+            return view('blog.post', compact('content'));
+        }
+
+        if(File::exists($htmlPath)) {
+            $content = File::get($htmlPath);
             return view('blog.post', compact('content'));
         }
 
