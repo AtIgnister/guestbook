@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Guestbooks')</title>
     @vite('resources/css/app.css')
-    {!! config('analytics_src') !!}
+    {!! config('app.analytics_src') !!}
 </head>
 <body class="flex flex-col h-screen justify-between">
 
