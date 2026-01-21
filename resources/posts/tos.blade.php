@@ -31,7 +31,7 @@
 <blockquote>"I saw your post about {insert character here} from {media franchise} actually being queer, and I don't think it makes sense narratively"</blockquote>
 <blockquote>"People that detransition are totally valid, the narrative around that has just sadly been overtaken by grifters that try to act like people are getting indoctrinated into being trans by the LGBTQ community"</blockquote>
 <br>
-<p>So, in short: If your comment involves insulting or disparaging people based on unrelated characteristics like race, sex or gender, you are not welcome.</p>
+<p>So, in short: If your comment involves insulting or disparaging people based on characteristics like race, sex or gender, you are not welcome.</p>
 <br>
 <p>If you do not do this, and simply disagree with others about their interpretation of certain media, or want to give a measured take on/expound upon certain queer topics, you are welcome to do so.</p>
 <br>
