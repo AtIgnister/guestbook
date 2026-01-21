@@ -35,7 +35,7 @@
 <br>
 <p>If you do not do this, and simply disagree with others about their interpretation of certain media, or want to give a measured take on/expound upon certain queer topics, you are welcome to do so.</p>
 <br>
-<p>In general, enforcement of this rule is a bit more fuzzy, since there are a lot of dogwhistles that straddle that line between technically not being hateful while heavily implying things that would absolutely not be allowed under the spirit of the rules.</p>
+<p>In general, enforcement of this rule is a bit more fuzzy, since there are a lot of dogwhistles that straddle that line between technically not being explicitly hateful while heavily implying things that would absolutely not be allowed under the spirit of the rules.</p>
 <br>
 <p>Generally, I'd like to be more cut-and-dry here than just 'be reasonable', but sadly here that's not entirely possible.</p>
 <br>
