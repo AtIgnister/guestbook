@@ -93,7 +93,7 @@
 <blockquote>"I'd honestly rather kill myself than touch enterprise Java Code, but I commend you for dealing with that stuff."</blockquote>
 <br>
 <p>TLDR: I think this goes without saying, but do not encourage people to harm themselves, and do not depict self-harm in a positive light.</p>
-<p>This goes applies to straightforwardly telling people to inflict bodily harm upon themselves,</p>
+<p>This applies to straightforwardly telling people to inflict bodily harm upon themselves,</p>
 <p>but trying to trick people into doing things that will physically harm them is obviously also not allowed.</p>
 <p>Talking about self-harm is allowed, a long as it is respectful, relevant to the topic of discussion, and you are clearly discouraging it.</p>
 <br>
