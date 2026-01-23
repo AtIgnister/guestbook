@@ -11,17 +11,20 @@
     <li>No spam or phishing scams.</li>
     <li>Don't encourage self-harm.</li>
     <li>Keep things SFW - No explicit sexual content or graphic descriptions of gore.</li>
-    <li>Don't dox yourself/anyone else. I will delete your message if you share your phone number or adress.</li>
+    <li>Don't dox yourself/anyone else. I will delete your message if you share your phone number or address.</li>
 </ul>
-<p>These obviously also go for the owners of the guestbooks. If you post anything on your own guestbook that violates these rules, I will either edit your message to remove the infringing content (if I see you accidentally doxxing yourself) or delete your account. (which will also automatically delete any guestbooks you've created)</p>
+<p>These obviously also go for the owners of the guestbooks. If you post anything in your own guestbook name/description that violates these rules, I will either edit your message to remove the infringing content (if I see you accidentally doxxing yourself) or delete your account. (which will also automatically delete any guestbooks you've created)</p>
 <br>
 <p>I may add to these rules as we go, but in general: Just be reasonable. I try to interpret messages charitably. If you use guestbooks for their intended purpose of giving feedback or reaching out and initiating a conversation, you will never get your account banned.</p>
 <br>
 <p>I try to only act when it is very clear that someone is doing stuff that is blatantly against the rules. Guestbook owners have their own moderation tools, so if it won't get the site in trouble and isn't blatant hate speech, I'll leave it up to them.</p>
 
 <h2>Examples</h2>
-<p>In case you're still confused, here are some examples for which things do and don't fall under each respective rule:</p>
-<h3>No racism/ableism/transpobia/homophobia etc.</h3>
+<p>In case you're still confused, here are some examples for which things do and don't fall under each respective rule.</p>
+<br>
+<p>You do not have to read this entire section. In most cases, you will be perfectly fine just looking at the bullet points above.</p>
+<p>If you are unsure whether or not a specific comment you intend to make follows the spirit of a certain rule, you can use this section to look up the specifics on how a rule is going to be enforced.</p>
+<h3>No racism/ableism/transphobia/homophobia etc.</h3>
 <p>These are examples of what is not allowed:</p>
 <blockquote>"transgenders need to GTFO of the indie web"</blockquote>
 <blockquote>"stop shoving your LGBTQ bullshit down peoples throat"</blockquote>
@@ -79,6 +82,24 @@
 <p>I will also never ask for your password or other account information.</p>
 
 <br>
-<p>If you believe a moderation action was taken in error, you may contact me at {{ config('app.contact') }}.</p>
 
-<h3>TODO: explain the rest of the rules</h3>
+<h3>Don't encourage self-harm</h3>
+<p>These are examples of what is not allowed:</p>
+<blockquote>That last post you made sucked, genuinely kys</blockquote>
+<blockquote>go and die, asshole</blockquote>
+<br>
+<p>These are examples of what kind of speech is allowed:</p>
+<blockquote>"I saw your post recently, and I can empathise with not feeling like there's a point to things sometimes. You're not alone, Things will get better."</blockquote>
+<blockquote>"I'd honestly rather kill myself than touch enterprise Java Code, but I commend you for dealing with that stuff."</blockquote>
+<br>
+<p>TLDR: I think this goes without saying, but do not encourage people to harm themselves, and do not depict self-harm in a positive light.</p>
+<p>This goes applies to straightforwardly telling people to inflict bodily harm upon themselves,</p>
+<p>but trying to trick people into doing things that will physically harm them is obviously also not allowed.</p>
+<p>Talking about self-harm is allowed, a long as it is respectful, relevant to the topic of discussion, and you are clearly discouraging it.</p>
+<br>
+<p>It is also fine to make light-hearted quips in the vein of 'oh, I'd rather die than do x', so long as it is clear that you are joking.</p>
+<p>Joking about <i>other people</i> inflicting self-harm is not allowed, no matter the context.</p>
+
+<h3>Keep things SFW</h3>
+<p>TODO: clarify the rest of these rules</p>
+<p>If you believe a moderation action was taken in error, you may contact me at {{ config('app.contact') }}.</p>
