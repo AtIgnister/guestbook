@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nodejs \
     npm \
     && docker-php-ext-configure gd --with-jpeg --with-webp \
-    && docker-php-ext-install gd xml zip \
+    && RUN docker-php-ext-install gd xml zip || tail -n 50 /var/log/build.log \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Composer globally
