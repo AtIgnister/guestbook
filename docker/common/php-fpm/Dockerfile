@@ -122,7 +122,7 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["php-fpm", "-F"]
 
 
 # Stage 3: Development image
