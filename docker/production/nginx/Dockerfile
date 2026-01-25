@@ -3,6 +3,9 @@ FROM debian AS builder
 
 # Install Node.js and build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpng16-16 \
+    libjpeg62-turbo \
+    libfreetype6 \
     curl \
     nodejs \
     npm \
