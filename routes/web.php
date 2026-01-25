@@ -99,12 +99,13 @@ Route::middleware(['UserBanCheck'])->group(function() {
 
 // <!-- Privacy Policy Routes --!>
 
-Route::middleware(['UserBanCheck'])->group(function() { 
-    Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
+Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
     ->name('entries.store')
     ->middleware(['auth', 'BanCheck:guestbook'])
     ->middleware(['throttle:20,1']);
 
+// <!-- Guestbook Routes --!>
+Route::middleware(['UserBanCheck'])->group(function() { 
     Route::get('/entries/edit/all/', [EntriesController::class, 'editAll'])->name('entries.editAll')
     ->middleware(['auth', 'BanCheck']);
 
