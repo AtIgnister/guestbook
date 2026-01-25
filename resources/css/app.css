@@ -92,12 +92,22 @@ select:focus[data-flux-control] {
         background-color: #01242e;
         color: white;
     }
-    
+
     a {
-        color: #8cc2dd;
+        color: #023e8a;
     }
     
     a:visited {
-        color: #8cc2dd;
+        color: #023e8a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        a {
+            color: #8cc2dd;
+        }
+        
+        a:visited {
+            color: #8cc2dd;
+        }
     }
 }

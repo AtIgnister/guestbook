@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     {!! config('app.analytics_src') !!}
 </head>
-<body class="flex flex-col h-screen justify-between">
+<body class="flex flex-col h-screen justify-between text-gray-700 dark:text-gray-300 bg-white dark:bg-[#01242e]">
 
     @php
         $currentRoute = request()->route()->getName();
