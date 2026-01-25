@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('guestbook_entry_ips', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->foreignId('guestbook_entries_id')->references('id')->on('guestbook_entries')
+            $table->foreignUuid('guestbook_entries_id')->references('id')->on('guestbook_entries')
             ->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->char('ip_hash', 64);
