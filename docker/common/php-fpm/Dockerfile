@@ -67,6 +67,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     libicu-dev \
     libzip-dev \
+    libpng16-16 \
+    libjpeg62-turbo \
+    libfreetype6 \
     libfcgi-bin \
     procps \
     && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
