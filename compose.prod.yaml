@@ -41,10 +41,11 @@ services:
     networks:
       - laravel-production
     healthcheck:
-      test: ["CMD", "php-fpm-healthcheck"]
+      test: ["CMD-SHELL", "pgrep php-fpm > /dev/null"]
       interval: 10s
       timeout: 5s
       retries: 3
+
     # The 'depends_on' attribute with 'condition: service_healthy' ensures that
     # this service will not start until the 'postgres' service passes its health check.
     # This prevents the application from trying to connect to the database before it's ready.
