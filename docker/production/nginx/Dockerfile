@@ -1,32 +1,19 @@
-FROM php:8.5-cli AS builder
+# docker/nginx/Dockerfile
+# Stage 1: Build assets
+FROM debian AS builder
 
-# Install system dependencies for Composer and Node.js build
+# Install Node.js and build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    unzip \
     curl \
-    libpng-dev \
-    libjpeg-dev \
-    libwebp-dev \
-    libxml2-dev \
-    libzip-dev \
     nodejs \
     npm \
-    && docker-php-ext-configure gd --with-jpeg --with-webp \
-    && docker-php-ext-install gd zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set working directory
 WORKDIR /var/www
 
-# Copy application code
+# Copy Laravel application code
 COPY . /var/www
-
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
 
 # Install Node.js dependencies and build assets
 RUN npm install && npm run build
@@ -35,9 +22,16 @@ RUN npm install && npm run build
 FROM nginx:alpine
 
 # Copy custom Nginx configuration
-COPY ./docker/production/nginx/nginx.conf /etc/nginx/nginx.conf
+# -----------------------------------------------------------
+# Replace the default Nginx configuration with our custom one
+# that is optimized for serving a Laravel application.
+# -----------------------------------------------------------
+COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Copy Laravel's public assets from the builder stage
+# -----------------------------------------------------------
+# We only need the 'public' directory from our Laravel app.
+# -----------------------------------------------------------
 COPY --from=builder /var/www/public /var/www/public
 
 # Set the working directory to the public folder
