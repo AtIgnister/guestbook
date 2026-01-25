@@ -6,9 +6,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     curl \
     libpng-dev \
+    libjpeg-dev \
+    libwebp-dev \
     libxml2-dev \
     nodejs \
     npm \
+    && docker-php-ext-configure gd --with-jpeg --with-webp \
     && docker-php-ext-install gd dom \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
