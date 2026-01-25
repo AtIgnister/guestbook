@@ -10,7 +10,7 @@
     <li>Don't post anything that could get me in trouble. (links to pirated content, recordings of real-life violence, etc.)</li>
     <li>No spam or phishing scams.</li>
     <li>Don't encourage self-harm.</li>
-    <li>Keep things SFW - No explicit sexual content or graphic descriptions of gore.</li>
+    <li>No explicit sexual content or graphic descriptions of gore.</li>
     <li>Don't dox yourself/anyone else. I will delete your message if you share your phone number or address.</li>
 </ul>
 <p>These obviously also go for the owners of the guestbooks. If you post anything in your own guestbook name/description that violates these rules, I will either edit your message to remove the infringing content (if I see you accidentally doxxing yourself) or delete your account. (which will also automatically delete any guestbooks you've created)</p>
@@ -100,6 +100,8 @@
 <p>It is also fine to make light-hearted quips in the vein of 'oh, I'd rather die than do x', so long as it is clear that you are joking.</p>
 <p>Joking about <i>other people</i> inflicting self-harm is not allowed, no matter the context.</p>
 
-<h3>Keep things SFW</h3>
-<p>TODO: clarify the rest of these rules</p>
+<h3>No explicit sexual content or graphic descriptions of gore</h3>
+<p>WIP. I'm not quite sure how to handle this yet, I'll probably add an NSFW toggle.</p>
+<p>In principle, I do want discussion about NSFW topics to be possible, I just don't want graphic descriptions or smut.</p>
+
 <p>If you believe a moderation action was taken in error, you may contact me at {{ config('app.contact') }}.</p>
