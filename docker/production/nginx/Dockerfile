@@ -4,12 +4,12 @@ FROM php:8.5-cli AS builder
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     unzip \
-    libzip \
     curl \
     libpng-dev \
     libjpeg-dev \
     libwebp-dev \
     libxml2-dev \
+    libzip-dev \
     nodejs \
     npm \
     && docker-php-ext-configure gd --with-jpeg --with-webp \
