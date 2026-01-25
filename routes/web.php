@@ -101,7 +101,7 @@ Route::middleware(['UserBanCheck'])->group(function() {
 
 Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
     ->name('entries.store')
-    ->middleware(['auth', 'BanCheck:guestbook'])
+    ->middleware(['BanCheck:guestbook'])
     ->middleware(['throttle:20,1']);
 
 // <!-- Guestbook Routes --!>
