@@ -15,10 +15,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('comment');
-            $table->string('website')->nullable(true);
+            $table->string('website')->nullable();
 
-            $table->foreignId('guestbook_id')->references('id')->on('guestbooks')
-            ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('guestbook_id')
+                ->constrained('guestbooks')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
 
             $table->timestamps();
         });
