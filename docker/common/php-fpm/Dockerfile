@@ -54,7 +54,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 
 # Stage 2: Production environment
-FROM php:8.3-fpm AS production
+FROM php:8.5-fpm AS production
 
 # Install only runtime libraries needed in production
 # libfcgi-bin and procps are required for the php-fpm-healthcheck script
