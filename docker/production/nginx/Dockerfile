@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     libwebp-dev \
     libxml2-dev \
-    libxml8.5-xml \
+    php8.5-xml \
     nodejs \
     npm \
     && docker-php-ext-configure gd --with-jpeg --with-webp \
