@@ -41,7 +41,7 @@ services:
     networks:
       - laravel-production
     healthcheck:
-      test: ["CMD-SHELL", "php-fpm-healthcheck || exit 1"]
+      test: ["CMD", "php-fpm-healthcheck"]
       interval: 10s
       timeout: 5s
       retries: 3
