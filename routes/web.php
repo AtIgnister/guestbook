@@ -44,9 +44,10 @@ Route::get(
 Route::get('/entries/{guestbook}', [EntriesController::class, 'index'])
 ->name('entries.index');
 
+Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
+->middleware(['throttle:20,1', 'BanCheck:guestbook']);
+
 Route::middleware(['UserBanCheck'])->group(function() {
-    Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
-    ->middleware(['throttle:20,1', 'BanCheck:guestbook']);
     Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
     ->middleware('auth', 'BanCheck')
     ->can('delete', 'entry')

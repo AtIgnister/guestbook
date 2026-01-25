@@ -17,7 +17,7 @@
                     Log in
                 </a>
             @endauth
-                <a href="/privacy-policy" class="text-white mr-6 text-sm">Privacy Policy</a>
+                <a href="/privacy-policy" class="dark:text-[#EDEDEC] text-blue mr-6 text-sm">Privacy Policy</a>
         </nav>
         <main class="max-w-2xl mx-auto">
             <h1>Guestbooks</h1>
