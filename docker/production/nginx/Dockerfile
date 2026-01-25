@@ -5,6 +5,8 @@ FROM debian AS builder
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     php-cli \
+    php8.4-gd \
+    php8.4-xml \
     unzip \
     git \
     nodejs \
