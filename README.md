@@ -1,11 +1,3 @@
-TODO: (In order of difficulty, as judged by me)  
-1. update the privacy policy to reflect us using maileroo for sending emails, and storing hashed Ip adresses for 30 days for moderation purposes. Also feel free to fix punctuation and grammar errors, and generally clean up the wording a bit if you've got ideas for improvements there (it's in resources/legal/privacy.blade.php)
-This website is very much a WIP and not deployed anywhere yet, so right now the privacy policy also talks about things we currently don't do, but are planning to implement. If you find anything like that, add it to this list. That should be fairly easy as all of those features are marked with a TODO: label. Also, we're storing old() form data with session as well.
-2. Test the website to see if everything works and if the CSS is responsive. If not, either create issues for any of the problems you find or fix them yourself if they're easy fixes
-3. Set up & test email sending with maileroo
-4. let admin users create invites to the service, that regular users can use to create accounts (there's already an account registration process that is currently deactivated in the settings, maybe figure out how to modify that to need invites for signup?)
-5. not mandatory, maybe do this post-release: when a user makes a message, give them a unique deletion token that gets saved to localstorage. Every subsequent post will also be using that deletion token. The token associated with the entry gets hashed on serverside. Users will be able to view a page listing all entries that got made that are associated with their token, and will be given the ability to delete them.
-
 How to set up a local dev environment:  
 1. clone repository
 2. composer install
