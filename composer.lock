@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a53a154568497f1e8f8378161e36d53",
+    "content-hash": "41770e29ebe67ee81e5f2f345043eaf7",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2543,6 +2543,90 @@
                 "source": "https://github.com/livewire/volt"
             },
             "time": "2025-11-25T16:19:15+00:00"
+        },
+        {
+            "name": "maileroo/maileroo-laravel-transport",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maileroo/maileroo-laravel-transport.git",
+                "reference": "d39ec6c52f0ad702ec2021b280c1ab2825c135c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maileroo/maileroo-laravel-transport/zipball/d39ec6c52f0ad702ec2021b280c1ab2825c135c7",
+                "reference": "d39ec6c52f0ad702ec2021b280c1ab2825c135c7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/mail": "*",
+                "maileroo/maileroo-php-sdk": "^2.0.0",
+                "php": "^8.0",
+                "symfony/mime": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Maileroo\\LaravelTransport\\MailerooTransportServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Maileroo\\LaravelTransport\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This is a Laravel transport for the Maileroo email service, allowing you to send emails using the Maileroo API.",
+            "support": {
+                "issues": "https://github.com/maileroo/maileroo-laravel-transport/issues",
+                "source": "https://github.com/maileroo/maileroo-laravel-transport/tree/1.0.0"
+            },
+            "time": "2025-08-16T05:44:50+00:00"
+        },
+        {
+            "name": "maileroo/maileroo-php-sdk",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maileroo/maileroo-php-sdk.git",
+                "reference": "34306d7f1b693fa42b9e3ef28e3116daaaeff4f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maileroo/maileroo-php-sdk/zipball/34306d7f1b693fa42b9e3ef28e3116daaaeff4f8",
+                "reference": "34306d7f1b693fa42b9e3ef28e3116daaaeff4f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maileroo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Areeb Majeed"
+                }
+            ],
+            "description": "With this library, you can seamlessly integrate Maileroo's powerful email API into your PHP projects with ease.",
+            "support": {
+                "issues": "https://github.com/maileroo/maileroo-php-sdk/issues",
+                "source": "https://github.com/maileroo/maileroo-php-sdk/tree/2.0.0"
+            },
+            "time": "2025-08-15T07:50:01+00:00"
         },
         {
             "name": "mews/captcha",
