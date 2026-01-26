@@ -5,7 +5,15 @@
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
 @config {
-  darkMode: "media";
+  darkMode: "class";
+}
+
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    & {}
+  }
+
+  &:where(.dark, .dark *) {}
 }
 
 @theme {
