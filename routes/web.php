@@ -148,11 +148,6 @@ Route::middleware(['auth'])->group(function () {
         '/guestbooks/{guestbook}/export/json',
         [ExportGuestbookJsonController::class, 'export']
     )->name("export.json");
-    
-    Route::get(
-        '/guestbooks/{guestbook}/export/json/raw',
-        [ExportGuestbookJsonController::class, 'exportRaw']
-    )->name("export.json.raw");
 
     Route::get(
         '/guestbooks/{guestbook}/export/csv',
@@ -169,6 +164,12 @@ Route::middleware(['auth'])->group(function () {
         [ExportGuestbookHTMLController::class, 'exportRaw']
     )->name("export.html.raw");
 });
+
+Route::get(
+    '/guestbooks/{guestbook}/export/json/raw',
+    [ExportGuestbookJsonController::class, 'exportRaw']
+)->name("export.json.raw");
+
 // <!-- Guestbook Export Routes --!>
 
 // <!-- Account Routes --!>
