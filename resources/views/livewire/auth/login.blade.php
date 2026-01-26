@@ -17,9 +17,7 @@
                 required
                 autofocus
                 autocomplete="email"
-                placeholder="email@example.com"                
-                class="dark:bg-[#3b3b3b]"
-                
+                placeholder="email@example.com"
             />
 
             <!-- Password -->
@@ -32,7 +30,7 @@
                     autocomplete="current-password"
                     :placeholder="__('Password')"
                     viewable
-                    class="pe-6 dark:bg-[#3b3b3b]""
+                    class="pe-6"
                 />
 
                 @if (Route::has('password.request'))
