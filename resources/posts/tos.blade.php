@@ -78,7 +78,7 @@
 <br>
 <p>If the websites primary purpose is taking your money/personal information and then giving you literally nothing, or something wildly different than what was advertised, they fall under the scam rule.</p>
 <br>
-<p>Also, just for the record, {{ config('app.site_name') }} will only contact you via the {{ config('app.contact') }} email address.</p>
+<p>Also, just for the record, {{ config('app.site_name') }} will only contact you via a kamiscorner.xyz email address.</p>
 <p>I will also never ask for your password or other account information.</p>
 
 <br>
