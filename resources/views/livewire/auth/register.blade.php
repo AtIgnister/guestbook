@@ -1,5 +1,26 @@
 <x-layouts.auth>
     <div class="flex flex-col gap-6">
+        {{-- -This is a stupid workaround, TODO: figure out why this is the only way to get the text to show up --}}
+        <style>
+            /* Light mode placeholder */
+            input::placeholder,
+            textarea::placeholder {
+                color: #71717a !important; /* zinc-500 */
+                opacity: 1; /* Firefox */
+            }
+
+            input {
+                color: black !important
+            }
+
+            /* Dark mode placeholder */
+            .dark input::placeholder,
+            .dark textarea::placeholder {
+                color: #a1a1aa !important; /* zinc-400 */
+            }
+
+        </style>
+
         <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
 
         <!-- Session Status -->
