@@ -4,10 +4,6 @@
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
-@config {
-  darkMode: "class";
-}
-
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
@@ -87,18 +83,13 @@ select:focus[data-flux-control] {
     :root {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-    
-    body {
-        background-color: #01242e;
-        color: white;
-    }
 
     a {
-        color: #023e8a;
+        color: #1d4ed8;
     }
     
     a:visited {
-        color: #023e8a;
+        color: #1d4ed8;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -109,5 +100,11 @@ select:focus[data-flux-control] {
         a:visited {
             color: #8cc2dd;
         }
+
+        body {
+            background-color: #01242e;
+            color: white;
+        }
     }
+    
 }
