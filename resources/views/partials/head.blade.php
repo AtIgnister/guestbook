@@ -4,7 +4,6 @@
 
 <title>{{ $title ?? config('app.name') }}</title>
 
-<link rel="stylesheet" href="{{ asset('app.css') }}">
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @livewireScripts
 @fluxScripts
