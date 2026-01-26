@@ -110,4 +110,16 @@
 
 <br>
 
+<h3>Don't dox yourself</h3>
+<p>These are examples of what is not allowed:</p>
+<blockquote>In case you wanna mail me something, my address is {insert address here}</blockquote>
+<blockquote>You can call me at {insert phone number}</blockquote>
+<br>
+<p>These are examples of what kind of speech is allowed:</p>
+<blockquote>I saw your post about steam support, and there actually is a phone number you can call them at, its: {insert phone number here}</blockquote>
+<blockquote>It's wild to me that Volvo island is a real location is Illisnois. You can look it up at 41°21′16″N 88°47′53″W.</blockquote>
+<br>
+<p>This one is fairly simple. Don't share anything that could be used to easily identify exactly where you live.</p>
+<p>Additionally, do not share phone numbers unless you make it clear in your message that they belong to a publicly accessible service.</p>
+<br>
 <p>If you believe a moderation action was taken in error, you may contact me at {{ config('app.contact') }}.</p>
