@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\BanCheck;
+use App\Http\Middleware\PublicCors;
 use App\Http\Middleware\UserBanCheck;
 use App\Http\Middleware\ValidateAdmin;
 use Illuminate\Foundation\Application;
@@ -18,7 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'BanCheck' => BanCheck::class,
             'UserBanCheck' => UserBanCheck::class,
-            'ValidateAdmin' =>ValidateAdmin::class,
+            'ValidateAdmin' => ValidateAdmin::class,
+            'PublicCors' => PublicCors::class
         ]);
     })
     ->withMiddleware(function (Middleware $middleware) {
