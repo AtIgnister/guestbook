@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html
-    lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-    x-data
-    x-bind:class="{ 'dark': $flux.appearance === 'dark' }"
->
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Guestbooks')</title>
-    @vite('resources/css/app.css')
+    {{-- Tailwind + app JS --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Livewire --}}
+    @livewireStyles
+    @livewireScripts
+
+    {{-- Flux scripts for dark mode / appearance --}}
+    @fluxScripts
+    @fluxAppearance
+
+    {{-- Optional: any analytics or meta tags --}}
     {!! config('app.analytics_src') !!}
 </head>
 <body class="flex flex-col h-screen justify-between text-gray-700 dark:text-gray-300 bg-white dark:bg-[#01242e]">
