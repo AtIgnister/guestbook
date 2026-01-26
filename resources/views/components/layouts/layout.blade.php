@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+    lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    x-data
+    x-bind:class="{ 'dark': $flux.appearance === 'dark' }"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
