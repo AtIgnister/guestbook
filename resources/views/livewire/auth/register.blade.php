@@ -7,7 +7,6 @@
 
         <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6">
             @csrf
-            <!-- Name -->
             <flux:input
                 name="name"
                 :label="__('Name')"
@@ -17,6 +16,11 @@
                 autofocus
                 autocomplete="name"
                 :placeholder="__('Full name')"
+                class="
+                    dark:bg-white
+                    dark:text-black
+                    dark:placeholder-black
+                "
             />
 
             <!-- Password -->
@@ -28,6 +32,11 @@
                 autocomplete="new-password"
                 :placeholder="__('Password')"
                 viewable
+                class="
+                    dark:bg-white
+                    dark:text-black
+                    dark:placeholder-black
+                "
             />
 
             <!-- Confirm Password -->
@@ -39,6 +48,11 @@
                 autocomplete="new-password"
                 :placeholder="__('Confirm password')"
                 viewable
+                class="
+                    dark:bg-white
+                    dark:text-black
+                    dark:placeholder-black
+                "
             />
 
             <div class="flex items-center justify-end">
