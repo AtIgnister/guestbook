@@ -17,9 +17,7 @@
                 autocomplete="name"
                 :placeholder="__('Full name')"
                 class="
-                    dark:bg-white
-                    dark:text-black
-                    dark:placeholder-black
+                    dark:bg-[#3b3b3b]
                 "
             />
 
@@ -33,9 +31,7 @@
                 :placeholder="__('Password')"
                 viewable
                 class="
-                    dark:bg-white
-                    dark:text-black
-                    dark:placeholder-black
+                    dark:bg-[#3b3b3b]
                 "
             />
 
@@ -49,9 +45,7 @@
                 :placeholder="__('Confirm password')"
                 viewable
                 class="
-                    dark:bg-white
-                    dark:text-black
-                    dark:placeholder-black
+                    dark:bg-[#3b3b3b]
                 "
             />
 
