@@ -32,9 +32,7 @@ class IpHelper {
             ->exists();
     }
 
-    public static function isBannedByIpHash($entry, $guestbook) {
-        $ipHash = $entry->ip->ip_hash;
-
+    public static function isBannedByIpHash($ipHash, $guestbook) {
         return IpBan::query()
             ->whereHas('guestbookEntryIp', function ($query) use ($ipHash) {
                 $query->where('ip_hash', $ipHash);

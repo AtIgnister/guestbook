@@ -55,11 +55,11 @@ class GuestbookEntries extends Model
     }
     public function entryUserIsBanned() {
         if(Auth::user()->hasRole('admin')) {
-            return IpHelper::isBannedByIpHash($this, null);
+            return IpHelper::isBannedByIpHash($this->ip->ip_hash, null);
         }
 
         $guestbook = $this->guestbook;
-        return IpHelper::isBannedByIpHash($this, $guestbook);
+        return IpHelper::isBannedByIpHash($this->ip->ip_hash, $guestbook);
     }
 
     public function getIpBan()

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Helpers\UserBanHelper;
 use App\Models\GuestbookEntries;
 use App\Models\User;
 class GuestbookEntriesPolicy
@@ -35,11 +36,11 @@ class GuestbookEntriesPolicy
      */
     public function create(User $user): bool
     {
-        if($user->hasRole("admin")) {
-            return true;
+        if(UserBanHelper::isBanned($user)) {
+            return false;
         }
 
-        return true; //TODO: change this when we implement per-guestbook bans
+        return true;
     }
 
     /**
