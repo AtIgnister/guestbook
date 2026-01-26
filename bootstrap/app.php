@@ -21,6 +21,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'ValidateAdmin' =>ValidateAdmin::class,
         ]);
     })
+    // This is a big, stupid hack. TODO: fix this and make entry creation a proper API route
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->validateCsrfTokens(except: [
+            '/embed/guestbook/*/store',
+        ]);
+    })
     ->withMiddleware(function (Middleware $middleware) {
     $middleware->trustProxies(
         at: [

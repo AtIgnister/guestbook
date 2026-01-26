@@ -18,6 +18,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\AccountController;
 use Laravel\Fortify\RoutePath;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmbedGuestbookController;
 
 // <!-- Dash and Home Routes --!>
 Route::get('/', function () {
@@ -103,6 +104,13 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
     ->name('entries.store')
     ->middleware(['BanCheck:guestbook'])
     ->middleware(['throttle:20,1']);
+
+Route::get('/embed/guestbook/{guestbook}', [EmbedGuestbookController::class, 'show'])
+    ->name('embed.guestbook');
+
+Route::post('/embed/guestbook/{guestbook}/store', [EmbedGuestbookController::class, 'store'])
+    ->name('embed.guestbook.store');
+
 
 // <!-- Guestbook Routes --!>
 Route::middleware(['UserBanCheck'])->group(function() { 
