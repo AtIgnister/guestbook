@@ -39,8 +39,8 @@
                 <label for="embed-code" class="w-full">
                     embed-code
                 </label>
-                <input type="text" class="flex-1 h-15" readonly name="embed-code" value="{{'<iframe src="http://127.0.0.1:8001/embed/guestbook/' . $guestbook->id . '" width="100%" height="500px" frameborder="0"></iframe>'}}">
-                </input>
+                <input type="text" class="flex-1 h-15" readonly name="embed-code" 
+                    value="{{ '<iframe src="' . config('app.url') . '/embed/guestbook/' . $guestbook->id . '" width="100%" height="500px" frameborder="0"></iframe>' }}">
             </div>
     
             <div class="flex space-x-4 justify-between md:justify-start">
