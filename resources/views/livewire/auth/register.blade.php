@@ -1,6 +1,6 @@
 <x-layouts.auth>
     <div class="flex flex-col gap-6">
-        {{-- -This is a stupid workaround, TODO: figure out why this is the only way to get the text to show up --}}
+        {{-- This is a stupid workaround, TODO: figure out why this is the only way to get the text to show up --}}
         <style>
             /* Light mode placeholder */
             input::placeholder,
