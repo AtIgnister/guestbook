@@ -56,6 +56,7 @@ COPY . /var/www
 # Install Composer and dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist
+    && php artisan package:discover --ansi
 
 
 # Stage 2: Production environment
