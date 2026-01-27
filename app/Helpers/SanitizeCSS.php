@@ -1,5 +1,6 @@
 <?php
 namespace App\Helpers;
+use Sabberworm\CSS\OutputFormat;
 use Sabberworm\CSS\Parser;
 
 class SanitizeCSS
@@ -24,9 +25,21 @@ class SanitizeCSS
 
             $rulesToRemove = [];
 
+
             foreach ($ruleSet->getRules() as $rule) {
                 $property = strtolower($rule->getRule());
-                $value = strtolower((string) $rule->getValue());
+
+                $valueObj = $rule->getValue();
+
+                if (is_string($valueObj)) {
+                    $value = strtolower($valueObj);
+                } elseif ($valueObj !== null) {
+                    $value = strtolower(
+                        $valueObj->render(OutputFormat::createCompact())
+                    );
+                } else {
+                    $value = '';
+                }
 
                 if (
                     in_array($property, $blacklistedProperties, true) ||
