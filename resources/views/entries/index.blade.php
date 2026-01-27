@@ -25,7 +25,11 @@
 
         @if ($entries && $entries->count())
             <div class="my-10 border-solid border-2 rounded-xl p-2">
-                <a class="mt-3" href="/entries/{{ $guestbook->id }}/create">Leave a comment!</a>
+                @if (!$is_embed)
+                    <a class="mt-3" href="{{ route('entries.create', compact('guestbook')) }}">Leave a comment!</a>
+                @else
+                    <a class="mt-3" href="{{ route('embed.entries.create', compact('guestbook')) }}">Leave a comment!</a>
+                @endif
             </div>
         @endif
 
@@ -39,7 +43,11 @@
         </div>
         @empty
             <p class="text-gray-500">No entries yet.</p>
-            <a href="/entries/{{ $guestbook->id }}/create">Be the first to leave a comment!</a>
+            @if (!$is_embed)
+                <a class="mt-3" href="{{ route('entries.create', compact('guestbook')) }}">Be the first to leave a comment!</a>
+            @else
+                <a class="mt-3" href="{{ route('embed.entries.create', compact('guestbook')) }}">Be the first to leave a comment!</a>
+            @endif
         @endforelse
     </div>
 @endsection

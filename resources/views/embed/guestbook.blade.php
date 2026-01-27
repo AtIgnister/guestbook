@@ -3,7 +3,7 @@
 <section class="m-3">
     <h1>Create a Guestbook Entry</h1>
 
-    <form id="embedForm" class="flex-col md:w-1/2" action="{{ route('embed.guestbook.store', $guestbook) }}" method="POST">
+    <form id="embedForm" class="flex-col md:w-1/2" action="{{ route('embed.entries.store', $guestbook) }}" method="POST">
         <div>
             <label for="name">Name</label>
             <input class="md:w-1/2 w-full" type="text" name="name" placeholder="Name" required>
@@ -38,7 +38,7 @@
         let captchaKey = '';
 
         async function loadCaptcha() {
-            const res = await fetch('{{ url("/captcha/api/math") }}');
+            const res = await fetch('{{ url("/captcha/api/default") }}');
             const data = await res.json();
             captchaKey = data.key;
             document.getElementById('captchaImage').src = data.img;
@@ -64,24 +64,30 @@
 
         document.getElementById('embedForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+
             const form = e.target;
             const data = new FormData(form);
 
             const res = await fetch(form.action, {
                 method: 'POST',
-                body: data
+                body: data,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                redirect: 'follow'
             });
 
-            const json = await res.json();
-            if(json.success){
-                alert(json.message);
-                form.reset();
-                loadCaptcha();
-                loadEntries();
-            } else {
-                alert(json.message);
-                loadCaptcha();
+            // ✅ Captcha success → Laravel redirect
+            if (res.redirected) {
+                window.location.href = res.url;
+                return;
             }
+
+            // ❌ Captcha failed → JSON response
+            const json = await res.json();
+            alert(json.message);
+
+            loadCaptcha(); // refresh captcha only on failure
         });
 
         loadCaptcha();

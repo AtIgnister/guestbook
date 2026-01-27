@@ -45,7 +45,7 @@ class EntriesController extends Controller
             ->latest()
             ->get();
         
-        return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook]);
+        return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook, 'is_embed' => false]);
     }
 
     public function edit(Request $request, Guestbook $guestbook) {
