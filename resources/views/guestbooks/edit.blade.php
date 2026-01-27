@@ -24,6 +24,8 @@
             </div>
 
             <div class="md:flex items-center gap-2">
+
+                <label for="requires_approval">Require manual approval for new entries</label>
                 <input
                     type="checkbox"
                     id="requires_approval"
@@ -31,7 +33,6 @@
                     value="1"
                     {{ old('requires_approval', $guestbook->requires_approval ?? false) ? 'checked' : '' }}
                 >
-c
             </div>
 
             <div class="flex flex-wrap space-y-2">
