@@ -1,6 +1,10 @@
 @extends('components.layouts.layout')
 @section("content")
 <section class="m-3">
+    @if ($guestbook->style)
+        <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>
+    @endif
+
     <h1>Create a Guestbook Entry</h1>
 
     <!-- Guestbook form -->

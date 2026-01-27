@@ -8,7 +8,7 @@
 
 @section("content")
     @if ($guestbook->style)
-        <style>{{ $guestbook->style }}</style>
+        <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>
     @endif
 
     @if (Auth::check())
