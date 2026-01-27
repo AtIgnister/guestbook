@@ -25,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->validateCsrfTokens(except: [
             '/embed/entries/*/store',
+            '/embed/entries/*',
         ]);
     })
     ->withMiddleware(function (Middleware $middleware) {
