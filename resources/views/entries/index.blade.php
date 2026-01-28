@@ -21,7 +21,8 @@
             <p class="whitespace-pre-line">{{$guestbook->description}}</p>
         @endif
 
-        <sub>Be reasonable, follow the <a href="/blog/tos">guestbook guidelines.</a></sub>
+        <sub>Be reasonable, follow the <a href="/blog/tos">guestbook guidelines.</a></sub><br>
+        <sub>Use of this service is subject to our <a href="{{ route('privacy-policy.index') }}">privacy policy.</a></sub>
 
         @if ($entries && $entries->count())
             <div class="my-10 border-solid border-2 rounded-xl p-2">
