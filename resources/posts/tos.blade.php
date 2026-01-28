@@ -1,4 +1,9 @@
+<a href="{{ url()->previous() }}" class="btn btn-secondary">
+    ← Back
+</a>
+
 <h1>Commenting Guidelines</h1>
+
 <p>Heya!</p>
 <p>Before you comment, here's some rules to follow to ensure guestbooks continues being an enjoyable website to use.</p>
 <br>

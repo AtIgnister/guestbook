@@ -10,6 +10,9 @@
     <main>
         <a href="{{ route("privacy-policy.list") }}">View Revisions</a>
         <h1>Privacy Policy</h1>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary">
+            ← Back
+        </a><br>
         {!! $policy->content !!}
     </main>
 </body>
