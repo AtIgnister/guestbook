@@ -95,7 +95,7 @@ class GuestbookController extends Controller
 
         $guestbook->update($validated);
 
-        return redirect()->route('guestbooks.index')->with('success','Guestbook saved sucessfully');
+        return view('guestbooks.edit', compact(["guestbook"]));
     }
 
     /**
