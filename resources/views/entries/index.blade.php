@@ -25,7 +25,7 @@
         <sub class="guestbook-info">Use of this service is subject to our <a href="{{ route('privacy-policy.index') }}">privacy policy.</a></sub>
 
         @if ($entries && $entries->count())
-            <div class="my-10 border-solid border-2 rounded-xl p-2">
+            <div class="comment-link-container my-10 border-solid border-2 rounded-xl p-2">
                 @if (!$is_embed)
                     <a class="comment-link mt-3" href="{{ route('entries.create', compact('guestbook')) }}">Leave a comment!</a>
                 @else
