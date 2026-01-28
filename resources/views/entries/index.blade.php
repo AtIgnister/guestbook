@@ -42,7 +42,11 @@
 
                 @auth
                     @if (auth()->user()->ownsEntry($entry) && !$is_embed)
-                        <form action="{{ route('entries.destroy', compact('entry')) }}" method="post">
+                        <form 
+                            action="{{ route('entries.destroy', compact('entry')) }}"
+                            onsubmit="return confirm('Are you sure you want to delete this entry? This cannot be undone.')"
+                            method="post"
+                        >
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500">Delete Entry</button>
