@@ -92,4 +92,10 @@ class User extends Authenticatable
     public function ownsEntry(GuestbookEntries $entry) {
         return $entry->guestbook->user->id === $this->id;
     }
+
+    public function hasUnreadEntries() {
+        return $this->unreadNotifications()
+            ->limit(1)
+            ->exists();
+    }
 }

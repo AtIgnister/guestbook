@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\UserBanHelper;
 use App\Models\Guestbook;
 use App\Models\GuestbookEntries;
+use App\Notifications\GuestbookEntryNotification;
 use Illuminate\Http\Request;
 
 class EntriesController extends Controller
@@ -24,12 +25,14 @@ class EntriesController extends Controller
             'captcha' => ['required', 'captcha'],
         ]);
         
-        $guestbook->entries()->create(array_merge(
+        $entry = $guestbook->entries()->create(array_merge(
             $validated,
             [
                 'approved' => ! $guestbook->requires_approval,
             ]
         ));
+
+        $guestbook->user->notify(new GuestbookEntryNotification($entry));
 
         return redirect()->route('entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
     }
@@ -55,6 +58,8 @@ class EntriesController extends Controller
 
     public function editAll(Request $request)
     {
+        auth()->user()->unreadNotifications->markAsRead();
+
         $perPage = min(
             (int) $request->query('per_page', 10),
             50
