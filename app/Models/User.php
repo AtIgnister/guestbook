@@ -88,4 +88,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserBan::class);
     }
+
+    public function ownsEntry(GuestbookEntries $entry) {
+        return $entry->guestbook->user->id === $this->id;
+    }
 }

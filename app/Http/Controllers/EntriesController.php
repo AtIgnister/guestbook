@@ -83,7 +83,7 @@ class EntriesController extends Controller
         $entry->delete();
 
         return redirect()
-            ->route('entries.editAll')
+            ->back()
             ->with('status', 'Entry deleted');
     }
 

@@ -26,29 +26,33 @@
 
         @if ($entries && $entries->count())
             <div class="comment-link-container my-10 border-solid border-2 rounded-xl p-2">
-                @if (!$is_embed)
-                    <a class="comment-link mt-3" href="{{ route('entries.create', compact('guestbook')) }}">Leave a comment!</a>
-                @else
-                    <a class="comment-link mt-3" href="{{ route('embed.entries.create', compact('guestbook')) }}">Leave a comment!</a>
-                @endif
+                @include('partials.entries.comment-cta-link', ['text' => 'Leave a comment!'])
             </div>
         @endif
 
         @forelse ($entries as $entry)
-        <div class="guestbook-entry my-10 border-solid border-2 rounded-xl p-2">
+            <div class="guestbook-entry my-10 border-solid border-2 rounded-xl p-2">
                 <p>{{ $entry->name }} wrote...</p>
-                @if (filter_var($entry->website, FILTER_VALIDATE_URL))
+
+                @if ($entry->website !== null)
                     <sup>Website: <a href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
                 @endif
+                    
                 <p>{{ nl2br($entry->comment) }}</p>
-        </div>
+
+                @auth
+                    @if (auth()->user()->ownsEntry($entry) && !$is_embed)
+                        <form action="{{ route('entries.destroy', compact('entry')) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500">Delete Entry</button>
+                        </form>
+                    @endif
+                @endauth
+            </div>
         @empty
             <p class="comment-link text-gray-500">No entries yet.</p>
-            @if (!$is_embed)
-                <a class="comment-link mt-3" href="{{ route('entries.create', compact('guestbook')) }}">Be the first to leave a comment!</a>
-            @else
-                <a class="comment-link mt-3" href="{{ route('embed.entries.create', compact('guestbook')) }}">Be the first to leave a comment!</a>
-            @endif
+            @include('partials.entries.comment-cta-link', ['text' => 'Be the first to leave a comment!'])
         @endforelse
     </div>
 @endsection

@@ -39,6 +39,10 @@ class Guestbook extends Model
         return $this->hasMany(GuestbookEntries::class);
     }
 
+    public function ownsEntry(GuestbookEntries $entry) {
+        return $entry->guestbook->id === $this->id;
+    }
+
     public static function booted() {
         static::creating(function ($model) {
             $model->id = Str::uuid();
