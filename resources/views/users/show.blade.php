@@ -17,16 +17,16 @@
         <!-- Actions -->
         <div class="space-y-1">
             @if (!$user->userBan)
-                <a class="block" href="{{ route('userBans.create', $user) }}">
+                <a class="block w-fit" href="{{ route('userBans.create', $user) }}">
                     Ban User
                 </a>
             @else
-                <a class="block" href="{{ route('userBans.delete', $user->userBan) }}">
+                <a class="block w-fit" href="{{ route('userBans.delete', $user->userBan) }}">
                     Unban User
                 </a>
             @endif
 
-            <a class="block" href="{{ route('users.delete', $user) }}">
+            <a class="block w-fit" href="{{ route('users.delete', $user) }}">
                 Delete
             </a>
         </div>
