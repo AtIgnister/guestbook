@@ -6,6 +6,32 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        let captchaKey = '';
+
+        async function loadCaptcha() {
+            const res = await fetch('http://127.0.0.1:8001/captcha/api/default');
+            const data = await res.json();
+            captchaKey = data.key;
+            document.getElementById('captchaImage').src = data.img;
+            document.getElementById('captchaKey').value = captchaKey;
+        }
+
+        async function loadEntries(entries) {
+            const container = document.getElementById('guestbooks___guestbook-messages-container');
+            container.innerHTML = '';
+            entries.forEach(entry => {
+                container.innerHTML += `
+                    <div class="k-comment">
+                        <p class="k-name">${entry.name}</p>
+                        <p class="c-comment">${entry.comment}</p>
+                    </div>
+                `;
+            });
+        }
+    </script>
+
+
     <!-- Guestbook Script -->
     <script defer>
     const id = '7ddeb8e7-c845-4e81-9410-c129c4f17aa7';
@@ -16,41 +42,44 @@
     .then(data => initGuestbook(data));
 
     function initGuestbook(data) {
-        console.log(data);
+        loadEntries(data.guestbooks[id].entries);
+        loadCaptcha();
 
         const form = document.querySelector('#guestbooks___guestbook-form');
         if (!form) return;
 
         form.action = submitAction;
 
-        form.addEventListener('submit', async (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const formData = new FormData(form);
 
-        try {
-            const res = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (!res.ok) {
-                throw new Error('Submission failed');
+        const res = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
             }
+        });
 
-            const result = await res.json();
-            console.log('submitted:', result);
+        const json = await res.json();
 
-            // optional UX
+        if (json.success) {
+            alert(json.message);
             form.reset();
-            // show success message, append new entry, etc.
+            loadCaptcha();
 
-        } catch (err) {
-            console.error(err);
-            document.getElementById('guestbooks___error-message').textContent =
-                'Something went wrong. Please try again.';
+            // Refresh guestbook entries
+            const entriesRes = await fetch(`http://127.0.0.1:8001/guestbooks/${id}/export/json/raw`);
+            const entriesData = await entriesRes.json();
+            loadEntries(entriesData.guestbooks[id].entries);
+        } else {
+            alert(json.message);
+            loadCaptcha();
         }
     });
+
     }
 
     function submit() {}
@@ -85,13 +114,24 @@
         
     <div class="guestbooks___input-container">
         <textarea id="text" 
-                    name="text" 
+                    name="comment" 
                     placeholder="leave your message here..." 
                     rows="4"
                     style="width: 100%; box-sizing: border-box; resize: vertical;"
                     required></textarea>
+    </div>
+    
+    <div id="k-captcha">
+        <img id="captchaImage" alt="captcha" style="width: 200px; height: 80px; object-fit: contain; display: block; margin-bottom: 0.5rem;">
+        <label for="captcha">Captcha</label>
+        <input type="text" name="captcha" placeholder="Enter captcha" required>
+
+        <div class="flex items-center gap-2">
+            <button type="button" onclick="loadCaptcha()">↻</button>
+            <input type="hidden" name="key" id="captchaKey">
         </div>
-        
+    </div>
+
     <button type="submit">submit</button>
     <div id="guestbooks___error-message"></div>
     </form>

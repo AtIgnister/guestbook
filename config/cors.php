@@ -19,7 +19,8 @@ return [
         'api/*', 
         'sanctum/csrf-cookie', 
         'embed/entries/*/store', 
-        'guestbooks/*/export/json/raw'
+        'guestbooks/*/export/json/raw',
+        'captcha/api/default'
     ],
 
     'allowed_methods' => ['*'],
