@@ -182,8 +182,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get(
     '/guestbooks/{guestbook}/export/json/raw',
     [ExportGuestbookJsonController::class, 'exportRaw']
-)->name("export.json.raw")
-->middleware("PublicCors");
+)->name("export.json.raw");
 
 // <!-- Guestbook Export Routes --!>
 

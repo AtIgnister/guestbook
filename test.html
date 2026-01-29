@@ -6,54 +6,105 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        // Create a class for the element
-        class Guestbook extends HTMLElement {
-            static observedAttributes = ["data-id"];
+    <!-- Guestbook Script -->
+    <script defer>
+    const id = '7ddeb8e7-c845-4e81-9410-c129c4f17aa7';
+    const submitAction = `http://127.0.0.1:8001/embed/entries/${id}/store`;
 
-            constructor() {
-                // Always call super first in constructor
-                super();
+    fetch(`http://127.0.0.1:8001/guestbooks/${id}/export/json/raw`)
+    .then(res => res.json())
+    .then(data => initGuestbook(data));
+
+    function initGuestbook(data) {
+        console.log(data);
+
+        const form = document.querySelector('#guestbooks___guestbook-form');
+        if (!form) return;
+
+        form.action = submitAction;
+
+        form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!res.ok) {
+                throw new Error('Submission failed');
             }
 
-            attributeChangedCallback(name, oldValue, newValue) {
-                if (name === "data-id" && newValue) {
-                    this.fetchGuestbook(this.getUrl(newValue));
-                }
-            }
+            const result = await res.json();
+            console.log('submitted:', result);
 
-            getUrl(id) {
-                return `http://127.0.0.1:8001/guestbooks/${id}/export/json/raw`;
-            }
+            // optional UX
+            form.reset();
+            // show success message, append new entry, etc.
 
-            async fetchGuestbook(url) {
-                this.innerHTML = '';
-                const id = this.getAttribute("data-id");
-                try {
-                    console.log(url)
-                    const response = await fetch(url);
-                    const data = await response.json();
-
-                    console.log("Fetched data:", data);
-
-                    const comments = data.guestbooks[id].entries;
-                    console.log(comments);
-                    comments.forEach(comment => {
-                        this.innerHTML += `
-                        <div class='k-comment'>
-                            <p class='k-name'>${comment.name}</p>
-                            <p class='c-comment'>${comment.comment}</p>
-                        </div>
-                        `;
-                    });
-                } catch (error) {
-                    console.error("Failed to fetch guestbook:", error);
-                }
-            }
+        } catch (err) {
+            console.error(err);
+            document.getElementById('guestbooks___error-message').textContent =
+                'Something went wrong. Please try again.';
         }
+    });
+    }
 
-        customElements.define("x-guestbook", Guestbook);
+    function submit() {}
     </script>
-    <x-guestbook data-id="7ddeb8e7-c845-4e81-9410-c129c4f17aa7"></x-guestbook>
+
+    <h1>sign my guestbook!</h1>
+
+    <hr>
+
+    <!-- Guestbook Form -->
+    <div id="guestbooks___guestbook-form-container">
+    <form id="guestbooks___guestbook-form" 
+            action="https://guestbooks.meadow.cafe/guestbook/453/submit" 
+            method="post">
+        
+    <div class="guestbooks___input-container">
+        <input type="text" 
+                id="name" 
+                name="name" 
+                placeholder="name" 
+                required>
+        </div>
+        
+    <div class="guestbooks___input-container">
+        <input type="url" 
+                id="website" 
+                name="website" 
+                placeholder="website (optional)">
+        </div>
+        
+    <div id="guestbooks___challenge-answer-container"></div>
+        
+    <div class="guestbooks___input-container">
+        <textarea id="text" 
+                    name="text" 
+                    placeholder="leave your message here..." 
+                    rows="4"
+                    style="width: 100%; box-sizing: border-box; resize: vertical;"
+                    required></textarea>
+        </div>
+        
+    <button type="submit">submit</button>
+    <div id="guestbooks___error-message"></div>
+    </form>
+    </div>
+
+    <!-- Attribution (optional but appreciated!) -->
+    <div id="guestbooks___guestbook-made-with" style="text-align: right; margin-top: 10px;">
+    <small>powered by <a href="https://guestbooks.meadow.cafe" target="_blank">guestbooks</a></small>
+    </div>
+
+    <!-- Messages Section -->
+    <hr>
+    <h3 id="guestbooks___guestbook-messages-header">messages</h3>
+    <div id="guestbooks___guestbook-messages-container"></div>
 </body>
 </html>
