@@ -1,35 +1,39 @@
 @extends('components.layouts.layout')
 @section("content")
-<section class="m-3">
+<section class="entry-container m-3">
+    @if ($guestbook->style)
+        <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>
+    @endif
+
     <h1>Create a Guestbook Entry</h1>
 
     <!-- Guestbook form -->
-    <form action="{{ route('entries.store', ['guestbook' => $guestbook]) }}" method="POST" class="flex-col md:w-1/2">
+    <form action="{{ route('entries.store', ['guestbook' => $guestbook]) }}" method="POST" class="entry-form flex-col md:w-1/2">
         @csrf
         
-        <div>
+        <div class="name-field">
             <label for="name">Name</label>
             <input class="md:w-1/2 w-full" value="{{ old('name') }}" type="text" id="name" name="name" required>
         </div>
         <br>
-        <div>
+        <div class="website-field">
             <label for="website">Website</label>
             <input class="md:w-1/2 w-full" value="{{ old('website') }}" type="url" id="website" name="website">
         </div>
         <br>
-        <div>
+        <div class="comment-field">
             <label class="align-top" for="comment">Comment</label>
             <textarea class="md:w-3/4 w-full" id="comment" name="comment" required>{{ old('comment') }}</textarea>
             <br>
             {{ /* TODO: make this configurable */ "" }}
-            <sub class="w-full">(Limit of 20.000 characters per message, which is roughly twice the length of <a href="https://kami.bearblog.dev/why-comment-sections-suck-rei-want-to-comment-on-your-blog-post/">this blogpost</a>)</sub>
+            <sub class="character-limit-notice w-full">(Limit of 20.000 characters per message, which is roughly twice the length of <a href="https://kami.bearblog.dev/why-comment-sections-suck-rei-want-to-comment-on-your-blog-post/">this blogpost</a>)</sub>
         </div>
        <br>
 
-        <div class="mb-2">
+        <div class="captcha-field mb-2">
             <label for="captcha">Captcha</label>
             <div class="flex items-center gap-2">
-                <span>{!! captcha_img() !!}</span>
+                <span class="captcha-img">{!! captcha_img() !!}</span>
                 <button type="button" onclick="refreshCaptcha()">↻</button>
             </div>
         
@@ -43,7 +47,7 @@
             >
         
             @error('captcha')
-                <div class="text-red-600 text-sm">{{ $message }}</div>
+                <div class="captcha-error text-red-600 text-sm">{{ $message }}</div>
             @enderror
         </div>
 

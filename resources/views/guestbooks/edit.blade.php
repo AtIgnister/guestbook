@@ -24,6 +24,8 @@
             </div>
 
             <div class="md:flex items-center gap-2">
+
+                <label for="requires_approval">Require manual approval for new entries</label>
                 <input
                     type="checkbox"
                     id="requires_approval"
@@ -31,9 +33,14 @@
                     value="1"
                     {{ old('requires_approval', $guestbook->requires_approval ?? false) ? 'checked' : '' }}
                 >
-                <label for="requires_approval">
-                    Require manual approval for new entries
+            </div>
+
+            <div class="flex flex-wrap space-y-2">
+                <label for="embed-code" class="w-full">
+                    embed-code
                 </label>
+                <input type="text" class="flex-1 h-15" readonly name="embed-code" 
+                    value="{{ '<iframe src="' . config('app.url') . '/embed/guestbook/' . $guestbook->id . '" width="100%" height="500px" frameborder="0"></iframe>' }}">
             </div>
     
             <div class="flex space-x-4 justify-between md:justify-start">

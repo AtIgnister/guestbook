@@ -21,7 +21,7 @@
 
     <h1>Dashboard</h1>
     <a class="block" href="{{ route('guestbooks.index')}}">View Guestbooks</a>
-    <a class="block" href="{{ route('entries.editAll') }}">View all Entries</a>
+    <a class="block {{ auth()->user()->hasUnreadEntries() ? 'text-green-600' : '' }}" href="{{ route('entries.editAll') }}">View all Entries</a>
     @role("admin")
         <a class="block" href="{{ route("privacy-policy.editAllDrafts") }}">View privacy policy drafts</a>
         <a class="block" href="{{ route("privacy-policy.editAllPublished") }}">Edit published policies</a>

@@ -18,6 +18,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\AccountController;
 use Laravel\Fortify\RoutePath;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmbedGuestbookController;
 
 // <!-- Dash and Home Routes --!>
 Route::get('/', function () {
@@ -43,8 +44,25 @@ Route::get(
 
 Route::get('/entries/{guestbook}', [EntriesController::class, 'index'])
 ->name('entries.index');
+Route::get('/embed/entries/{guestbook}', [EntriesController::class, 'embed'])
+->name('embed.entries.index');
+
+Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
+    ->name('entries.store')
+    ->middleware(['BanCheck:guestbook'])
+    ->middleware(['throttle:20,1']);
+
+Route::get('/embed/guestbook/{guestbook}', [EmbedGuestbookController::class, 'index'])
+    ->name('embed.entries.index');
+
+Route::get('/embed/entries/{guestbook}', [EmbedGuestbookController::class, 'create'])
+    ->name('embed.entries.create');
+
+Route::post('/embed/entries/{guestbook}/store', [EmbedGuestbookController::class, 'store'])
+    ->name('embed.entries.store');
 
 Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
+->name('entries.create')
 ->middleware(['throttle:20,1', 'BanCheck:guestbook']);
 
 Route::middleware(['UserBanCheck'])->group(function() {
@@ -99,10 +117,6 @@ Route::middleware(['UserBanCheck'])->group(function() {
 
 // <!-- Privacy Policy Routes --!>
 
-Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
-    ->name('entries.store')
-    ->middleware(['BanCheck:guestbook'])
-    ->middleware(['throttle:20,1']);
 
 // <!-- Guestbook Routes --!>
 Route::middleware(['UserBanCheck'])->group(function() { 
