@@ -18,7 +18,7 @@
     {{-- Optional: any analytics or meta tags --}}
     {!! config('app.analytics_src') !!}
 </head>
-<body class="flex flex-col h-screen justify-between text-gray-700 dark:text-gray-300 bg-white dark:bg-[#01242e]">
+<body class="flex flex-col h-screen justify-between">
 
     @php
         $currentRoute = request()->route()->getName();
