@@ -14,7 +14,5 @@ new class extends Component {
             <flux:radio value="dark" icon="moon">{{ __('Dark') }}</flux:radio>
             <flux:radio value="system" icon="computer-desktop">{{ __('System') }}</flux:radio>
         </flux:radio.group>
-
-        <sub class="text-yellow-500">Theming is not yet implemented. This will change some UI elements already, but most UI will not yet respect your selected theme.</sub>
     </x-settings.layout>
 </section>

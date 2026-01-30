@@ -212,6 +212,7 @@ new class extends Component {
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
                         <flux:badge color="red">{{ __('Disabled') }}</flux:badge>
+                                                <sub class="text-red-500">Two factor is broken right now. It will be fixed soon™.</sub>
                     </div>
 
                     <flux:text variant="subtle">
