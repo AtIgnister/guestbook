@@ -38,7 +38,7 @@
                     <sup>Website: <a rel="ugc" href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
                 @endif
                     
-                <p>{{ nl2br($entry->comment) }}</p>
+                <p>{!! nl2br(e($entry->comment)) !!}</p>
 
                 @auth
                     @if (auth()->user()->ownsEntry($entry) && !$is_embed)
