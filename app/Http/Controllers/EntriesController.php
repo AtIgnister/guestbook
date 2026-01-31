@@ -23,7 +23,12 @@ class EntriesController extends Controller
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
             'captcha' => ['required', 'captcha'],
+            'posted_at' => 'date|before_or_equal:now',
         ]);
+
+        if (! optional(auth()->user())->can('update', $guestbook)) {
+            unset($validated['posted_at']); // ignore any value from guest
+        }
         
         $entry = $guestbook->entries()->create(array_merge(
             $validated,
@@ -45,7 +50,7 @@ class EntriesController extends Controller
 
         $entries = $guestbook->entries()
             ->where('approved', true)
-            ->latest()
+            ->latest('posted_at')
             ->get();
         
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook, 'is_embed' => false]);
@@ -75,7 +80,7 @@ class EntriesController extends Controller
             $entries = GuestbookEntries::query()
                 ->ownedBy($request->user())
                 ->search($request->query('search'))
-                ->latest()
+                ->latest('posted_at')
                 ->paginate($perPage)
                 ->withQueryString();
         }

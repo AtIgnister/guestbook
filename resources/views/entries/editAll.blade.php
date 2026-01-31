@@ -73,7 +73,11 @@
                                     {{ $entry->comment }}
                                 </div>
                             </td>
-                            <td><time>{{ $entry->created_at }}</time></td>
+                            @role("admin")
+                                <td><time>{{ $entry->created_at }}</time></td>
+                            @else
+                                <td><time>{{ $entry->posted_at }}</time></td>
+                            @endrole
                             <td class="pl-4">
                                 <form method="POST" action="{{ route('entries.destroy', $entry) }}">
                                     @csrf

@@ -18,7 +18,8 @@ class GuestbookEntries extends Model
         "name",
         "website",
         "comment",
-        "approved"
+        "approved",
+        "posted_at"
     ];
     protected array $searchable = [
         'name',
@@ -39,6 +40,12 @@ class GuestbookEntries extends Model
             $entry->ip()->create([
                 'ip_hash' => IpHelper::ipHash(Request::ip()),
             ]);
+        });
+
+        static::creating(function (GuestbookEntries $entry) {
+            if (!isset($entry->posted_at) || !optional(auth()->user())->can('update', $entry->guestbook)) {
+                $entry->posted_at = now();
+            }
         });
     }
 

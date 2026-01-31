@@ -93,6 +93,10 @@ class User extends Authenticatable
         return $entry->guestbook->user->id === $this->id;
     }
 
+    public function ownsGuestbook(Guestbook $guestbook) {
+        return $guestbook->user->id === $this->id;
+    }
+
     public function hasUnreadEntries() {
         return $this->unreadNotifications()
             ->limit(1)
