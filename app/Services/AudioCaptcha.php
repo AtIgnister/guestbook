@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Str;
 
 class AudioCaptcha
@@ -12,8 +13,12 @@ class AudioCaptcha
     // 1. User calls audio captcha/generate
     // 2. return captcha token in JSON form and link pointing to audio file
     // 3. User can submit Token + answer to api, and then we check for correctness
+    public function getCaptcha() {
+        return response()->json(AudioCaptcha::generate());
+    }
 
-    public function generate(int $chars = 6): array {
+
+    private static function generate(int $chars = 6): array {
         $token  = Str::uuid()->toString();
         $answer = Str::upper(Str::random($chars));
 
@@ -25,11 +30,11 @@ class AudioCaptcha
 
         return [
             'token'   => $token,
-            'mp3Link' => route('audio-captcha.audio', ['token' => $token]),
+            'mp3Link' => self::generateAudio($answer),
         ];
     }
 
-    public function validate(string $token, string $input): bool {
+    public static function validate(string $token, string $input): bool {
         $cacheKey = "audio_captcha:{$token}";
         $expected = Cache::get($cacheKey);
 
@@ -45,7 +50,7 @@ class AudioCaptcha
         );
     }
 
-    public function generateAudio(string $answer): string
+    private static function generateAudio(string $answer): string
     {
         $answer = strtolower($answer);
         $lettersPath = storage_path('app/captcha/letters');
@@ -101,9 +106,10 @@ class AudioCaptcha
         unlink($outputMp3);
 
         // Temporary URL (5 minutes)
-        return $publicDisk->temporaryUrl(
-            $publicPath,
-            now()->addMinutes(5)
+        return URL::temporarySignedRoute(
+            'audio-captcha.audio',
+            now()->addMinutes(5),
+            ['id' => $id]
         );
     }
 
