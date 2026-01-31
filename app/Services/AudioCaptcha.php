@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Cache;
+use Illuminate\Support\Facades\Storage;
 use Str;
 
 class AudioCaptcha
