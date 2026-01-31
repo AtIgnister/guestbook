@@ -28,6 +28,7 @@
             <img id="captchaImage" alt="captcha" style="width: 200px; height: 80px; object-fit: contain; display: block; margin-bottom: 0.5rem;">
             <label for="captcha">Captcha</label>
             <input type="text" name="captcha" placeholder="Enter captcha" required>
+            <input type="hidden" name="captcha_type" value="image">
 
             <div class="flex items-center gap-2">
                 <button type="button" onclick="loadCaptcha()">↻</button>
