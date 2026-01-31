@@ -43,14 +43,16 @@
                 <div class="space-y-5 text-center">
                     <div x-show="!showRecoveryInput">
                         <div class="flex items-center justify-center my-5">
-                            <flux:otp
-                                x-model="code"
-                                length="6"
+                            <input
+                                type="text"
                                 name="code"
-                                label="OTP Code"
-                                label:sr-only
-                                class="mx-auto"
-                             />
+                                x-model="code"
+                                inputmode="numeric"
+                                autocomplete="one-time-code"
+                                maxlength="6"
+                                class="mx-auto block w-48 text-center border rounded px-3 py-2"
+                                aria-label="OTP Code"
+                            />
                         </div>
                     </div>
 
