@@ -6,6 +6,7 @@ use Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Str;
+use Illuminate\Support\Facades\Validator;
 
 class AudioCaptcha
 {
@@ -113,4 +114,29 @@ class AudioCaptcha
         );
     }
 
+    public static function captcha_verify($request, $type) {
+        if($type === 'image') {
+            return self::captcha_verify_img($request);
+        }
+        if($type === 'audio') {
+            return self::captcha_verify_audio($request);
+        }
+
+        return false;
+    }
+
+    private static function captcha_verify_img($request) {
+        $rules = [
+            'captcha' => 'required|captcha_api:' . $request->input('key') . ',default',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        return !$validator->fails();
+    }
+
+
+    private static function captcha_verify_audio($request) {
+        $captcha = $request->input('captcha');
+        $key = $request->input('key');
+        return AudioCaptcha::validate($key, $captcha);
+    }
 }
