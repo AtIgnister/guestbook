@@ -2,7 +2,14 @@
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Two Factor Authentification')" :subheading="__('Manage your 2FA settings.')">
-
+        @php
+            $secret = auth()->user()->two_factor_secret
+                ? Illuminate\Support\Facades\Crypt::decryptString(auth()->user()->two_factor_secret)
+                : null;
+            if (str_starts_with($secret, 's:')) {
+                $secret = unserialize($secret);
+            }
+        @endphp
 
         {{-- Status messages --}}
         @if (session('status'))
@@ -35,7 +42,8 @@
                 <div class="mt-6">
                     <p class="mb-4">
                         Scan the following QR code using your authenticator app,
-                        then enter the generated code below.
+                        then enter the generated code below.<br><br>
+                        Alternatively, you can use this manual setup key: {{ $secret }}
                     </p>
 
                     <div class="mb-4">

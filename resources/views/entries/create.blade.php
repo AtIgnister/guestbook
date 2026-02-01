@@ -21,6 +21,20 @@
             <input class="md:w-1/2 w-full" value="{{ old('website') }}" type="url" id="website" name="website">
         </div>
         <br>
+        @auth
+            @if (auth()->user()->ownsGuestbook($guestbook))
+                <label for="posted_at">Entry Date & Time</label>
+                <input
+                    type="datetime-local"
+                    id="posted_at"
+                    name="posted_at"
+                    class="form-control"
+                    value="{{ old('posted_at', optional($entry->posted_at ?? now())->format('Y-m-d\TH:i')) }}"
+                    required
+                >
+            @endif
+        @endauth
+        <br>
         <div class="comment-field">
             <label class="align-top" for="comment">Comment</label>
             <textarea class="md:w-3/4 w-full" id="comment" name="comment" required>{{ old('comment') }}</textarea>
