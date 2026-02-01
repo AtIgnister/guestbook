@@ -10,3 +10,4 @@ Artisan::command('inspire', function () {
 
 Schedule::command('guestbook:clear-ips')->monthly();
 Schedule::command('admin:clear-invites')->monthly();
+Schedule::command('tmp:cleanup --minutes=10')->everyFiveMinutes();

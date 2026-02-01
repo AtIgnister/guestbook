@@ -47,7 +47,7 @@ class EmbedGuestbookController extends Controller
             ], 422);
         }
 
-        $entry = $guestbook->entries()->create([
+        $guestbook->entries()->create([
             'name' => $request->input('name'),
             'comment' => $request->input('comment'),
             'website' => $request->input('website'),
@@ -55,7 +55,7 @@ class EmbedGuestbookController extends Controller
         ]);
 
         return redirect()
-            ->route('entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
+            ->route('embed.entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
     }
 
     private static function captcha_verify($request, $type) {

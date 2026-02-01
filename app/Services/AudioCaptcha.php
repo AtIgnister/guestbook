@@ -90,7 +90,7 @@ class AudioCaptcha
 
         // Concatenate
         exec(
-            "ffmpeg -y -f concat -safe 0 -i $listFile -c copy $outputMp3"
+            "ffmpeg -y -f concat -safe 0 -i $listFile -ar 44100 -ac 1 -b:a 128k $outputMp3"
         );
 
         // Move to public disk
