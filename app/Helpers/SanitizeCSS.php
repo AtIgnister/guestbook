@@ -19,7 +19,7 @@ class SanitizeCSS
         $cssDoc = $parser->parse();
 
         $blacklistedProperties = ['-moz-binding', 'content'];
-        $dangerousValues = ['url(', 'expression(', 'javascript:', 'data:'];
+        $dangerousValues = ['expression(', 'javascript:', 'data:'];
 
         foreach ($cssDoc->getAllRuleSets() as $ruleSet) {
 
