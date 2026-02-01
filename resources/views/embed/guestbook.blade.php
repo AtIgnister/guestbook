@@ -100,23 +100,6 @@
             console.log(data)
         }
 
-        async function loadEntries() {
-            const res = await fetch('{{ route("entries.index", $guestbook) }}', {
-                headers: { 'Accept': 'application/json' }
-            });
-            const data = await res.json();
-            const container = document.getElementById('entries');
-            container.innerHTML = '';
-            data.entries.forEach(entry => {
-                container.innerHTML += `
-                    <div class="k-comment">
-                        <p class="k-name">${entry.name}</p>
-                        <p class="c-comment">${entry.comment}</p>
-                    </div>
-                `;
-            });
-        }
-
         document.getElementById('embedForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -144,7 +127,6 @@
         });
 
         loadCaptcha();
-        loadEntries();
     </script>
 </section>
 @endsection
