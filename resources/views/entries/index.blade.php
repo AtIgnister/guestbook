@@ -18,7 +18,9 @@
     <div class="comment-container max-w-2xl mx-auto p-4 md:p-0">
         
         @if($guestbook->description)
-            <p class="guestbook-description whitespace-pre-line">{{$guestbook->description}}</p>
+            <x-markdown class="guestbook-description ">
+                {{$guestbook->description}}
+            </x-markdown>
         @endif
 
         <sub class="guestbook-info">Be reasonable, follow the <a href="/blog/tos">guestbook guidelines.</a></sub><br>
