@@ -23,7 +23,7 @@ class EntriesController extends Controller
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
-            'captcha' => ['required'],
+            'captcha' => 'required',
             'posted_at' => 'date|before_or_equal:now',
             'captcha_type' => 'required|string'
         ]);
@@ -116,6 +116,27 @@ class EntriesController extends Controller
     }
 
     private function captcha_validate($request) {
-        return true;
+        $type = $request->input('captcha_type');
+
+        if($type === 'image') {
+            return $this->captcha_image_validate($request);
+        }
+
+        if($type === 'audio') {
+            return $this->captcha_audio_validate($request);
+        }
+
+        return false;
+    }
+
+    private function captcha_image_validate(Request $request): bool {
+        return validator(
+            $request->only('captcha'),
+            ['captcha' => ['required', 'captcha']]
+        )->passes();
+    }
+
+    private function captcha_audio_validate($request) {
+
     }
 }
