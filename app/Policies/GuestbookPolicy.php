@@ -37,6 +37,10 @@ class GuestbookPolicy
      */
     public function update(User $user, Guestbook $guestbook): bool
     {
+        if($user->hasRole('admin')) {
+            return true;
+        }
+
         return $guestbook->user_id === $user->id;
     }
 
