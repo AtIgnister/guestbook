@@ -6,6 +6,7 @@ use App\Helpers\UserBanHelper;
 use App\Models\Guestbook;
 use App\Models\GuestbookEntries;
 use App\Notifications\GuestbookEntryNotification;
+use App\Services\AudioCaptcha;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -137,6 +138,12 @@ class EntriesController extends Controller
     }
 
     private function captcha_audio_validate($request) {
+        $answer = trim((string) $request->input('captcha'));
+        $key = $request->input('captcha_key');
+        if ($answer === '' || !$key) {
+            return false;
+        }
 
+        return AudioCaptcha::validate($key, $answer);
     }
 }
