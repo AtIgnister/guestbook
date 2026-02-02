@@ -24,6 +24,7 @@ class EntriesController extends Controller
             'website' => 'nullable|url',
             'captcha' => ['required', 'captcha'],
             'posted_at' => 'date|before_or_equal:now',
+            'captcha_type' => 'required|string'
         ]);
 
         if (! optional(auth()->user())->can('update', $guestbook)) {

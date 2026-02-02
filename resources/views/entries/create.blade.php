@@ -51,6 +51,7 @@
                 <button type="button" onclick="refreshCaptcha()">↻</button>
             </div>
         
+            <input type="hidden" name="captcha_type" id="captcha_type" value="image">
             <input
                 type="text"
                 id="captcha"
