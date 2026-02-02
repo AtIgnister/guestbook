@@ -7,6 +7,7 @@ use App\Models\Guestbook;
 use App\Models\GuestbookEntries;
 use App\Notifications\GuestbookEntryNotification;
 use Illuminate\Http\Request;
+use Validator;
 
 class EntriesController extends Controller
 {
@@ -18,14 +19,21 @@ class EntriesController extends Controller
 
     public function store(Request $request, Guestbook $guestbook)
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
-            'captcha' => ['required', 'captcha'],
+            'captcha' => ['required'],
             'posted_at' => 'date|before_or_equal:now',
             'captcha_type' => 'required|string'
         ]);
+
+        $validator->after(function ($validator) use ($request) {
+            if (! $this->captcha_validate($request)) {
+                $validator->errors()->add('captcha', 'The captcha is invalid.');
+            }
+        });
+        $validated = $validator->validate();
 
         if (! optional(auth()->user())->can('update', $guestbook)) {
             unset($validated['posted_at']); // ignore any value from guest
@@ -105,5 +113,9 @@ class EntriesController extends Controller
         $entry->save();
 
         return back()->with('success', 'Entry approved!');
+    }
+
+    private function captcha_validate($request) {
+        return true;
     }
 }
