@@ -102,4 +102,23 @@ class User extends Authenticatable
             ->limit(1)
             ->exists();
     }
+
+    public function twoFactorSecretPlain(): ?string {
+        if (! $this->two_factor_secret) {
+            return null;
+        }
+
+        try {
+            $secret = decrypt($this->two_factor_secret);
+
+            if (is_string($secret) && str_starts_with($secret, 's:')) {
+                return unserialize($secret);
+            }
+
+            return $secret;
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
+
 }

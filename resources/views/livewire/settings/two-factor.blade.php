@@ -1,14 +1,9 @@
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <x-settings.layout :heading="__('Two Factor Authentification')" :subheading="__('Manage your 2FA settings.')">
+    <x-settings.layout :heading="__('Two Factor Authentication')" :subheading="__('Manage your 2FA settings.')">
         @php
-            $secret = auth()->user()->two_factor_secret
-                ? Illuminate\Support\Facades\Crypt::decryptString(auth()->user()->two_factor_secret)
-                : null;
-            if (str_starts_with($secret, 's:')) {
-                $secret = unserialize($secret);
-            }
+            $secret = auth()->user()->twoFactorSecretPlain();
         @endphp
 
         {{-- Status messages --}}

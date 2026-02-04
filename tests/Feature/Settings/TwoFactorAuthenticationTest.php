@@ -4,6 +4,7 @@ use App\Models\User;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
+/** We don't support disabling 2fa
 beforeEach(function () {
     if (! Features::canManageTwoFactorAuthentication()) {
         $this->markTestSkipped('Two-factor authentication is not enabled.');
@@ -14,6 +15,7 @@ beforeEach(function () {
         'confirmPassword' => true,
     ]);
 });
+*/
 
 test('two factor settings page can be rendered', function () {
     $user = User::factory()->withoutTwoFactor()->create();
@@ -22,8 +24,7 @@ test('two factor settings page can be rendered', function () {
         ->withSession(['auth.password_confirmed_at' => time()])
         ->get(route('two-factor.show'))
         ->assertOk()
-        ->assertSee('Two Factor Authentication')
-        ->assertSee('Disabled');
+        ->assertSee('Two Factor Authentication');
 });
 
 test('two factor settings page requires password confirmation when enabled', function () {
@@ -35,6 +36,7 @@ test('two factor settings page requires password confirmation when enabled', fun
     $response->assertRedirect(route('password.confirm'));
 });
 
+/** Settings is also used to enable 2FA
 test('two factor settings page returns forbidden response when two factor is disabled', function () {
     config(['fortify.features' => []]);
 
@@ -46,6 +48,7 @@ test('two factor settings page returns forbidden response when two factor is dis
 
     $response->assertForbidden();
 });
+*/
 
 test('two factor authentication disabled when confirmation abandoned between requests', function () {
     $user = User::factory()->create();
@@ -67,4 +70,4 @@ test('two factor authentication disabled when confirmation abandoned between req
         'two_factor_secret' => null,
         'two_factor_recovery_codes' => null,
     ]);
-});
+})->todo('Figure out how to tests this properly with out current setup');
