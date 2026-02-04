@@ -49,12 +49,12 @@
             <label for="captcha">Captcha</label>
             <div class="flex items-center gap-2">
                 <div id="captcha_container">
-                    <span class="captcha-img">{!! captcha_img() !!}</span>
                 </div>
                 <button type="button" onclick="loadCaptcha()">↻</button>
             </div>
         
-            <input type="hidden" name="captcha_type" id="captcha_type" value="image">
+            <input type="hidden" name="captcha_key" id="captcha_key">
+            <input type="hidden" name="captcha_type" id="captcha_type" value="{{ old('captcha_type', 'image') }}">
             <input
                 type="text"
                 id="captcha"
@@ -75,16 +75,22 @@
     </form>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCaptcha()
+        });
+
         function captchaSwitch() {
             const captchaType = document.querySelector('#captcha_type');
+            const button = document.querySelector('#captcha-switch')
 
-            if(captchaType.value == 'image') {
-                captchaType.value == 'audio'
+            if (captchaType.value === 'image') {
+                button.textContent = 'Switch to Audio Captcha';
+            } else {
+                button.textContent = 'Switch to Image Captcha';
             }
 
-            if(captchaType.value == 'audio') {
-                captchaType.value == 'image'
-            }
+            captchaType.value = captchaType.value === 'image' ? 'audio' : 'image';
+            loadCaptcha();
         }
 
         function loadCaptcha() {
@@ -98,16 +104,28 @@
             }
         }
 
-        function loadCaptcha_audio() {
-
+        async function loadCaptcha_audio() {
+            const res = await fetch('/api/audio-captcha/generate');
+            const data = await res.json();
+            document.querySelector('#captcha_key').value = data.token
+            const captcha = `
+            <audio controls>
+                <source src="${data.mp3Link}" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            `
+            const captchaContent = document.querySelector('#captcha_container')
+            captchaContent.innerHTML = captcha
+            console.log(data)
         }
 
         function loadCaptcha_image() {
             fetch('{{ route("captcha.refresh") }}')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('captcha_container').innerHTML =
+                    document.querySelector('#captcha_container').innerHTML =
                         `<span class="captcha-img"><img src=${data.captcha}></img></span>`;
+                    document.querySelector('#captcha_key').value = '';
                 });
         }
         </script>
