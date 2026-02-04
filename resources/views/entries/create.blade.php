@@ -6,6 +6,7 @@
     @endif
 
     <h1>Create a Guestbook Entry</h1>
+    <button id="captcha-switch" onclick="captchaSwitch()">Switch to Audio Captcha</button>
 
     <!-- Guestbook form -->
     <form action="{{ route('entries.store', ['guestbook' => $guestbook]) }}" method="POST" class="entry-form flex-col md:w-1/2">
@@ -47,8 +48,10 @@
         <div class="captcha-field mb-2">
             <label for="captcha">Captcha</label>
             <div class="flex items-center gap-2">
-                <span class="captcha-img">{!! captcha_img() !!}</span>
-                <button type="button" onclick="refreshCaptcha()">↻</button>
+                <div id="captcha_container">
+                    <span class="captcha-img">{!! captcha_img() !!}</span>
+                </div>
+                <button type="button" onclick="loadCaptcha()">↻</button>
             </div>
         
             <input type="hidden" name="captcha_type" id="captcha_type" value="image">
@@ -72,11 +75,39 @@
     </form>
 
     <script>
-        function refreshCaptcha() {
+        function captchaSwitch() {
+            const captchaType = document.querySelector('#captcha_type');
+
+            if(captchaType.value == 'image') {
+                captchaType.value == 'audio'
+            }
+
+            if(captchaType.value == 'audio') {
+                captchaType.value == 'image'
+            }
+        }
+
+        function loadCaptcha() {
+            const captchaType = document.querySelector('#captcha_type');
+            if(captchaType.value == 'image') {
+                loadCaptcha_image()
+            }
+
+            if(captchaType.value == 'audio') {
+                loadCaptcha_audio()
+            }
+        }
+
+        function loadCaptcha_audio() {
+
+        }
+
+        function loadCaptcha_image() {
             fetch('{{ route("captcha.refresh") }}')
                 .then(response => response.json())
                 .then(data => {
-                    document.querySelector('span img').src = data.captcha;
+                    document.getElementById('captcha_container').innerHTML =
+                        `<span class="captcha-img"><img src=${data.captcha}></img></span>`;
                 });
         }
         </script>
