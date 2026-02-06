@@ -107,11 +107,7 @@ class AudioCaptcha
         unlink($outputMp3);
 
         // Temporary URL (5 minutes)
-        return URL::temporarySignedRoute(
-            'audio-captcha.audio',
-            now()->addMinutes(5),
-            ['id' => $id]
-        );
+        return route('audio-captcha.audio', ['id' => $id]);
     }
 
     public static function captcha_verify($request, $type) {
