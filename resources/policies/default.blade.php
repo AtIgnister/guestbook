@@ -74,7 +74,7 @@
 <h2>Your rights</h2>
 <p>When interacting with this website, you have these rights:</p>
 <ol>
-    <li><strong>Access:</strong> Request a copy of your data. You can do this at /guestbooks/export.</li>
+    <li><strong>Access:</strong> Request a copy of your data. You can do this at /guestbooks/export/dashboard.</li>
     <li><strong>Correction:</strong> Update incorrect data. You can edit all of your account and guestbook info at
         any time using the dashboard.</li>
     <li><strong>Deletion:</strong> Request account deletion. This is possible using the dashboard, by pressing the
