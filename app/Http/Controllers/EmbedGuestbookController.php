@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\UserBanHelper;
 use App\Models\Guestbook;
+use App\Notifications\GuestbookEntryNotification;
+use App\Services\AudioCaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,12 +36,12 @@ class EmbedGuestbookController extends Controller
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
-            'captcha' => 'required|captcha_api:' . $request->input('key') . ',default',
+            'captcha_type' => 'required|string'
         ];
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+        if ($validator->fails() || !AudioCaptcha::captcha_verify($request, $request->input('captcha_type'))) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid captcha. Please try again.',
@@ -52,8 +54,9 @@ class EmbedGuestbookController extends Controller
             'website' => $request->input('website'),
             'approved' => !$guestbook->requires_approval,
         ]);
+        $guestbook->user->notify(new GuestbookEntryNotification($entry));
 
         return redirect()
-            ->route('entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
+            ->route('embed.entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
     }
 }
