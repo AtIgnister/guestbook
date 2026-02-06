@@ -6,7 +6,15 @@
     @endif
 
     <h1>Create a Guestbook Entry</h1>
-    <button id="captcha-switch" onclick="captchaSwitch()">Switch to Audio Captcha</button>
+    <p id="captcha-status">Current captcha: image</p>
+    <button
+    id="captcha-switch"
+    aria-describedby="captcha-status"
+    type="button"
+    onclick="captchaSwitch()"
+    >
+    Switch to audio captcha
+    </button>
 
     <!-- Guestbook form -->
     <form action="{{ route('entries.store', ['guestbook' => $guestbook]) }}" method="POST" class="entry-form flex-col md:w-1/2">
@@ -48,7 +56,7 @@
         <div class="captcha-field mb-2">
             <label for="captcha">Captcha</label>
             <div class="flex items-center gap-2">
-                <div id="captcha_container">
+                <div id="captcha_container" aria-live="polite" aria-atomic="true">
                 </div>
                 <button type="button" onclick="loadCaptcha()">↻</button>
             </div>
@@ -60,7 +68,8 @@
                 id="captcha"
                 name="captcha"
                 class="md:w-1/2 w-full"
-                placeholder="Enter the text above"
+                placeholder="Enter captcha phrase."
+                aria-describedby="captcha-instructions"
                 required
             >
         
@@ -81,15 +90,19 @@
 
         function captchaSwitch() {
             const captchaType = document.querySelector('#captcha_type');
+            const status = document.querySelector("#captcha-status")
             const button = document.querySelector('#captcha-switch')
+
+            captchaType.value = captchaType.value === 'image' ? 'audio' : 'image';
 
             if (captchaType.value === 'image') {
                 button.textContent = 'Switch to Audio Captcha';
+                status.textContent = 'Current captcha: image';
             } else {
                 button.textContent = 'Switch to Image Captcha';
+                status.textContent = 'Current captcha: audio';
             }
 
-            captchaType.value = captchaType.value === 'image' ? 'audio' : 'image';
             loadCaptcha();
         }
 
@@ -109,7 +122,8 @@
             const data = await res.json();
             document.querySelector('#captcha_key').value = data.token
             const captcha = `
-            <audio controls>
+            <p id="captcha-instructions">Type the characters spoken in the audio.</p>
+            <audio controls aria-label="Audio captcha challenge">
                 <source src="${data.mp3Link}" type="audio/mp3">
                 Your browser does not support the audio element.
             </audio>
@@ -123,7 +137,8 @@
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('#captcha_container').innerHTML =
-                        `<span class="captcha-img"><img src=${data.captcha}></img></span>`;
+                        `<p id="captcha-instructions">Type the characters shown in the image.</p>
+                        <span class="captcha-img"><img src=${data.captcha} alt="Captcha image containing distorted characters"></img></span>`;
                     document.querySelector('#captcha_key').value = '';
                 });
         }
