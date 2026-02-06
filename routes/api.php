@@ -12,4 +12,5 @@ Route::get('/audio-captcha/generate', function (Request $request, AudioCaptcha $
 Route::get(
     '/audio-captcha/audio/{id}',
     [AudioCaptchaController::class, 'audio']
-)->name('audio-captcha.audio')->middleware('signed');
+)->name('audio-captcha.audio')
+->middleware('throttle:30,1');

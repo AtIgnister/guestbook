@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Storage;
 class AudioCaptchaController extends Controller
 {
     public function audio(string $id){
+        if (! Str::isUuid($id)) {
+            abort(404);
+        }
+
         $path = "captcha/tmp/{$id}.mp3";
 
         if (! Storage::disk('public')->exists($path)) {
