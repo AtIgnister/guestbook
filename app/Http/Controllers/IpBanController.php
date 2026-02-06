@@ -131,9 +131,9 @@ class IpBanController extends Controller
         }
 
         // Delete all bans linked to this guestbook
-        IpBan::whereHas('guestbookEntryIp', function ($query) use ($guestbook) {
-            $query->where('guestbook_entries_id', $guestbook->id);
-        })->delete();
+        IpBan::where('guestbook_id', $guestbook->id)
+        ->where('is_global', false)
+        ->delete();
 
         return redirect()->back()->with('success', 'All IP bans for this guestbook have been cleared.');
     }

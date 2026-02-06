@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class GuestbookEntries extends Model
 {
-    use HasUuids, VisibilityRestriction, Searchable;
+    use HasUuids, VisibilityRestriction, Searchable, HasFactory;
     protected $fillable = [ 
         "name",
         "website",
