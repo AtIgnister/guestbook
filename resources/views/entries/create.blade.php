@@ -116,7 +116,6 @@
             `
             const captchaContent = document.querySelector('#captcha_container')
             captchaContent.innerHTML = captcha
-            console.log(data)
         }
 
         function loadCaptcha_image() {
