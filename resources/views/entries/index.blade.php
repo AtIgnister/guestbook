@@ -37,7 +37,7 @@
                 <p>{{ $entry->name }} wrote...</p>
 
                 @if ($entry->website !== null)
-                    <sup>Website: <a rel="ugc" href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
+                    <sup>Website: <a rel="ugc" target="_blank" href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
                 @endif
                     
                 <p>{!! nl2br(e($entry->comment)) !!}</p>
