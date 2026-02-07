@@ -3,6 +3,7 @@ import string
 import pathlib
 
 OUTPUT_DIR = pathlib.Path("storage/app/captcha/letters/")
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 VOICE = "en"          # try: en-us, en-gb, etc.
 SPEED = "140"         # words per minute (lower = slower)
 PITCH = "50"          # 0–99
