@@ -21,7 +21,6 @@
         </nav>
         <main class="max-w-2xl mx-auto">
             <h1>Guestbooks</h1>
-            <p class="text-red-500">BETA! Public Invites currently not available.</p>
             <p>A really simple, <a href="https://bearblog.dev">bearblog inspired</a> guestbook app that will not lose your data.</p>
             <a href="mailto:{{ config('app.contact') }}">Email me to receive an invite</a> or <a href="/login">Log in with an existing account</a>.
         </main>
