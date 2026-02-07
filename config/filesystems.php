@@ -60,6 +60,11 @@ return [
             'report' => false,
         ],
 
+        'snapshots' => [
+            'driver' => 'local',
+            'root' => database_path('snapshots'),
+        ],
+
     ],
 
     /*
