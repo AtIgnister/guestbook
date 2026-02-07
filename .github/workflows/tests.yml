@@ -50,5 +50,11 @@ jobs:
       - name: Build Assets
         run: npm run build
 
+      - name: Install audio generation dependencies
+        run: sudo apt-get update && sudo apt-get install -y espeak-ng ffmpeg python3 python3-pip
+
+      - name: Generate Audio Files
+        run: php artisan gen:audio
+
       - name: Run Tests
         run: ./vendor/bin/pest

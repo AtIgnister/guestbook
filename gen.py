@@ -2,7 +2,7 @@ import subprocess
 import string
 import pathlib
 
-OUTPUT_DIR = pathlib.Path("captcha_audio")
+OUTPUT_DIR = pathlib.Path("storage/app/captcha/letters/")
 VOICE = "en"          # try: en-us, en-gb, etc.
 SPEED = "140"         # words per minute (lower = slower)
 PITCH = "50"          # 0–99
@@ -61,4 +61,4 @@ generate_mp3('dash','-');
 for digit, word in digit_words.items():
     generate_mp3(word, digit)
 
-print("Done! MP3 files are in ./captcha_audio/")
+print("Done! MP3 files are in " + str(OUTPUT_DIR))
