@@ -34,6 +34,7 @@ services:
     restart: unless-stopped
     volumes:
       - laravel-storage-production:/var/www/storage # Mount the storage volume
+      - /srv/laravel/snapshots:/var/www/snapshots
     env_file:
       - .env
     networks:

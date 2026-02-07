@@ -62,7 +62,7 @@ return [
 
         'snapshots' => [
             'driver' => 'local',
-            'root' => database_path('snapshots'),
+            'root' => '/var/www/snapshots',
         ],
 
     ],
