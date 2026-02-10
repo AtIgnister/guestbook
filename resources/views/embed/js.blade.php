@@ -111,7 +111,12 @@ async function loadCaptcha_image() {
     captchaField.name = 'captcha'
     captchaField.placeholder = 'Enter Captcha Text'
 
-    captchaRefresh.onclick = loadCaptcha
+    captchaRefresh.type = 'button';
+    captchaRefresh.addEventListener('click', function(e) {
+        e.preventDefault();
+        loadCaptcha();
+    });
+
     captchaImg.style = 'width: 200px; height: 80px; object-fit: contain; display: block; margin-bottom: 0.5rem;'
     captchaImg.id = 'captchaImage'
     captchaImg.alt = 'Captcha image containing distorted characters'
