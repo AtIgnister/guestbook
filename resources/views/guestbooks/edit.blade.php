@@ -20,8 +20,12 @@
     
             <div class="flex flex-wrap 2">
                 <label for="style" class="w-full">Styles</label>
-                <textarea id="style" name="style" class="flex-1 h-60">{{ old('style', $guestbook->style) }}</textarea>
+                <textarea id="style" name="style" class="flex-1 h-60 block">{{ old('style', $guestbook->style) }}</textarea>
             </div>
+
+            <p class="text-sm text-gray-600">
+                Please don't use CSS to hide the links to the privacy policy or guestbook guidelines.
+            </p>
 
             <div class="md:flex items-center gap-2">
 

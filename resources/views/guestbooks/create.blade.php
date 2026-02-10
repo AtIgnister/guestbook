@@ -22,6 +22,10 @@
             <textarea class="md:flex-1 w-full h-50" id="style" name="style">{{ old("style") }}</textarea>
         </div>
 
+        <p class="text-sm text-gray-600">
+            Please don't use CSS to hide the links to the privacy policy or guestbook guidelines.
+        </p>
+
         <div class="md:flex items-center gap-2">
             <input
                 type="checkbox"
@@ -34,6 +38,7 @@
                 Require manual approval for new entries
             </label>
         </div>
+        
 
         <div>
             <button type="submit">Create Guestbook</button>
