@@ -24,7 +24,7 @@
             </div>
 
             <p class="text-sm">
-                Please don't use CSS to hide the links to the privacy policy or guestbook guidelines.
+                Please don't use CSS to hide the links to the privacy policy or commenting guidelines.
             </p>
 
             <div class="md:flex items-center gap-2">
