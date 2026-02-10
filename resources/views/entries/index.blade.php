@@ -23,8 +23,8 @@
             </x-markdown>
         @endif
 
-        <sub class="guestbook-info">Be reasonable, follow the <a href="/blog/tos">guestbook guidelines.</a></sub><br>
-        <sub class="guestbook-info">Use of this service is subject to our <a href="{{ route('privacy-policy.index') }}">privacy policy.</a></sub>
+        <sub class="guestbook-info">Be reasonable, follow the <a target="_blank" href="/blog/tos">guestbook guidelines.</a></sub><br>
+        <sub class="guestbook-info">Use of this service is subject to our <a target="_blank" href="{{ route('privacy-policy.index') }}">privacy policy.</a></sub>
 
         @if ($entries && $entries->count())
             <div class="comment-link-container my-10 border-solid border-2 rounded-xl p-2">
