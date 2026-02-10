@@ -22,7 +22,7 @@
             <textarea class="md:flex-1 w-full h-50" id="style" name="style">{{ old("style") }}</textarea>
         </div>
 
-        <p class="text-sm text-gray-600">
+        <p class="text-sm">
             Please don't use CSS to hide the links to the privacy policy or guestbook guidelines.
         </p>
 
