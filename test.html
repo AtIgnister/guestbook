@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script data-id="" src="http://127.0.0.1:8001/api/embeds/b8636980-0bdb-4a27-983f-f5eed99a9bce/embed.js"></script>
+    <hr>
+
+    <!-- Guestbook Form -->
+    <div id="guestbooks___guestbook-form-container">
+    <form id="guestbooks___guestbook-form" 
+            action="https://guestbooks.meadow.cafe/guestbook/453/submit" 
+            method="post">
+        
+    <div class="guestbooks___input-container">
+        <input type="text" 
+                id="name" 
+                name="name" 
+                placeholder="name" 
+                required>
+        </div>
+        
+    <div class="guestbooks___input-container">
+        <input type="url" 
+                id="website" 
+                name="website" 
+                placeholder="website (optional)">
+        </div>
+        
+    <div id="guestbooks___challenge-answer-container"></div>
+        
+    <div class="guestbooks___input-container">
+        <textarea id="text" 
+                    name="text" 
+                    placeholder="leave your message here..." 
+                    rows="4"
+                    style="width: 100%; box-sizing: border-box; resize: vertical;"
+                    required></textarea>
+        </div>
+        
+    <button type="submit">submit</button>
+    <div id="guestbooks___error-message"></div>
+    </form>
+    </div>
+
+    <!-- Attribution (optional but appreciated!) -->
+    <div id="guestbooks___guestbook-made-with" style="text-align: right; margin-top: 10px;">
+    <small>powered by <a href="https://guestbooks.meadow.cafe" target="_blank">guestbooks</a></small>
+    </div>
+
+    <!-- Messages Section -->
+    <hr>
+    <h3 id="guestbooks___guestbook-messages-header">messages</h3>
+    <div id="guestbooks___guestbook-messages-container"></div>
+</body>
+</html>
