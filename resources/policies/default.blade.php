@@ -103,7 +103,7 @@
 
 <h2>Changes to this policy:</h2>
 <p>If this policy changes, you will be notified via email if you have an account. This website also has a <a
-        href="/privacy-policy">separate page</a> which tracks all changes that get made to the policy.</p>
+        href="/privacy-policy/history">separate page</a> which tracks all changes that get made to the policy.</p>
 
 <h2>Contact:</h2>
 <p>If you have any questions, you can contact me at {{ config('app.contact') }}.</p>
