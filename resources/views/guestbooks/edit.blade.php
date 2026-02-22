@@ -46,10 +46,16 @@
                 <input type="text" class="flex-1 h-15" readonly name="embed-code" 
                     value="{{ '<iframe src="' . config('app.url') . '/embed/guestbook/' . $guestbook->id . '" width="100%" height="500px" frameborder="0"></iframe>' }}">
             </div>
-    
-            <div class="flex space-x-4 justify-between md:justify-start">
-                <button type="submit">Save Guestbook</button>
-                <a href="{{ route('guestbooks.index') }}" class="btn btn-secondary">Cancel</a>
+
+            <div class="flex flex-wrap space-y-2">
+                <label for="embed-code" class="w-full">
+                    JS Embed Code (Experimental)
+                </label>
+                <textarea readonly id="style" name="style" class="flex-1 h-60 block">
+                    {{ $html = view('embed.embedjs', [
+                        'guestbook' => $guestbook,
+                    ])->render() }}
+                </textarea>
             </div>
         </form>
     </main>

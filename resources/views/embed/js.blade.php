@@ -21,8 +21,14 @@ function loadEntries(entries) {
     const guestbookResponses = document.querySelector('#guestbooks___guestbook-messages-container')
     guestbookResponses.innerHTML = ''
     entries.forEach(entry => {
+        websiteLink = ''
+        if(entry.website) {
+            websiteLink = `<a class='guestbooks__site-user-link' href='${entry.website}'>${entry.website}</a>`
+        }
+
         guestbookResponses.innerHTML += `
             <p>${entry.name} wrote...</p>
+            ${websiteLink}
             <p>${entry.comment}</p>
         `
     })
@@ -48,9 +54,6 @@ function renderGuestbook(data) {
             method: 'POST',
             body: data,
         });
-
-            const json = await res.json();
-
             if (res.ok) {
                 form.reset();
                 const refreshed = await getGuestbookData(guestbookId);
@@ -58,12 +61,12 @@ function renderGuestbook(data) {
 
                 loadCaptcha();
             }
-        });
+    });
 
-        const captchaSwitch = document.querySelector(".guestbooks__captcha-switch")
-        captchaSwitch.addEventListener("click", switchCaptchaType)
-        loadCaptcha()
-    }
+    const captchaSwitch = document.querySelector(".guestbooks__captcha-switch")
+    captchaSwitch.addEventListener("click", switchCaptchaType)
+    loadCaptcha()
+}
 
 function setCaptchaType(type) {
     localStorage.setItem('k_guestbooks_captcha_type', type)

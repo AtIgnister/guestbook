@@ -31,5 +31,7 @@ Route::get('/embeds/{guestbook}/embed.js', function ($guestbook) {
         ->header('Content-Type', 'application/javascript')
         ->header('Cache-Control', 'public, max-age=31536000')
         ->header('Access-Control-Allow-Origin', '*');
-})->middleware('throttle:30,1');
+})
+->middleware('throttle:30,1')
+->name("api.guestbook.embedjs");
 // <!-- Embed Route --!>
