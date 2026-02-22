@@ -50,7 +50,6 @@ function renderGuestbook(data) {
         });
 
             const json = await res.json();
-            alert(json.message);
 
             if (res.ok) {
                 form.reset();
