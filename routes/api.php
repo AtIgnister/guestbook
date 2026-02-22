@@ -19,7 +19,7 @@ Route::get(
 Route::get(
         '/{guestbook}/json',
         [ExportGuestbookJsonController::class, 'exportRaw']
-)->name("export.json")
+)->name("api.json")
 ->middleware('throttle:30,1');
 
 // <!-- Embed Route --!>
