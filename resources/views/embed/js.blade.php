@@ -38,9 +38,11 @@ function renderGuestbook(data) {
 
         const form = e.target;
         const data = new FormData(form);
+        const captchaField = document.querySelector(".captchaField")
         data.append('key', getCaptchaKey())
         data.append('captcha_type', getCaptchaType())
         data.append('no_redirect', true)
+        data.append('captcha', captchaField.value)
 
         const res = await fetch(form.action, {
             method: 'POST',
@@ -52,15 +54,15 @@ function renderGuestbook(data) {
 
             if (res.ok) {
                 form.reset();
-                getGuestbookData(guestbookId).then(data => {
-                    const guestbookData = data.guestbooks[guestbookId]
-                    renderGuestbook(guestbookData)
-                })
+                const refreshed = await getGuestbookData(guestbookId);
+                loadEntries(refreshed.guestbooks[guestbookId].entries);
+
                 loadCaptcha();
-                
             }
         });
 
+        const captchaSwitch = document.querySelector(".guestbooks__captcha-switch")
+        captchaSwitch.addEventListener("click", switchCaptchaType)
         loadCaptcha()
     }
 
@@ -95,6 +97,17 @@ async function loadCaptcha() {
     }
 }
 
+async function switchCaptchaType() {
+    const type = getCaptchaType()
+    if(type == 'image') {
+        await setCaptchaType('audio')
+        await loadCaptcha()
+    } else if(type == 'audio') {
+        await setCaptchaType('image')
+        await loadCaptcha()
+    }
+}
+
 async function loadCaptcha_image() {
     const res = await fetch('{{ url("/captcha/api/default") }}');
     const data = await res.json();
@@ -110,6 +123,7 @@ async function loadCaptcha_image() {
     captchaField.type = 'text'
     captchaField.name = 'captcha'
     captchaField.placeholder = 'Enter Captcha Text'
+    captchaField.classList.add("captchaField")
 
     captchaRefresh.type = 'button';
     captchaRefresh.addEventListener('click', function(e) {
@@ -132,6 +146,13 @@ async function loadcaptcha_audio() {
     const res = await fetch(`${host}/api/audio-captcha/generate`);
     const data = await res.json();
     const captchaContainer = document.querySelector('#guestbooks___challenge-answer-container')
+
+    const captchaField = document.createElement('input')
+    captchaField.type = 'text'
+    captchaField.name = 'captcha'
+    captchaField.placeholder = 'Enter Captcha Text'
+    captchaField.classList.add("captchaField")
+
     setCaptchaKey(data.token)
     const captcha = `
         <p id="captcha-instructions">Type the characters spoken in the audio.</p>
@@ -139,8 +160,10 @@ async function loadcaptcha_audio() {
         <source src="${data.mp3Link}" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
+        <br>
     `
     captchaContainer.innerHTML = captcha
+    captchaContainer.append(captchaField)
 }
 
 getGuestbookData(guestbookId).then(data => {

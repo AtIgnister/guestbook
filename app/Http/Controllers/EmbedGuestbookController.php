@@ -57,7 +57,7 @@ class EmbedGuestbookController extends Controller
         $guestbook->user->notify(new GuestbookEntryNotification($entry));
 
         // this is a really stupid hack. TODO: fix this. There's no reason to return an actual redirect here, just make it JSON
-        if(!response('no_redirect')) {
+        if(!$request->boolean('no_redirect')) {
             return redirect()
             ->route('embed.entries.index', ["guestbook" => $guestbook])->with('success','Entry created sucessfully');
         } else {
