@@ -21,17 +21,36 @@ function loadEntries(entries) {
     const guestbookResponses = document.querySelector('#guestbooks___guestbook-messages-container')
     guestbookResponses.innerHTML = ''
     entries.forEach(entry => {
-        websiteLink = ''
-        if(entry.website) {
-            websiteLink = `<a class='guestbooks__site-user-link' href='${entry.website}'>${entry.website}</a>`
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("guestbooks__entry");
+
+        const nameP = document.createElement("p");
+        nameP.textContent = `${entry.name} wrote...`;
+        wrapper.appendChild(nameP);
+
+        if (entry.website) {
+            try {
+                const url = new URL(entry.website);
+
+                const websiteLink = document.createElement("a");
+                websiteLink.textContent = entry.website;
+                websiteLink.href = url.href;
+                websiteLink.target = "_blank";
+                websiteLink.rel = "noopener noreferrer";
+                websiteLink.classList.add("guestbooks__site-user-link");
+
+                wrapper.appendChild(websiteLink);
+            } catch (e) {
+            }
         }
 
-        guestbookResponses.innerHTML += `
-            <p>${entry.name} wrote...</p>
-            ${websiteLink}
-            <p>${entry.comment}</p>
-        `
-    })
+        // Comment
+        const commentP = document.createElement("p");
+        commentP.textContent = entry.comment;
+        wrapper.appendChild(commentP);
+
+        guestbookResponses.appendChild(wrapper);
+    });
 }
 
 function renderGuestbook(data) {
