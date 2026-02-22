@@ -162,4 +162,16 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Donation Settings
+    |--------------------------------------------------------------------------
+    |
+    | These configuration options determine visibility of the donation widget,
+    | and the platform it links to.
+    |
+    */
+    'enable_donations' => env('ENABLE_DONATIONS'),
+    'donate_link' => env('DONATE_LINK')
+
 ];
