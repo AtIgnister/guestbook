@@ -31,7 +31,7 @@
                 style="width: 100%; box-sizing: border-box; resize: vertical;"
                 required
             ></textarea>
-            <p>Be reasonable, follow the <a target="_blank" href="/blog/tos">guestbook guidelines.</a></p>
+            <p>Be reasonable, follow the <a target="_blank" href="{{ config('app.url') }}/blog/tos">guestbook guidelines.</a></p>
             <p>Use of this service is subject to our <a target="_blank" href="{{ config("app.url") }}/privacy-policy">privacy policy.</a></p>
         </div>
                 
