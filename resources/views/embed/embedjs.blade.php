@@ -32,7 +32,7 @@
                 required
             ></textarea>
             <p>Be reasonable, follow the <a target="_blank" href="/blog/tos">guestbook guidelines.</a></p>
-            <p>Use of this service is subject to our <a target="_blank" href="http://127.0.0.1:8001/privacy-policy">privacy policy.</a></p>
+            <p>Use of this service is subject to our <a target="_blank" href="{{ config("app.url") }}/privacy-policy">privacy policy.</a></p>
         </div>
                 
         <button type="submit">submit</button>
