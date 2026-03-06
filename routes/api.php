@@ -24,7 +24,7 @@ Route::get(
 
 // <!-- Embed Route --!>
 Route::get('/embeds/{guestbook}/embed.js', function ($guestbook) {
-    $url = request()->getSchemeAndHttpHost();
+    $url = config('app.url');
 
     return response()
         ->view('embed.js', compact('url', 'guestbook'))
