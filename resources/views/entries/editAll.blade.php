@@ -89,18 +89,22 @@
                                 </form>
                             </td>
                             <td>
-                                @php($ipBan = $entry->getIpBan())
+                                @if ($entry->ip)
+                                    @php($ipBan = $entry->getIpBan())
 
-                                @if (!$ipBan)
-                                    <a href="{{ route('ipBans.create', ['entry_ip' => $entry->ip]) }}">
-                                        Ban IP
-                                    </a>
+                                    @if (!$ipBan)
+                                        <a href="{{ route('ipBans.create', ['entry_ip' => $entry->ip]) }}">
+                                            Ban IP
+                                        </a>
+                                    @else
+                                        <form method="POST" action="{{ route('ipBans.destroy', $ipBan) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Unban IP</button>
+                                        </form>
+                                    @endif
                                 @else
-                                    <form method="POST" action="{{ route('ipBans.destroy', $ipBan) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit">Unban IP</button>
-                                    </form>
+                                    <p>IP not available.</p>
                                 @endif
                             </td>
                         </tr>
