@@ -5,17 +5,19 @@ Still, here's how to do it:
 0. Prerequisites: In order to run guestbooks, you will need to have docker compose installed.
 1. Clone the repository
 2. Configuration:
-    1. Copy the .env.example, and rename it to .env
-    2. Set APP_ENV to 'production'
-    3. set the APP_URL to the url of the website you want to host guestbooks on
-    4. change NGINX_PORT to the port you want to run the website on
-    5. Comment out the sqlite connection and uncomment the pgsql connection
-    6. Comment out all mail_mailer defaults, and uncomment mailer production defaults. If you want to use maileroo for your mailing service, you will have to sign up for an account with them and paste your api key in here
-    7. Set the contact email and site name. These are purely cosmetic and mostly used in the privacy policy
-    8. Set ANALYTICS_SRC to the script html of your analytics provider of choice. I recommend goatcounter due them being privacy respecting. If you don't want analytics, just leave this option blank.
-    9. If you have forked the repo, change SOURCE_URL to contain a link to the source code of your fork
+    1. run the install-deps.sh script in the /hosting directory
+    2. run host.sh script in the same directory
+    1. Edit the .env file in the root of the repository:
+        2. Set APP_ENV to 'production'
+        3. set the APP_URL to the url of the website you want to host guestbooks on
+        4. change NGINX_PORT to the port you want to run the website on
+        5. Comment out the sqlite connection and uncomment the pgsql connection
+        6. Comment out all mail_mailer defaults, and uncomment mailer production defaults. If you want to use maileroo for your mailing service, you will have to sign up for an account with them and paste your api key in here
+        7. Set the contact email and site name. These are purely cosmetic and mostly used in the privacy policy
+        8. Set ANALYTICS_SRC to the script html of your analytics provider of choice. I recommend goatcounter due them being privacy respecting. If you don't want analytics, just leave this option blank.
+        9. If you have forked the repo, change SOURCE_URL to contain a link to the source code of your fork
 3. Read through policies/default.php and then edit it to reflect your circumstances
-4. Run docker compose build && docker compose up -d. The web app should now be running
+4. Run docker-compose down && docker-compose build && docker compose up -d. The web app should now be running.
 5. run php artisan key:generate inside the php-fpm container, and copy paste the result into your .env file. Restart the containers.
 6. run php artisan admin:user:create inside the php-fpm container to create an admin user.
 7. The application should now be up and running. The nginx configuration is at docker/production/nginx/nginx.conf. If you want https, either edit it or use a local instance of nginx as a reverse proxy.  
