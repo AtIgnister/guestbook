@@ -2,7 +2,6 @@ Guestbooks is currently beta software. This means that there is no stable, tagge
 So, if you don't intend on updating very frequently, self hosting is a bad idea right now.  
 Still, here's how to do it:  
 
-0. Prerequisites: In order to run guestbooks, you will need to have docker compose installed.
 1. Clone the repository
 2. Configuration:
     1. run the install-deps.sh script in the /hosting directory
