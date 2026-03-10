@@ -9,6 +9,7 @@ use App\Notifications\GuestbookEntryNotification;
 use App\Services\AudioCaptcha;
 use Illuminate\Http\Request;
 use Validator;
+use App\Helpers\IpHelper;
 
 class EntriesController extends Controller
 {
@@ -20,6 +21,10 @@ class EntriesController extends Controller
 
     public function store(Request $request, Guestbook $guestbook)
     {
+        if(IpHelper::isBanned($request, $guestbook)) {
+            abort(403);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
