@@ -19,6 +19,7 @@ use App\Http\Controllers\AccountController;
 use Laravel\Fortify\RoutePath;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmbedGuestbookController;
+use Illuminate\Support\Facades\Request;
 
 // <!-- Dash and Home Routes --!>
 Route::get('/', function () {
@@ -256,3 +257,12 @@ Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () 
 });
 
 // <!-- User Routes --!>
+if(config('app.enable_debug_routes')) { 
+    Route::get('/debug/ip', function (Request $request) {
+        return [
+            'ip' => Request::ip(),
+            'ips' => Request::ips(),
+            'xff' => Request::header('X-Forwarded-For'),
+        ];
+    });
+}
