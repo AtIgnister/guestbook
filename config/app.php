@@ -172,6 +172,16 @@ return [
     |
     */
     'enable_donations' => env('ENABLE_DONATIONS'),
-    'donate_link' => env('DONATE_LINK')
+    'donate_link' => env('DONATE_LINK'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Debug Settings
+    |--------------------------------------------------------------------------
+    |
+    | Settings to enable/disable some routes with basic debug info, in case anything goes horribly wrong in production.
+    |
+    */
+    'enable_debug_routes' => filter_var(env('ENABLE_DEBUG_ROUTES', false), FILTER_VALIDATE_BOOLEAN),
 
 ];
