@@ -13,6 +13,10 @@ use App\Helpers\IpHelper;
 
 class EntriesController extends Controller
 {
+    public function show(Request $request, GuestbookEntries $entry) {
+        return view('entries.show', compact('entry'));
+    }
+
     public function create(Request $request, Guestbook $guestbook)
     {
         // Pass the guestbook to the view

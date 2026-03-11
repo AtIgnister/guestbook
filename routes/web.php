@@ -19,6 +19,7 @@ use App\Http\Controllers\AccountController;
 use Laravel\Fortify\RoutePath;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmbedGuestbookController;
+use App\Http\Controllers\FeedController;
 use Illuminate\Support\Facades\Request;
 
 // <!-- Dash and Home Routes --!>
@@ -128,7 +129,15 @@ Route::middleware(['UserBanCheck'])->group(function() {
     ->name('entries.approve')
     ->middleware(['auth', 'BanCheck', 'throttle:30,1'])
     ->can('approve', 'entry');
+
 });
+
+Route::get('/entries/show/{entry}', [EntriesController::class, 'show'])
+->name('entries.show');
+
+Route::get('/entries/{guestbook}/feed', [FeedController::class, 'show'])
+->name('entries.feed');
+
 // <!-- Guestbook Routes --!>
 
 // <!-- IP Ban Routes --!>
