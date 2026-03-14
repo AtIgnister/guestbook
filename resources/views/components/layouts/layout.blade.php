@@ -7,6 +7,8 @@
     {{-- Tailwind + app JS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    
+
     {{-- Livewire --}}
     @livewireStyles
     @livewireScripts
@@ -17,6 +19,8 @@
 
     {{-- Optional: any analytics or meta tags --}}
     {!! config('app.analytics_src') !!}
+
+    @stack('head')
 </head>
 <body class="flex flex-col h-screen justify-between">
 

@@ -47,6 +47,7 @@ class GuestbookController extends Controller
             'style' => 'nullable',
             'description' => 'nullable|max:1000',
             'requires_approval' => 'nullable|boolean',
+            'author_name' => 'nullable|string|max:255',
         ]);
         $validated['requires_approval'] = $request->boolean('requires_approval');
         
@@ -90,6 +91,7 @@ class GuestbookController extends Controller
             'style' => 'nullable',
             'description' => 'nullable|max:1000',
             'requires_approval' => 'nullable|boolean',
+            'author_name' => 'nullable|string|max:255',
         ]);
         $validated['requires_approval'] = $request->boolean('requires_approval');
 

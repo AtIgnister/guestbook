@@ -20,6 +20,7 @@ class Guestbook extends Model
         "style",
         "description",
         'requires_approval',
+        "author_name"
     ];
     protected array $searchable = [
         'name',

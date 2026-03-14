@@ -13,6 +13,12 @@
                 <input type="text" id="name" name="name" value="{{ old('name', $guestbook->name) }}" class="flex-1" required>
             </div>
 
+            <div class="flex flex-wrap space-x-4 space-y-2 md:space-y-0">
+                <label for="author_name" class="w-full md:w-fit">Author Name (Publicly shown on Atom Feed)</label>
+                <input type="text" id="author_name" name="author_name" value="{{ old('author_name', $guestbook->author_name) }}" class="flex-1" required>
+            </div>
+
+
             <div class="flex flex-wrap space-y-2">
                 <label for="description" class="w-full">Guestbook Description</label>
                 <textarea  type="text" id="description" name="description" class="flex-1 h-15">{{ old('description', $guestbook->description) }}</textarea>
@@ -56,6 +62,8 @@
                 ])->render() }}
                 </textarea>
             </div>
+
+            <button type="submit">Save</button>
         </form>
     </main>
 @endsection

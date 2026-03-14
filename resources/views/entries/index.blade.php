@@ -1,5 +1,9 @@
 @extends('components.layouts.layout')
 
+@push('head')
+<link rel="alternate" type="application/atom+xml" title="Guestbook Feed" href="{{ route("entries.feed", compact("guestbook")) }}">
+@endpush
+
 @section("hideBackToDashboard")
 @endsection
 

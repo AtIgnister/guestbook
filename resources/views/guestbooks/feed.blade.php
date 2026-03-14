@@ -8,7 +8,7 @@
 <link href="{{ route('entries.index', compact('guestbook')) }}"/>
 <updated>{{ $updated }}</updated>
 <author>
-<name>{{ $guestbook->user->name }}</name>
+<name>{{ $guestbook->author_name ?? $guestbook->name }}</name>
 </author>
 <id>{{ route('entries.index', compact('guestbook')) }}</id>
 @foreach ($guestbook->entries as $entry)
