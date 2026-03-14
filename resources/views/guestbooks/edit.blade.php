@@ -15,7 +15,7 @@
 
             <div class="flex flex-wrap space-x-4 space-y-2 md:space-y-0">
                 <label for="author_name" class="w-full md:w-fit">Author Name (Publicly shown on Atom Feed)</label>
-                <input type="text" id="author_name" name="author_name" value="{{ old('author_name', $guestbook->author_name) }}" class="flex-1" required>
+                <input type="text" id="author_name" name="author_name" value="{{ old('author_name', $guestbook->author_name) }}" class="flex-1">
             </div>
 
 
