@@ -1,4 +1,9 @@
 @extends('components.layouts.layout')
+
+@push('head')
+<link rel="alternate" type="application/atom+xml" title="Guestbook Feed" href="{{ route("entries.feed", compact("guestbook")) }}">
+@endpush
+
 @section("content")
     <main class="md:flex flex-col items-center gap-4 p-4 md:p-0" >
         <h1>Edit {{ $guestbook->name }}</h1>
