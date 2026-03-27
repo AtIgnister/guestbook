@@ -1366,16 +1366,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.50.0",
+            "version": "v12.53.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "174ffed91d794a35a541a5eb7c3785a02a34aaba"
+                "reference": "f57f035c0d34503d9ff30be76159bb35a003cd1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/174ffed91d794a35a541a5eb7c3785a02a34aaba",
-                "reference": "174ffed91d794a35a541a5eb7c3785a02a34aaba",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f57f035c0d34503d9ff30be76159bb35a003cd1f",
+                "reference": "f57f035c0d34503d9ff30be76159bb35a003cd1f",
                 "shasum": ""
             },
             "require": {
@@ -1584,7 +1584,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-02-04T18:34:13+00:00"
+            "time": "2026-02-24T14:35:15+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -1837,16 +1837,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.8.0",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "4efa10c1e56488e658d10adf7b7b7dcd19940bfb"
+                "reference": "59fb075d2101740c337c7216e3f32b36c204218b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/4efa10c1e56488e658d10adf7b7b7dcd19940bfb",
-                "reference": "4efa10c1e56488e658d10adf7b7b7dcd19940bfb",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/59fb075d2101740c337c7216e3f32b36c204218b",
+                "reference": "59fb075d2101740c337c7216e3f32b36c204218b",
                 "shasum": ""
             },
             "require": {
@@ -1871,9 +1871,9 @@
                 "phpstan/phpstan": "^1.8.2",
                 "phpunit/phpunit": "^9.5.21 || ^10.5.9 || ^11.0.0",
                 "scrutinizer/ocular": "^1.8.1",
-                "symfony/finder": "^5.3 | ^6.0 | ^7.0",
-                "symfony/process": "^5.4 | ^6.0 | ^7.0",
-                "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0 | ^6.0 | ^7.0",
+                "symfony/finder": "^5.3 | ^6.0 | ^7.0 || ^8.0",
+                "symfony/process": "^5.4 | ^6.0 | ^7.0 || ^8.0",
+                "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0 | ^6.0 | ^7.0 || ^8.0",
                 "unleashedtech/php-coding-standard": "^3.1.1",
                 "vimeo/psalm": "^4.24.0 || ^5.0.0 || ^6.0.0"
             },
@@ -1940,7 +1940,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-26T21:48:24+00:00"
+            "time": "2026-03-19T13:16:38+00:00"
         },
         {
             "name": "league/config",
@@ -4429,23 +4429,23 @@
         },
         {
             "name": "spatie/laravel-markdown",
-            "version": "2.7.1",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-markdown.git",
-                "reference": "353e7f9fae62826e26cbadef58a12ecf39685280"
+                "reference": "eabe8c7e31c2739ad0fe63ba04eb2e3189608187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-markdown/zipball/353e7f9fae62826e26cbadef58a12ecf39685280",
-                "reference": "353e7f9fae62826e26cbadef58a12ecf39685280",
+                "url": "https://api.github.com/repos/spatie/laravel-markdown/zipball/eabe8c7e31c2739ad0fe63ba04eb2e3189608187",
+                "reference": "eabe8c7e31c2739ad0fe63ba04eb2e3189608187",
                 "shasum": ""
             },
             "require": {
-                "illuminate/cache": "^9.0|^10.0|^11.0|^12.0",
-                "illuminate/contracts": "^9.0|^10.0|^11.0|^12.0",
-                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
-                "illuminate/view": "^9.0|^10.0|^11.0|^12.0",
+                "illuminate/cache": "^9.0|^10.0|^11.0|^12.0|^13.0",
+                "illuminate/contracts": "^9.0|^10.0|^11.0|^12.0|^13.0",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
+                "illuminate/view": "^9.0|^10.0|^11.0|^12.0|^13.0",
                 "league/commonmark": "^2.6.0",
                 "php": "^8.1",
                 "spatie/commonmark-shiki-highlighter": "^2.5",
@@ -4454,9 +4454,9 @@
             "require-dev": {
                 "brianium/paratest": "^6.2|^7.8",
                 "nunomaduro/collision": "^5.3|^6.0|^7.0|^8.0",
-                "orchestra/testbench": "^6.15|^7.0|^8.0|^10.0",
-                "pestphp/pest": "^1.22|^2.0|^3.7",
-                "phpunit/phpunit": "^9.3|^11.5.3",
+                "orchestra/testbench": "^6.15|^7.0|^8.0|^10.0|^11.0",
+                "pestphp/pest": "^1.22|^2.0|^3.7|^4.4",
+                "phpunit/phpunit": "^9.3|^11.5.3|^12.5.12",
                 "spatie/laravel-ray": "^1.23",
                 "spatie/pest-plugin-snapshots": "^1.1|^2.2|^3.0",
                 "vimeo/psalm": "^4.8|^6.7"
@@ -4493,7 +4493,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-markdown/tree/2.7.1"
+                "source": "https://github.com/spatie/laravel-markdown/tree/2.8.0"
             },
             "funding": [
                 {
@@ -4501,7 +4501,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-21T13:43:18+00:00"
+            "time": "2026-02-22T18:53:36+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
