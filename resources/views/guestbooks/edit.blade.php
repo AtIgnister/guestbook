@@ -62,7 +62,7 @@
                 <label for="embed-code" class="w-full">
                     JS Embed Code (Experimental)
                 </label>
-                <textarea readonly id="style" name="style" class="flex-1 h-60 block">{{ $html = view('embed.embedjs', [
+                <textarea readonly id="embed-code" name="embed-code" class="flex-1 h-60 block">{{ $html = view('embed.embedjs', [
                     'guestbook' => $guestbook,
                 ])->render() }}
                 </textarea>
