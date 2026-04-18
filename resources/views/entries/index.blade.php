@@ -29,6 +29,12 @@
 
         <sub class="guestbook-info">Be reasonable, follow the <a target="_blank" href="/blog/tos">guestbook guidelines.</a></sub><br>
         <sub class="guestbook-info">Use of this service is subject to our <a target="_blank" href="{{ route('privacy-policy.index') }}">privacy policy.</a></sub>
+        <p class="mt-5">
+            Want to see guestbook entries in your rss reader?
+            Add <a href="{{ route('entries.feed', compact('guestbook')) }}">
+                this url
+            </a> to your readers feeds!
+        </p>
 
         @if ($entries && $entries->count())
             <div class="comment-link-container my-10 border-solid border-2 rounded-xl p-2">

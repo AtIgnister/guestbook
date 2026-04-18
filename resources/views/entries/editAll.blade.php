@@ -11,7 +11,6 @@
         <h1 class="text-3xl md:text-4xl font-bold text-center my-6">
             View Entries
         </h1>
-
         @if(auth()->user()->hasRole('admin'))
             <form class="mb-2" method="POST" action="{{ route('ipBans.clearGlobal') }}">
                 @csrf
