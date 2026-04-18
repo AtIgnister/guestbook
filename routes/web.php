@@ -32,7 +32,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::resource("guestbooks", GuestbookController::class)
-->middleware(['auth', 'UserBanCheck']);
+    ->middleware(['auth', 'UserBanCheck']);
 // <!-- Dash and Home Routes --!>
 
 
@@ -41,13 +41,13 @@ Route::get(
     '/guestbooks/{guestbook}/delete',
     [GuestbookController::class, 'delete']
 )->middleware('auth', 'BanCheck')
-->can('delete,guestbook')
-->name('guestbooks.delete');
+    ->can('delete,guestbook')
+    ->name('guestbooks.delete');
 
 Route::get('/entries/{guestbook}', [EntriesController::class, 'index'])
-->name('entries.index');
+    ->name('entries.index');
 Route::get('/embed/entries/{guestbook}', [EntriesController::class, 'embed'])
-->name('embed.entries.index');
+    ->name('embed.entries.index');
 
 Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
     ->name('entries.store')
@@ -64,99 +64,100 @@ Route::post('/embed/entries/{guestbook}/store', [EmbedGuestbookController::class
     ->name('embed.entries.store');
 
 Route::get('/entries/{guestbook}/create', [EntriesController::class, 'create'])
-->name('entries.create')
-->middleware(['throttle:20,1', 'BanCheck:guestbook']);
+    ->name('entries.create')
+    ->middleware(['throttle:20,1', 'BanCheck:guestbook']);
 
-Route::middleware(['UserBanCheck'])->group(function() {
+Route::middleware(['UserBanCheck'])->group(function () {
     Route::delete('/entries/{entry}/destroy', [EntriesController::class, 'destroy'])
-    ->middleware('auth', 'BanCheck')
-    ->can('delete', 'entry')
-    ->name('entries.destroy');
+        ->middleware('auth', 'BanCheck')
+        ->can('delete', 'entry')
+        ->name('entries.destroy');
 });
 
 // <!-- Privacy Policy Routes --!>
-Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index'])->name("privacy-policy.index");;
+Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index'])->name("privacy-policy.index");
+;
 Route::get("/privacy-policy/history", [PrivacyPolicyController::class, 'list'])->name("privacy-policy.list");
 Route::get("/privacy-policy/history/{privacyPolicy}", [PrivacyPolicyController::class, 'show'])->name("privacy-policy.show");
 
-Route::middleware(['UserBanCheck'])->group(function() {
+Route::middleware(['UserBanCheck'])->group(function () {
     Route::get("privacy-policy/create", [PrivacyPolicyController::class, 'create'])
-    ->name("privacy-policy.create")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.create")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::get("privacy-policy/edit/{privacyPolicy}", [PrivacyPolicyController::class, 'edit'])
-    ->name("privacy-policy.edit")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.edit")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::get("privacy-policy/editAll/drafts", [PrivacyPolicyController::class, 'editAllDrafts'])
-    ->name("privacy-policy.editAllDrafts")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.editAllDrafts")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::get("privacy-policy/editAll/published", [PrivacyPolicyController::class, 'editAllPublished'])
-    ->name("privacy-policy.editAllPublished")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.editAllPublished")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::patch("privacy-policy/toggleVisibility/{privacyPolicy}", [PrivacyPolicyController::class, 'toggleVisibility'])
-    ->name("privacy-policy.toggleVisibility")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.toggleVisibility")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::post("/privacy-policy/store", [PrivacyPolicyController::class, 'store'])
-    ->name("privacy-policy.store")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.store")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::put("/privacy-policy/edit/{privacyPolicy}", [PrivacyPolicyController::class, 'update'])
-    ->name("privacy-policy.update")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.update")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::patch("/privacy-policy/publish/{privacyPolicy}", [PrivacyPolicyController::class, 'publish'])
-    ->name("privacy-policy.publish")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.publish")
+        ->middleware(['auth', 'ValidateAdmin']);
 
     Route::delete("/privacy-policy/destroy/{privacyPolicy}", [PrivacyPolicyController::class, 'destroy'])
-    ->name("privacy-policy.destroy")
-    ->middleware(['auth','ValidateAdmin']);
+        ->name("privacy-policy.destroy")
+        ->middleware(['auth', 'ValidateAdmin']);
 });
 
 // <!-- Privacy Policy Routes --!>
 
 
 // <!-- Guestbook Routes --!>
-Route::middleware(['UserBanCheck'])->group(function() { 
+Route::middleware(['UserBanCheck'])->group(function () {
     Route::get('/entries/edit/all/', [EntriesController::class, 'editAll'])->name('entries.editAll')
-    ->middleware(['auth', 'BanCheck']);
+        ->middleware(['auth', 'BanCheck']);
 
-    Route::post('/entries/{entry}/approve', [EntriesController::class,'approve'])
-    ->name('entries.approve')
-    ->middleware(['auth', 'BanCheck', 'throttle:30,1'])
-    ->can('approve', 'entry');
+    Route::post('/entries/{entry}/approve', [EntriesController::class, 'approve'])
+        ->name('entries.approve')
+        ->middleware(['auth', 'BanCheck', 'throttle:30,1'])
+        ->can('approve', 'entry');
 
 });
 
 Route::get('/entries/show/{entry}', [EntriesController::class, 'show'])
-->name('entries.show');
+    ->name('entries.show');
 
 Route::get('/entries/{guestbook}/feed', [FeedController::class, 'show'])
-->name('entries.feed');
+    ->name('entries.feed');
 
 // <!-- Guestbook Routes --!>
 
 // <!-- IP Ban Routes --!>
-Route::middleware(['UserBanCheck'])->group(function() { 
+Route::middleware(['UserBanCheck'])->group(function () {
     Route::get('/ip/ban/{entry_ip}', [IpBanController::class, 'create'])
-    ->middleware('auth', 'BanCheck')
-    ->name('ipBans.create');
+        ->middleware('auth', 'BanCheck')
+        ->name('ipBans.create');
 
     Route::post("/ip/ban/{guestbookEntry}", [IpBanController::class, 'store'])
-    ->middleware('auth', 'BanCheck')
-    ->name("ipBans.store");
+        ->middleware('auth', 'BanCheck')
+        ->name("ipBans.store");
 
     Route::delete('/ip/unban/{ipBan}', [IpBanController::class, 'destroy'])->name('ipBans.destroy');
 
     Route::delete('/guestbooks/{guestbook}/clear-bans', [IpBanController::class, 'clearBans'])
-    ->name('guestbooks.clearBans');
+        ->name('guestbooks.clearBans');
 
     Route::delete('/ip/global-bans/clear', [IpBanController::class, 'clearGlobalBans'])
-    ->name('ipBans.clearGlobal');
+        ->name('ipBans.clearGlobal');
 });
 // <!-- IP Ban Routes --!>
 
@@ -165,14 +166,14 @@ Route::middleware(['UserBanCheck'])->group(function() {
 Route::middleware(['auth'])->group(function () {
     Route::get(
         '/guestbooks/export/dashboard',
-        [ExportGuestbookListController::class,'index']
+        [ExportGuestbookListController::class, 'index']
     )->name("guestbooks.export.index");
 
     Route::get(
         '/guestbooks/{guestbook}/export/json',
         [ExportGuestbookJsonController::class, 'export']
     )->name("export.json");
-    
+
     Route::get(
         '/guestbooks/{guestbook}/export/json/raw',
         [ExportGuestbookJsonController::class, 'exportRaw']
@@ -212,7 +213,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware(
             when(
                 Features::canManageTwoFactorAuthentication()
-                    && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
+                && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
                 ['password.confirm'],
                 [],
             ),
@@ -223,8 +224,8 @@ Route::middleware(['auth'])->group(function () {
 // <!-- Account Routes --!>
 
 Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])
-    ->middleware(['guest:'.config('fortify.guard')])
-   # ->middleware('signed')
+    ->middleware(['guest:' . config('fortify.guard')])
+    # ->middleware('signed')
     ->name('register');
 
 // <!-- Blog Routes --!>
@@ -242,17 +243,17 @@ Route::get('/captcha-refresh', function () {
 // <!-- Invite Routes --!>
 Route::middleware(['auth', 'UserBanCheck'])->group(function () {
     Route::get('/admin/invite', [InviteController::class, 'show'])
-    ->middleware(['auth','ValidateAdmin'])
-    ->name('admin.invite');
+        ->middleware(['auth', 'ValidateAdmin'])
+        ->name('admin.invite');
 
     Route::post('/admin/invite', [InviteController::class, 'create'])
-        ->middleware(['auth','ValidateAdmin'])
+        ->middleware(['auth', 'ValidateAdmin'])
         ->name('admin.invite.create');
 });
 // <!-- Invite Routes --!>
 
 // <!-- User Management Routes --!>
-Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () { 
+Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () {
     Route::get("users", [UserController::class, 'index'])->name('users.index');
     Route::get("users/delete/{user}", [UserController::class, 'delete'])->name('users.delete');
     Route::delete("users/delete/{user}", [UserController::class, 'destroy'])->name('users.destroy');
@@ -266,7 +267,7 @@ Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () 
 });
 
 // <!-- User Routes --!>
-if(config('app.enable_debug_routes')) { 
+if (config('app.enable_debug_routes')) {
     Route::get('/debug/ip', function (Request $request) {
         return [
             'ip' => Request::ip(),

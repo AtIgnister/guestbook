@@ -15,6 +15,11 @@ fi
 # Remove storage-init directory
 rm -rf /var/www/storage-init
 
+# Sync built assets from image → volume
+if [ -d /var/www/public-build-image ]; then
+    cp -ru /var/www/public-build-image/* /var/www/public/build/ 2>/dev/null || true
+fi
+
 # Run Laravel migrations
 # -----------------------------------------------------------
 # Ensure the database schema is up to date.
