@@ -17,7 +17,7 @@
         "livewire/flux": "^2.9.0",
         "livewire/volt": "^1.7.0",
         "maileroo/maileroo-laravel-transport": "^1.0",
-        "mews/captcha": "^3.4",
+        "mews/captcha": "^3.4.8",
         "sabberworm/php-css-parser": "^9.1",
         "spatie/laravel-db-snapshots": "^2.7",
         "spatie/laravel-markdown": "^2.7",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f34ff269c14406ab7b9a0a6f43333915",
+    "content-hash": "282bcad712eea5936bf6a7df7f059d30",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2693,25 +2693,25 @@
         },
         {
             "name": "mews/captcha",
-            "version": "3.4.7",
+            "version": "3.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/captcha.git",
-                "reference": "2622c4f90dd621f19fe57e03e45f6f099509e839"
+                "reference": "601c427a734c613eaf8ff12e0dffaa18e1d867aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/2622c4f90dd621f19fe57e03e45f6f099509e839",
-                "reference": "2622c4f90dd621f19fe57e03e45f6f099509e839",
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/601c427a734c613eaf8ff12e0dffaa18e1d867aa",
+                "reference": "601c427a734c613eaf8ff12e0dffaa18e1d867aa",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
-                "illuminate/config": "~5|^6|^7|^8|^9|^10|^11|^12",
-                "illuminate/filesystem": "~5|^6|^7|^8|^9|^10|^11|^12",
-                "illuminate/hashing": "~5|^6|^7|^8|^9|^10|^11|^12",
-                "illuminate/session": "~5|^6|^7|^8|^9|^10|^11|^12",
-                "illuminate/support": "~5|^6|^7|^8|^9|^10|^11|^12",
+                "illuminate/config": "~5|^6|^7|^8|^9|^10|^11|^12|^13.0",
+                "illuminate/filesystem": "~5|^6|^7|^8|^9|^10|^11|^12|^13.0",
+                "illuminate/hashing": "~5|^6|^7|^8|^9|^10|^11|^12|^13.0",
+                "illuminate/session": "~5|^6|^7|^8|^9|^10|^11|^12|^13.0",
+                "illuminate/support": "~5|^6|^7|^8|^9|^10|^11|^12|^13.0",
                 "intervention/image": "^3.7",
                 "php": "^7.2|^8.1|^8.2|^8.3"
             },
@@ -2760,9 +2760,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mewebstudio/captcha/issues",
-                "source": "https://github.com/mewebstudio/captcha/tree/3.4.7"
+                "source": "https://github.com/mewebstudio/captcha/tree/3.4.8"
             },
-            "time": "2025-10-11T14:42:33+00:00"
+            "time": "2026-04-15T16:43:26+00:00"
         },
         {
             "name": "monolog/monolog",
