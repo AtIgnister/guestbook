@@ -1,11 +1,15 @@
 @extends('components.layouts.layout')
 @section("content")
 <section class="entry-container m-3">
+
     @if ($guestbook->style)
         <style>{!! \App\Helpers\SanitizeCSS::sanitizeCSS($guestbook->style) !!}</style>
     @endif
 
     <h1>Create a Guestbook Entry</h1>
+    @if ($guestbook->requires_approval)
+        <p class="text-red-400">After you've submitted your entry, it won't be immediately visible. You will have to wait a bit for the owner of this guestbook to manually approve it.</p>
+    @endif
     <p id="captcha-status">Current captcha: image</p>
     <button
     id="captcha-switch"
