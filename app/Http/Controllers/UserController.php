@@ -106,4 +106,15 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('status', 'User deleted successfully.');
     }
+
+    public function resetTwoFactor(Request $request, User $user)
+    {
+        if (Auth::user()->cannot('update', $user)) {
+            abort(403);
+        }
+
+        $user->resetTwoFactor();
+        
+        return back()->with('status', 'Two-factor authentication has been reset.');
+    }
 }

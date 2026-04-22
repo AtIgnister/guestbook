@@ -264,6 +264,9 @@ Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () 
     Route::get('users/unban/{userBan}', [UserBanController::class, 'delete'])->name('userBans.delete');
     Route::delete("users/unban/{userBan}", [UserBanController::class, 'destroy'])->name('userBans.destroy');
     Route::post("users/ban/{user}", [UserBanController::class, 'store'])->name('userBans.store');
+
+    Route::post('users/reset/2fa/{user}', [UserController::class, 'resetTwoFactor'])
+    ->name('users.reset-2fa');
 });
 
 // <!-- User Routes --!>

@@ -16,17 +16,28 @@
 
         <!-- Actions -->
         <div class="space-y-1">
+            <form method="POST" action="{{ route('users.reset-2fa', $user) }}"
+                onsubmit="return confirm('Are you sure you want to reset two-factor authentication for this user? This will disable their current 2FA setup.');">
+                @csrf
+
+                <div class="space-y-2">
+                    <button type="submit" class="text-red-600 hover:underline">
+                        Reset 2FA
+                    </button>
+                </div>
+            </form>
+
             @if (!$user->userBan)
-                <a class="block w-fit" href="{{ route('userBans.create', $user) }}">
+                <a class="block w-fit text-red-600" href="{{ route('userBans.create', $user) }}">
                     Ban User
                 </a>
             @else
-                <a class="block w-fit" href="{{ route('userBans.delete', $user->userBan) }}">
+                <a class="block w-fit text-red-600" href="{{ route('userBans.delete', $user->userBan) }}">
                     Unban User
                 </a>
             @endif
 
-            <a class="block w-fit" href="{{ route('users.delete', $user) }}">
+            <a class="block w-fit text-red-600" href="{{ route('users.delete', $user) }}">
                 Delete
             </a>
         </div>
