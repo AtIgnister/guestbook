@@ -29,7 +29,7 @@ Route::get('/embeds/{guestbook}/embed.js', function ($guestbook) {
     return response()
         ->view('embed.js', compact('url', 'guestbook'))
         ->header('Content-Type', 'application/javascript')
-        ->header('Cache-Control', 'public, max-age=31536000')
+        ->header('Cache-Control', 'public, max-age=7200')
         ->header('Access-Control-Allow-Origin', '*');
 })
 ->middleware('throttle:30,1')
