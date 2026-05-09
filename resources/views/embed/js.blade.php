@@ -73,13 +73,22 @@ function renderGuestbook(data) {
             method: 'POST',
             body: data,
         });
-            if (res.ok) {
-                form.reset();
-                const refreshed = await getGuestbookData(guestbookId);
-                loadEntries(refreshed.guestbooks[guestbookId].entries);
 
-                loadCaptcha();
-            }
+        if (res.ok) {
+            form.reset();
+
+            const refreshed = await getGuestbookData(guestbookId);
+            loadEntries(refreshed.guestbooks[guestbookId].entries);
+
+            await loadCaptcha();
+        } else {
+            // refresh captcha after failed attempt
+            await loadCaptcha();
+
+            // optional error handling
+            const errorText = await res.text();
+            console.error(errorText);
+        }
     });
 
     const captchaSwitch = document.querySelector(".guestbooks__captcha-switch")
