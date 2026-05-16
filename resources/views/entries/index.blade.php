@@ -54,6 +54,15 @@
 
                 @auth
                     @if (auth()->user()->ownsEntry($entry) && !$is_embed)
+                        <details>
+                        <summary class="mb-3">Reply to guestbook entry</summary>
+                            <form>
+                                <label class="align-top" for="comment">Comment</label>
+                                <textarea class="md:w-3/4 w-full" id="comment" name="comment" required>{{ old('comment') }}</textarea>
+                                <button type="submit">Post Reply</button>
+                            </form>
+                        </details>
+
                         <form 
                             action="{{ route('entries.destroy', compact('entry')) }}"
                             onsubmit="return confirm('Are you sure you want to delete this entry? This cannot be undone.')"
