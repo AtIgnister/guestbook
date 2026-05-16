@@ -98,4 +98,14 @@ class GuestbookEntries extends Model
             $q->whereBelongsTo($user)
         );
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(GuestbookEntries::class, 'reply_to');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(GuestbookEntries::class, 'reply_to');
+    }
 }
