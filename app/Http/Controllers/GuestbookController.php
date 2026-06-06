@@ -42,6 +42,10 @@ class GuestbookController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->user()->cannot('create', Guestbook::class)) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'name' =>'required|max:255',
             'style' => 'nullable',

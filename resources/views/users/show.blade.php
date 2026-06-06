@@ -14,6 +14,31 @@
             <p>Banned: {{ $user->userBan ? 'Yes' : 'No' }}</p>
         </div>
 
+        <form method="POST" action="{{ route('users.update', $user) }}">
+    @csrf
+    @method('PATCH')
+
+    <div>
+        <label for="max_guestbooks">Max Guestbooks</label>
+        <input
+            type="number"
+            id="max_guestbooks"
+            name="max_guestbooks"
+            min="0"
+            value="{{ old('max_guestbooks', $user->max_guestbooks) }}"
+            required
+        >
+
+        @error('max_guestbooks')
+            <p>{{ $message }}</p>
+        @enderror
+    </div>
+
+    <button type="submit">
+        Save Changes
+    </button>
+</form>
+
         <!-- Actions -->
         <div class="space-y-1">
             <form method="POST" action="{{ route('users.reset-2fa', $user) }}"

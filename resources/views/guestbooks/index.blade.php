@@ -77,6 +77,10 @@
                     @endforelse
                 </tbody>
             </table>
+            <p>
+                {{ auth()->user()->guestbooks()->count() }}/{{ auth()->user()->max_guestbooks }}
+                Guestbooks
+            </p>
             
             {{ $guestbooks->links('pagination::simple-tailwind') }}
         </div>
