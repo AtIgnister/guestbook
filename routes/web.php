@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmbedGuestbookController;
 use App\Http\Controllers\FeedController;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\ReplyController;
 
 // <!-- Dash and Home Routes --!>
 Route::get('/', function () {
@@ -53,6 +54,9 @@ Route::post('/entries/{guestbook}/store', [EntriesController::class, 'store'])
     ->name('entries.store')
     ->middleware(['BanCheck:guestbook'])
     ->middleware(['throttle:20,1']);
+
+Route::post('/entries/reply/{entry}', [ReplyController::class, 'create'])
+    ->name('reply.create');
 
 Route::get('/embed/guestbook/{guestbook}', [EmbedGuestbookController::class, 'index'])
     ->name('embed.entries.index');
@@ -130,7 +134,6 @@ Route::middleware(['UserBanCheck'])->group(function () {
         ->name('entries.approve')
         ->middleware(['auth', 'BanCheck', 'throttle:30,1'])
         ->can('approve', 'entry');
-
 });
 
 Route::get('/entries/show/{entry}', [EntriesController::class, 'show'])

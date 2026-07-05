@@ -29,7 +29,9 @@ class EntriesController extends Controller
             abort(403);
         }
 
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->only([
+            'name', 'comment', 'website', 'captcha', 'captcha_type', 'posted_at'
+        ]), [
             'name' => 'required|max:255',
             'comment' => 'required|max:20000',
             'website' => 'nullable|url',
@@ -67,10 +69,7 @@ class EntriesController extends Controller
             return view('guestbooks.adminIsBanned');
         }
 
-        $entries = $guestbook->entries()
-            ->where('approved', true)
-            ->latest('posted_at')
-            ->get();
+        $entries = $guestbook->getAllVisibleToplevelEntries();
         
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook, 'is_embed' => false]);
     }

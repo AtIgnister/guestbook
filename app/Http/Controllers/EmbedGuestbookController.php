@@ -17,10 +17,7 @@ class EmbedGuestbookController extends Controller
             return view('guestbooks.adminIsBanned');
         }
 
-        $entries = $guestbook->entries()
-            ->where('approved', true)
-            ->latest()
-            ->get();
+        $entries = $guestbook->getAllVisibleToplevelEntries();
         
         return view('entries.index', ['entries' => $entries, 'guestbook' => $guestbook, 'is_embed' => true]);
     }

@@ -12,12 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('guestbook_entries', function (Blueprint $table) {
-            $table->foreignUuid('reply_to')
+            $table->boolean('is_reply')
+                ->default(false)
+                ->index();
+
+            $table->foreignId('parent_entry_id')
                 ->nullable()
-                ->after('guestbook_id')
                 ->constrained('guestbook_entries')
                 ->nullOnDelete()
-                ->cascadeOnUpdate();
+                ->index();
         });
     }
 
@@ -27,8 +30,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('guestbook_entries', function (Blueprint $table) {
-            $table->dropForeign(['reply_to']);
-            $table->dropColumn('reply_to');
+            $table->dropForeign(['parent_entry_id']);
+            $table->dropColumn([
+                'is_reply',
+                'parent_entry_id',
+            ]);
         });
     }
 };

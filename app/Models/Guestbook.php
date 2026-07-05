@@ -50,5 +50,13 @@ class Guestbook extends Model
             $model->id = Str::uuid();
         });
     }
+
+    public function getAllVisibleToplevelEntries() {
+        return $this->entries()
+            ->where('is_reply', false)
+            ->where('approved', true)
+            ->latest('posted_at')
+            ->get();
+    }
     
 }

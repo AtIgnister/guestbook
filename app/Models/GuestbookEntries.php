@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Models\Concerns\VisibilityRestriction;
 use App\Models\Concerns\Searchable;
@@ -16,11 +17,14 @@ class GuestbookEntries extends Model
 {
     use HasUuids, VisibilityRestriction, Searchable, HasFactory;
     protected $fillable = [ 
+        "guestbook_id",
         "name",
         "website",
         "comment",
         "approved",
-        "posted_at"
+        "posted_at",
+        "is_reply",
+        "parent_entry_id"
     ];
     protected array $searchable = [
         'name',
@@ -30,6 +34,7 @@ class GuestbookEntries extends Model
 
     protected $casts = [
         'approved' => 'boolean',
+        'is_reply' => 'boolean',
     ];
 
     public function guestbook(): BelongsTo {
@@ -99,13 +104,28 @@ class GuestbookEntries extends Model
         );
     }
 
-    public function parent()
+    public function parent(): BelongsTo
     {
-        return $this->belongsTo(GuestbookEntries::class, 'reply_to');
+        return $this->belongsTo(GuestbookEntries::class, 'parent_entry_id');
     }
 
-    public function replies()
+    public function replies(): HasMany
     {
-        return $this->hasMany(GuestbookEntries::class, 'reply_to');
+        return $this->hasMany(GuestbookEntries::class, 'parent_entry_id')
+            ->orderBy('created_at');
+    }
+
+    public function getPreviousReply() {
+        return $this::where('parent_entry_id', $this->parent_entry_id)
+            ->where('created_at', '<', $this->created_at)
+            ->latest('created_at')
+            ->first();
+    }
+
+    public function getNextReply() {
+        return $this::where('parent_entry_id', $this->parent_entry_id)
+            ->where('created_at', '>', $this->created_at)
+            ->oldest('created_at')
+            ->first();
     }
 }

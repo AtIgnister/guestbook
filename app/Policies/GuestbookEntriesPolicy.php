@@ -82,4 +82,8 @@ class GuestbookEntriesPolicy
     public function approve(User $user, GuestbookEntries $guestbookEntry): bool {
         return $guestbookEntry->guestbook->user_id === $user->id;
     }
+
+    public function reply(User $user, GuestbookEntries $guestbookEntry): bool {
+        return $user->ownsGuestbook($guestbookEntry->guestbook);
+    }
 }
