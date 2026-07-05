@@ -67,10 +67,22 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * This is only for admin-related profile updates.
+     * All the user-facing stuff has routes that are managed by volt.
      */
     public function update(Request $request, User $user)
     {
-        //
+        abort_unless(auth()->user()->hasRole('admin'), 403);
+
+        $validated = $request->validate([
+            'max_guestbooks' => ['required', 'integer', 'min:0'],
+        ]);
+
+        $user->forceFill([
+            'max_guestbooks' => $validated['max_guestbooks'],
+        ])->save();
+
+        return back()->with('success', 'User updated successfully.');
     }
 
     /**

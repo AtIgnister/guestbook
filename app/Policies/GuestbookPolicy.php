@@ -29,7 +29,7 @@ class GuestbookPolicy
      */
     public function create(User $user): bool
     {
-        return !$user->guestbooks()->count() > 5;
+        return $user->guestbooks()->count() < $user->max_guestbooks;
     }
 
     /**

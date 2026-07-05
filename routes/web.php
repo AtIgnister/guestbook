@@ -221,6 +221,10 @@ Route::middleware(['auth'])->group(function () {
         ->name('two-factor.show');
 })->middleware(['throttle:30,1']);
 
+Route::patch('/users/{user}', [UserController::class, 'update'])
+    ->name('users.update')
+    ->middleware(['auth']);
+
 // <!-- Account Routes --!>
 
 Route::get(RoutePath::for('register', '/register'), [RegisteredUserController::class, 'create'])

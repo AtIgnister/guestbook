@@ -30,7 +30,7 @@
         <div>
             <label class="align-top" for="comment">Comment</label>
             <textarea class="md:w-3/4 w-full" name="comment" placeholder="Comment" required></textarea>
-            <br>
+            <p class="md-disclaimer">Wanna use fancy formatting? Don't worry, this guestbook supports markdown!</p>
             {{ /* TODO: make this configurable */ "" }}
             <sub class="w-full">(Limit of 20.000 characters per message, which is roughly twice the length of <a href="https://kami.bearblog.dev/why-comment-sections-suck-rei-want-to-comment-on-your-blog-post/">this blogpost</a>)</sub>
         </div>
