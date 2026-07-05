@@ -50,16 +50,12 @@
                     <sup>Website: <a rel="ugc" target="_blank" href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
                 @endif
                 
-                @if (true)
-                    @php
-                        $options = config('markdown.commonmark_options');
-                        $renderer = new \App\Renderers\MDSandboxRenderer($options);
-                    @endphp
+                @php
+                    $options = config('markdown.commonmark_options');
+                    $renderer = new \App\Renderers\MDSandboxRenderer($options);
+                @endphp
 
-                    {!! $renderer->convertToHtml($entry->comment) !!}
-                @else
-                    <p>{!! nl2br(e($entry->comment)) !!}</p>
-                @endif
+                {!! nl2br($renderer->convertToHtml($entry->comment)) !!}
 
                 @auth
                     @if (auth()->user()->ownsEntry($entry) && !$is_embed)
