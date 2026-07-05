@@ -13,7 +13,7 @@ return new class extends Migration
                 ->default(false)
                 ->index();
 
-            $table->foreignId('parent_entry_id')
+            $table->foreignUuid('parent_entry_id')
                 ->nullable()
                 ->constrained('guestbook_entries')
                 ->nullOnDelete()
