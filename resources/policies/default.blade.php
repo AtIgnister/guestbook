@@ -25,8 +25,8 @@
         <strong>The content of all guestbook entries you create.</strong>
         <p>These are shown publicly.</p>
         <p>Guestbook entries are not linked to user accounts or stored with identifying information such as user IDs
-            or IP addresses. I do store hashed IP addresses alongside entries, but I cannot use these hashed addresses to track you, only to check if you are currently using the website. 
-            Hashed IP addresses are stored separately from guestbook entries and are not publicly visible. They are not used to identify individual users, only to enforce site rules.</p>
+            or IP addresses. In addition to entries, I do store hashed IP addresses, but I cannot use these hashed addresses to track you, only to check if you are currently using the website. 
+            Hashed IP addresses are stored in a seperate table from guestbook entries and are not publicly visible. All data in the table is cleared regularly. The hashed IPs are not used to identify individual users, only to enforce site rules.</p>
     </li>
     <li>
         <strong>Your session data: Your session data is valid for a total of 2 hours. Sending new requests resets
