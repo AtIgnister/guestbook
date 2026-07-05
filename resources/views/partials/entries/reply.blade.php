@@ -13,6 +13,11 @@
                     </sup>
                 @endif
 
+                @php
+                    $options = config('markdown.commonmark_options');
+                    $renderer = new \App\Renderers\MDSandboxRenderer($options);
+                @endphp
+
                 {!! nl2br($renderer->convertToHtml($reply->comment)) !!}
 
                 <form 
