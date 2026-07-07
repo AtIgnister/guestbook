@@ -8,9 +8,9 @@ class FeedController extends Controller
 {
     public function show(Guestbook $guestbook)
     {
-        $entries = $entries = $guestbook->entries()
+        $entries = $guestbook->entries()
                 ->where('is_reply', false)
-                ->latest()
+                ->latest('posted_at')
                 ->get();
 
         $updated = optional($entries->first())->updated_at?->toAtomString();

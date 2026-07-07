@@ -11,7 +11,7 @@
 <name>{{ $guestbook->author_name ?? $guestbook->name }}</name>
 </author>
 <id>{{ route('entries.index', compact('guestbook')) }}</id>
-@foreach ($guestbook->entries as $entry)
+@foreach ($entries as $entry)
 <entry>
     <title>{{ $entry->name }} says...</title>
     <link href="{{ route('entries.show', compact('entry')) }}"/>

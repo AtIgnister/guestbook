@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 use App\Models\Guestbook;
-use App\Models\GuestbookEntries;
 
 class GuestbookExportHelper {
     public static function getData(Guestbook $guestbook, bool $isExport = false)
