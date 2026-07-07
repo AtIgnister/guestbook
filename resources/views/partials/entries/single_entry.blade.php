@@ -45,5 +45,5 @@
         @endif
     @endauth
 
-    @include('partials.entries.reply', ['entry' => $entry])
+    @include('partials.entries.reply', ['entry' => $entry, 'is_embed' => $is_embed])
 </div>

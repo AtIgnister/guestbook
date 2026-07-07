@@ -20,15 +20,17 @@
 
                 {!! nl2br($renderer->convertToHtml($reply->comment)) !!}
 
-                <form 
-                    action="{{ route('entries.destroy', ["entry" => $reply]) }}"
-                    onsubmit="return confirm('Are you sure you want to delete this entry? This cannot be undone.')"
-                    method="post"
-                >
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="text-red-500">Delete Entry</button>
-                </form>
+                @auth
+                    @if (auth()->user()->ownsEntry($entry) && !$is_embed)
+                        <form action="{{ route('entries.destroy', ['entry' => $reply]) }}"
+                            onsubmit="return confirm('Are you sure you want to delete this entry? This cannot be undone.')"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500">Delete Entry</button>
+                        </form>
+                    @endif
+                @endauth
             </div>
         @endforeach
     </div>
