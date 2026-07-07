@@ -5,9 +5,16 @@ use App\Models\Guestbook;
 use App\Models\GuestbookEntries;
 
 class GuestbookExportHelper {
-    public static function getData(Guestbook $guestbook)
+    public static function getData(Guestbook $guestbook, bool $isExport = false)
     {
-        $entries = $guestbook->getAllVisibleToplevelEntries();
+        if(!$isExport) {
+            $entries = $guestbook->getAllVisibleToplevelEntries();
+        } else {
+            $entries = $guestbook->entries()
+                ->where('is_reply', false)
+                ->latest('posted_at')
+                ->get();
+        }
 
         if($entries) {
             foreach ($entries as $entry) {

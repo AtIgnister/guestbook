@@ -9,11 +9,11 @@ use Response;
 
 class ExportGuestbookJsonController extends \App\Http\Controllers\Controller {
     public function exportRaw(Request $request, Guestbook $guestbook) {
-        return response()->json(GuestbookExportHelper::getData($guestbook));
+        return response()->json(GuestbookExportHelper::getData($guestbook, true));
     }
 
     public function export(Request $request, Guestbook $guestbook) {
-        $data = GuestbookExportHelper::getData($guestbook);
+        $data = GuestbookExportHelper::getData($guestbook, true);
     
         $json = json_encode($data, JSON_PRETTY_PRINT);
     
