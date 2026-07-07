@@ -14,7 +14,7 @@ use App\Helpers\IpHelper;
 class EntriesController extends Controller
 {
     public function show(Request $request, GuestbookEntries $entry) {
-        return view('entries.show', compact('entry'));
+        return view('entries.show', ['entry' => $entry, 'is_embed' => false]);
     }
 
     public function create(Request $request, Guestbook $guestbook)
