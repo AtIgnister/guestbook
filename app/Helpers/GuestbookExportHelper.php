@@ -2,12 +2,18 @@
 
 namespace App\Helpers;
 use App\Models\Guestbook;
+use App\Models\GuestbookEntries;
+
 class GuestbookExportHelper {
     public static function getData(Guestbook $guestbook)
     {
-        $entries = $guestbook->entries()
-            ->latest()
-            ->get();
+        $entries = $guestbook->getAllVisibleToplevelEntries();
+
+        if($entries) {
+            foreach ($entries as $entry) {
+                $entry->setRelation('replies', $entry->replies);
+            }
+        }
 
         return [
             'guestbooks' => [

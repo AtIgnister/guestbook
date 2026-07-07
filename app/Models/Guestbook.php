@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use App\Models\Concerns\VisibilityRestriction;
 use App\Models\Concerns\Searchable;
+use Illuminate\Database\Eloquent\Collection;
 
 class Guestbook extends Model
 {
@@ -51,7 +52,7 @@ class Guestbook extends Model
         });
     }
 
-    public function getAllVisibleToplevelEntries() {
+    public function getAllVisibleToplevelEntries(): Collection {
         return $this->entries()
             ->where('is_reply', false)
             ->where('approved', true)

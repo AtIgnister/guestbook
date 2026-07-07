@@ -17,37 +17,49 @@ async function getGuestbookData(guestbookId) {
     return data;
 }
 
+function createEntryElem(entry, wrapperClassName, actionVerb = "wrote") {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add(wrapperClassName);
+
+    const nameP = document.createElement("p");
+    nameP.textContent = `${entry.name} ${actionVerb}...`;
+    wrapper.appendChild(nameP);
+
+    if (entry.website) {
+        try {
+            const url = new URL(entry.website);
+
+            const websiteLink = document.createElement("a");
+            websiteLink.textContent = entry.website;
+            websiteLink.href = url.href;
+            websiteLink.target = "_blank";
+            websiteLink.rel = "noopener noreferrer";
+            websiteLink.classList.add("guestbooks__site-user-link");
+
+            wrapper.appendChild(websiteLink);
+        } catch (e) {
+        }
+    }
+
+    // Comment
+    const commentP = document.createElement("p");
+    commentP.textContent = entry.comment;
+    wrapper.appendChild(commentP);
+
+    return wrapper;
+}
+
 function loadEntries(entries) {
     const guestbookResponses = document.querySelector('#guestbooks___guestbook-messages-container')
     guestbookResponses.innerHTML = ''
     entries.forEach(entry => {
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("guestbooks__entry");
+        const wrapper = createEntryElem(entry, "guestbooks__entry")
 
-        const nameP = document.createElement("p");
-        nameP.textContent = `${entry.name} wrote...`;
-        wrapper.appendChild(nameP);
-
-        if (entry.website) {
-            try {
-                const url = new URL(entry.website);
-
-                const websiteLink = document.createElement("a");
-                websiteLink.textContent = entry.website;
-                websiteLink.href = url.href;
-                websiteLink.target = "_blank";
-                websiteLink.rel = "noopener noreferrer";
-                websiteLink.classList.add("guestbooks__site-user-link");
-
-                wrapper.appendChild(websiteLink);
-            } catch (e) {
-            }
+        if(entry.replies.length > 0) {
+            entry.replies.forEach(reply => {
+                wrapper.append(createEntryElem(reply, "guestbooks__reply", "replied"))
+            })
         }
-
-        // Comment
-        const commentP = document.createElement("p");
-        commentP.textContent = entry.comment;
-        wrapper.appendChild(commentP);
 
         guestbookResponses.appendChild(wrapper);
     });
