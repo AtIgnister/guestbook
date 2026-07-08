@@ -74,7 +74,8 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end">
+            {{-- REALLY STUPID HACK. TODO: FIX --}}
+            <div class="flex items-center justify-end" style="width: 105%;">
                 <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
                     {{ __('Log in') }}
                 </flux:button>
