@@ -50,7 +50,6 @@
                     autocomplete="current-password"
                     :placeholder="__('Password')"
                     viewable
-                    class="pe-6"
                 />
 
                 @if (Route::has('password.request'))
