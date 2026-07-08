@@ -19,7 +19,7 @@ Route::get(
 Route::get(
         '/{guestbook}/entries/json',
         [ExportGuestbookJsonController::class, 'exportEntriesForApi']
-)->name("api.json")
+)->name("api.entries.json")
 ->middleware('throttle:30,1');
 
 Route::get(
