@@ -3,9 +3,9 @@ const guestbookId = "{{ $guestbook }}";
 const host = "{{ $url }}"
 const submitRoute = "{{ route('embed.entries.store', $guestbook) }}"
 
-async function getGuestbookData(guestbookId) {
+async function getEntriesData(guestbookId) {
     // fetch the API
-    const response = await fetch(`${host}/api/${guestbookId}/json`);
+    const response = await fetch(`${host}/api/${guestbookId}/entries/json`);
 
     // check for HTTP errors
     if (!response.ok) {
@@ -43,7 +43,7 @@ function createEntryElem(entry, wrapperClassName, actionVerb = "wrote") {
 
     // Comment
     const commentP = document.createElement("p");
-    commentP.textContent = entry.comment;
+    commentP.innerHTML = entry.rendered_comment;
     wrapper.appendChild(commentP);
 
     return wrapper;
@@ -68,7 +68,7 @@ function loadEntries(entries) {
 function renderGuestbook(data) {
     const guestbookForm = document.querySelector('#guestbooks___guestbook-form')
     guestbookForm.action = submitRoute
-    loadEntries(data.entries)
+    loadEntries(data)
 
     guestbookForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -89,8 +89,8 @@ function renderGuestbook(data) {
         if (res.ok) {
             form.reset();
 
-            const refreshed = await getGuestbookData(guestbookId);
-            loadEntries(refreshed.guestbooks[guestbookId].entries);
+            const refreshed = await getEntriesData(guestbookId);
+            loadEntries(refreshed);
 
             await loadCaptcha();
         } else {
@@ -208,11 +208,9 @@ async function loadcaptcha_audio() {
     captchaContainer.append(captchaField)
 }
 
-getGuestbookData(guestbookId).then(data => {
-    const guestbookData = data.guestbooks[guestbookId]
-    
+getEntriesData(guestbookId).then(data => {
     whenReady((event) => {
-        renderGuestbook(guestbookData)
+        renderGuestbook(data)
     });
 })
 

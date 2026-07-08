@@ -1,4 +1,48 @@
 <script src="{{ route("api.guestbook.embedjs", $guestbook) }}"></script>
+<style>
+/* fake heading styles for guestbook entries*/
+.h {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    line-height: 1.2;
+
+    margin-top: 0.7em;
+    margin-bottom: 0.5em;
+
+    scroll-margin-top: 80px; /* nice for anchor links */
+}
+
+.h1 {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.h2 {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.h3 {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+}
+
+.h4 {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+}
+
+.h5 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+}
+
+.h6 {
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+}
+</style>
 <!-- Guestbook Form -->
 <div id="guestbooks___guestbook-form-container">
     <button class="guestbooks__captcha-switch">Switch Captcha Type</button>
