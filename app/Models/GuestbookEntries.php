@@ -53,6 +53,10 @@ class GuestbookEntries extends Model
                 $entry->posted_at = now();
             }
         });
+
+        static::deleting(function (GuestbookEntries $entry) {
+            $entry->replies()->delete();
+        });
     }
 
     public function getIsApprovedLabel() {
