@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Export;
 use App\Helpers\GuestbookExportHelper;
 use App\Models\Guestbook;
 use Illuminate\Http\Request;
-use Response;
 use ZipArchive;
 
 
@@ -16,7 +15,7 @@ class ExportGuestbookCSVController extends \App\Http\Controllers\Controller {
 
     public function export(Request $request, Guestbook $guestbook)
     {
-        $data = GuestbookExportHelper::getData($guestbook);
+        $data = GuestbookExportHelper::getData($guestbook, true, true);
 
         // Create temp file for ZIP
         $zipFileName = tempnam(sys_get_temp_dir(), 'guestbook.zip');
@@ -33,7 +32,7 @@ class ExportGuestbookCSVController extends \App\Http\Controllers\Controller {
     }
 
     private function writeGuestbook($zip, $data) {
-        $headerRowsForGuestbook = ["GuestbookID", "GuestbookName", "GuestbookStyle"];
+        $headerRowsForGuestbook = ["GuestbookID", "GuestbookName", "AuthorName", "GuestbookStyle", "GuestbookDescription"];
 
         // Write guestbook header
         $guestbookCsv = fopen('php://temp', 'r+');
@@ -45,7 +44,9 @@ class ExportGuestbookCSVController extends \App\Http\Controllers\Controller {
             fputcsv($guestbookCsv, [
                 $this->sanitize($guestbookData['id']),
                 $this->sanitize($guestbookData['name']),
+                $this->sanitize($guestbookData['author_name']),
                 $this->sanitize($guestbookData['style']),
+                $this->sanitize($guestbookData['description'])
             ]);
         }
         rewind($guestbookCsv);
@@ -56,7 +57,7 @@ class ExportGuestbookCSVController extends \App\Http\Controllers\Controller {
     }
 
     private function writeEntries($zip, $data) {
-        $headerRowsForEntry = ["EntryID", "AuthorName", "Comment", "Website", "GuestbookID", "CreatedAt", "UpdatedAt"];
+        $headerRowsForEntry = ["EntryID", "AuthorName", "Comment", "Website", "GuestbookID", "CreatedAt", "UpdatedAt", "Approved", "ParentID"];
 
         $entriesCsv = fopen('php://temp', 'r+');
         fwrite($entriesCsv, "\xEF\xBB\xBF");  
@@ -74,6 +75,8 @@ class ExportGuestbookCSVController extends \App\Http\Controllers\Controller {
                     $this->sanitize($guestbookData['id']),
                     $this->sanitize($entry['created_at']),
                     $this->sanitize($entry['updated_at']),
+                    $this->sanitize($entry['approved']),
+                    $this->sanitize($entry['parent_entry_id'] ?? 'null')
                 ]);
             }
         }
