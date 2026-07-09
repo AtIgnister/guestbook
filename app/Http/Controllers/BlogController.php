@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use File;
+use Spatie\LaravelMarkdown\MarkdownRenderer;
 
 class BlogController extends Controller
 {
@@ -31,11 +32,19 @@ class BlogController extends Controller
 
         $htmlPath  = resource_path("posts/{$post_name}.html");
         $bladePath = resource_path("posts/{$post_name}.blade.php");
+        $mdPath = resource_path("posts/{$post_name}.md.blade.php");
 
         if (File::exists($bladePath)) {
             $content = view()->file($bladePath)->render();
         } else if (File::exists($htmlPath)) {
             $content = File::get($htmlPath);
+        } else if (File::exists($mdPath)) {
+            $renderer = new MarkdownRenderer();
+            $rawContent = view()->file($mdPath)->render();
+            $renderedContent = $renderer->toHtml($rawContent);
+            $content = (String)$renderedContent;
+        } else {
+            abort(404);
         }
 
         return view('blog.post', compact('content'));

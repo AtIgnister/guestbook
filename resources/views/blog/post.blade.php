@@ -26,6 +26,8 @@ Blog
                 </a>
             @endauth
 
+            <a href="/blog/tutorial">How to set up a guestbook</a>
+
             <a href="{{ route('privacy-policy.index') }}">
                 Privacy Policy
             </a>

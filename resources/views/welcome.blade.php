@@ -23,6 +23,9 @@
             <h1>Guestbooks</h1>
             <p>A really simple, <a href="https://bearblog.dev">bearblog inspired</a> guestbook app that will not lose your data.</p>
             <a href="mailto:{{ config('app.contact') }}">Email me to receive an invite</a> or <a href="/login">Log in with an existing account</a>.
+            <br><br>
+            <p>Not quite sure how to set up your guestbook?</p>
+            <a href="/blog/tutorial">Follow the setup tutorial!</a>
             <x-donation-link></x-donation-link>
         </main>
     @endif
