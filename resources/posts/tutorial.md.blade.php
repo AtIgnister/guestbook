@@ -33,7 +33,6 @@ It should look kind of like this:
 **If you are paying for bearblog premium, or are on a different platform that supports Javascript:**  
 Scroll down to where it says "JS Embed Code (Experimental)", and copy the contents of the textbox.
 It should look kind of like this:
-<textarea readonly>
 <textarea readonly id="embed-code" name="embed-code" class="flex-1 h-60 block">{{ $html = view('embed.embedjs', [
                     'guestbook' => "example",
                 ])->render() }}
