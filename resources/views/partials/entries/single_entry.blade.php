@@ -17,7 +17,7 @@
     {!! nl2br($renderer->convertToHtml($entry->comment)) !!}
 
     @auth
-        @if (auth()->user()->ownsEntry($entry) && !$is_embed)
+        @if (auth()->user()->ownsEntry($entry) && !$is_embed && !$entry->is_reply)
             <details>
                 <summary class="mb-3">Reply to guestbook entry</summary>
                 <form action="{{ route('reply.create', ['entry' => $entry]) }}" method="POST">
