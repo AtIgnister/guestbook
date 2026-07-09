@@ -1,6 +1,6 @@
 ## How to set up a guestbook
 ### Step 1: Create An account
-guestbooks@kamiscorner.xyz asking for an invite.
+Email guestbooks@kamiscorner.xyz asking for an invite.
 I will send you an email with an account creation link.  
 Click on the link, and create an account.
 
