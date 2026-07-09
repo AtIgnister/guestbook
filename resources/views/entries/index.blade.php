@@ -43,7 +43,7 @@
         @endif
 
         @forelse ($entries as $entry)
-            @include('partials.entries.single_entry', ['entry' => $entry, 'is_embed' => $is_embed])
+            @include('partials.entries.single_entry', ['entry' => $entry, 'is_embed' => $is_embed, 'is_show' => false])
         @empty
             <p class="comment-link text-gray-500">No entries yet.</p>
             @include('partials.entries.comment-cta-link', ['text' => 'Be the first to leave a comment!'])

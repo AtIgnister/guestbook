@@ -1,4 +1,8 @@
 <div class="guestbook-entry my-10 border-solid border-2 rounded-xl p-2">
+    @if ($is_show && $entry->is_reply)
+        <p>This is a reply. You can view the top-level entry <a href="{{ route('entries.show', ['entry' => $entry->parent]) }}">here.</a></p>
+        <br>
+    @endif
     <p>{{ $entry->name }} wrote...</p>
 
     @if ($entry->website !== null)

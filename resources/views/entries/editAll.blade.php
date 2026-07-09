@@ -69,6 +69,7 @@
                             @endif
                             <td class="px-4 py-2">
                                 <div class="max-h-50 overflow-y-scroll">
+                                    <a href="{{ route('entries.show', compact('entry')) }}">View Entry</a>
                                     {{ $entry->comment }}
                                 </div>
                             </td>
