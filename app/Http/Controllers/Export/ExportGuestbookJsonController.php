@@ -25,6 +25,9 @@ class ExportGuestbookJsonController extends \App\Http\Controllers\Controller {
         return response()->json($entries);
     }
 
+    public function exportGuestbookForApi(Request $request, Guestbook $guestbook) {
+        return response()->json(GuestbookExportHelper::getData($guestbook, false));
+    }
     public function export(Request $request, Guestbook $guestbook) {
         $data = GuestbookExportHelper::getData($guestbook, true);
     
