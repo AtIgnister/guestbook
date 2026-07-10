@@ -17,7 +17,7 @@
     <link href="{{ route('entries.show', compact('entry')) }}"/>
     <id>{{ route('entries.show', compact('entry')) }}</id>
     <updated>{{ $entry->updated_at->toAtomString() }}</updated>
-    <summary>{{ $entry->comment }}</summary>
+    <summary>{{ $entry->rendered_comment }}</summary>
 </entry>
 @endforeach
 </feed>

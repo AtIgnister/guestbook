@@ -12,6 +12,7 @@ use App\Models\Concerns\Searchable;
 use App\Helpers\IpHelper;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class GuestbookEntries extends Model
 {
@@ -53,6 +54,19 @@ class GuestbookEntries extends Model
                 $entry->posted_at = now();
             }
         });
+
+        static::saving(function (GuestbookEntries $entry) {
+            if ($entry->comment === null) {
+                $entry->rendered_comment = null;
+                return;
+            }
+
+            $options = config('markdown.commonmark_options');
+            $renderer = new \App\Renderers\MDSandboxRenderer($options);
+
+            $entry->rendered_comment = $renderer->convertToHtml($entry->comment);
+        });
+
 
         static::deleting(function (GuestbookEntries $entry) {
             $entry->replies()->delete();
@@ -131,5 +145,19 @@ class GuestbookEntries extends Model
             ->where('created_at', '>', $this->created_at)
             ->oldest('created_at')
             ->first();
+    }
+
+    private function renderComment() {
+        $options = config('markdown.commonmark_options');
+        $renderer = new \App\Renderers\MDSandboxRenderer($options);
+
+        return $renderer->convertToHtml($this->comment);
+    }
+
+    protected function renderedComment(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ?? $this->renderComment(),
+        );
     }
 }

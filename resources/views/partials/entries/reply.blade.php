@@ -18,7 +18,7 @@
                     $renderer = new \App\Renderers\MDSandboxRenderer($options);
                 @endphp
 
-                {!! nl2br($renderer->convertToHtml($reply->comment)) !!}
+                {!! nl2br($reply->rendered_comment) !!}
 
                 @auth
                     @if (auth()->user()->ownsEntry($entry) && !$is_embed)

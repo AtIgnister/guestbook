@@ -15,12 +15,6 @@ class ExportGuestbookJsonController extends \App\Http\Controllers\Controller {
     public function exportEntriesForApi(Request $request, Guestbook $guestbook) {
         $data = GuestbookExportHelper::getData($guestbook, false);
         $entries = $data["guestbooks"][$guestbook->id]["entries"];
-        foreach ($entries as $key => $entry) {
-            $options = config('markdown.commonmark_options');
-            $renderer = new \App\Renderers\MDSandboxRenderer($options);
-
-            $entries[$key]['rendered_comment'] = (string) $renderer->convertToHtml($entry['comment']);
-        }
 
         return response()->json($entries);
     }
