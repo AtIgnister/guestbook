@@ -151,7 +151,7 @@ class GuestbookEntries extends Model
         $options = config('markdown.commonmark_options');
         $renderer = new \App\Renderers\MDSandboxRenderer($options);
 
-        return $renderer->convertToHtml($this->comment);
+        return (String)$renderer->convertToHtml($this->comment);
     }
 
     protected function renderedComment(): Attribute
