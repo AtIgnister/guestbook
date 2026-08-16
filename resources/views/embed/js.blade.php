@@ -22,6 +22,7 @@ function createEntryElem(entry, wrapperClassName, actionVerb = "wrote") {
     wrapper.classList.add(wrapperClassName);
 
     const nameP = document.createElement("p");
+    nameP.className += "entry-author"
     nameP.textContent = `${entry.name} ${actionVerb}...`;
     wrapper.appendChild(nameP);
 
