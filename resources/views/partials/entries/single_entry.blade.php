@@ -3,7 +3,7 @@
         <p>This is a reply. You can view the top-level entry <a href="{{ route('entries.show', ['entry' => $entry->parent]) }}">here.</a></p>
         <br>
     @endif
-    <p>{{ $entry->name }} wrote...</p>
+    <p class="entry-author">{{ $entry->name }} wrote...</p>
 
     @if ($entry->website !== null)
         <sup>Website: <a rel="ugc" target="_blank" href="{{ $entry->website }}">{{ $entry->website }}</a></sup>
