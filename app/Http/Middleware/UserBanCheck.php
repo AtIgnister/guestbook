@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Middleware to check if the authenticated user is banned.
+ */
 class UserBanCheck
 {
     /**

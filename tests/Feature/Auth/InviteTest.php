@@ -1,15 +1,5 @@
 <?php
 
-use App\Models\User;
-
-function userWithRole(string $role): User
-{
-    $user = User::factory()->create();
-    $user->assignRole($role);
-
-    return $user;
-}
-
 function inviteData(array $overrides = []): array
 {
     return array_merge([

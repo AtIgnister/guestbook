@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Helpers\IpHelper;
 
+/**
+ * Middleware to check if the request is coming from a banned IP address, or trying to access a guestbook that has banned the IP address.
+ * For non-guestbook routes, use "UserBanCheck" instead. TODO: rename this middleware to something more sensible.
+ */
 class BanCheck
 {
     /**

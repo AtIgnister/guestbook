@@ -35,6 +35,8 @@ class PrivacyPolicy extends Model
         foreach ($users as $user) {
             Mail::to($user->email)->send(new PublishedPrivacyPolicyNotification($this));
         }
+
+        return $this;
     }
 
     public static function getDrafts() {

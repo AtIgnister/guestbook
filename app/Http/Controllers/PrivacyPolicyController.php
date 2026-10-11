@@ -12,12 +12,20 @@ class PrivacyPolicyController extends Controller
      */
     public function index()
     {
+        if(!PrivacyPolicy::getCurrent()) {
+            abort(404);
+        }
+
         return view('legal.privacy', [
             'policy' => PrivacyPolicy::getCurrent(),
         ]);
     }
 
     public function list() {
+        if(!PrivacyPolicy::getCurrent()) {
+            abort(404);
+        }
+
         return view('legal.privacyHistory', [
             'policies' => PrivacyPolicy::publicList()->get(),
         ]);
