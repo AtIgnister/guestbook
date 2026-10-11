@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    public function showDeleteForm()
-    {
-        return view('account.delete');
-    }
-
     public function deleteAccount(Request $request)
     {
         $request->validate([

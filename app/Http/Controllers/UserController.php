@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function destroy(Request $request, User $user)
     {
-        if (Auth::user()->cannot('delete', User::class)) {
+        if (Auth::user()->cannot('delete', $user)) {
             abort(403);
         }
 
