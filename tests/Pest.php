@@ -16,10 +16,16 @@ pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature')
     ->beforeEach(function () {
-        app(PermissionRegistrar::class)->forgetCachedPermissions();
+        app(\Spatie\Permission\PermissionRegistrar::class)
+            ->forgetCachedPermissions();
 
-        Role::firstOrCreate([
+        \Spatie\Permission\Models\Role::firstOrCreate([
             'name' => 'user',
+            'guard_name' => 'web',
+        ]);
+
+        \Spatie\Permission\Models\Role::firstOrCreate([
+            'name' => 'admin',
             'guard_name' => 'web',
         ]);
     });

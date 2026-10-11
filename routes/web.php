@@ -250,11 +250,11 @@ Route::get('/captcha-refresh', function () {
 // <!-- Invite Routes --!>
 Route::middleware(['auth', 'UserBanCheck'])->group(function () {
     Route::get('/admin/invite', [InviteController::class, 'show'])
-        ->middleware(['auth', 'ValidateAdmin'])
+        ->middleware(['auth'])
         ->name('admin.invite');
 
     Route::post('/admin/invite', [InviteController::class, 'create'])
-        ->middleware(['auth', 'ValidateAdmin'])
+        ->middleware(['auth'])
         ->name('admin.invite.create');
 });
 // <!-- Invite Routes --!>
