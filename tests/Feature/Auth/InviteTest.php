@@ -96,7 +96,6 @@ test('invite cannot be sent if user is not authenticated', function () {
 
 
 use Illuminate\Notifications\Channels\MailChannel;
-use RuntimeException;
 
 it('does not create a new invite if sending the notification fails', function () {
     $user = userWithRole('admin');
