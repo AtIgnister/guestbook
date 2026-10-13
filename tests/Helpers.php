@@ -27,6 +27,13 @@ function standaloneGuestbook(): \App\Models\Guestbook
     ]);
 }
 
+function createGuestbook(User $user): \App\Models\Guestbook
+{
+        return \App\Models\Guestbook::factory()->create([
+        'user_id' => $user->id,
+    ]);
+}
+
 function sampleIP($seed = 1): GuestbookEntryIp
 {
     $hash = md5($seed);

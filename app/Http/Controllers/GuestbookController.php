@@ -120,14 +120,6 @@ class GuestbookController extends Controller
     }
 
     public function delete(Request $request, guestbook $guestbook) {
-        // Our delete route is custom and has a ->can(delete) instruction,
-        // so technically we don't need to do this...
-        // but I'd rather have it be obvious that we're doing authorization when looking at either routes/web or the actual controller
-        // Anything else would look inconsistent, and I don't want to accidentally end up removing both instructions.
-        if ($request->user()->cannot('delete', $guestbook)) {
-            abort(403);
-        }
-
         return view('guestbooks.delete', compact(['guestbook']));
     }
 }
