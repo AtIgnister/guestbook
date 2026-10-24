@@ -19,8 +19,12 @@ class EntriesController extends Controller
 
     public function create(Request $request, Guestbook $guestbook)
     {
-        // Pass the guestbook to the view
-        return view('entries.create', compact('guestbook'));
+        return view('entries.create', [
+            'guestbook' => $guestbook,
+            'authorName' => auth()->user()?->ownsGuestbook($guestbook)
+                ? $guestbook->author_name
+                : null,
+        ]);
     }
 
     public function store(Request $request, Guestbook $guestbook)

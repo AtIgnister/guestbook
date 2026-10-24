@@ -26,7 +26,14 @@
         
         <div class="name-field">
             <label for="name">Name</label>
-            <input class="md:w-1/2 w-full" value="{{ old('name') }}" type="text" id="name" name="name" required>
+            <input
+                class="md:w-1/2 w-full"
+                value="{{ old('name', $authorName) }}"
+                type="text"
+                id="name"
+                name="name"
+                required
+            >
         </div>
         <br>
         <div class="website-field">

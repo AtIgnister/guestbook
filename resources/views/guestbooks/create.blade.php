@@ -12,6 +12,11 @@
             <input class="md:flex-1 w-full md:max-w-1/3" value="{{ old("name") }}" type="text" id="name" name="name" required>
         </div>
 
+        <div class="flex flex-wrap space-x-4 space-y-2 md:space-y-0">
+            <label for="author_name" class="w-full md:w-fit">Author Name (Publicly shown on Atom Feed)</label>
+            <input type="text" id="author_name" name="author_name" value="{{ old('author_name') }}" class="flex-1">
+        </div>
+
         <div class="md:flex flex-wrap">
             <label class="w-1/4 max-w-40" for="description">Guestbook Description</label>
             <textarea class="md:flex-1 w-full h-25" type="text" id="description" name="description">{{ old("description") }}</textarea>
