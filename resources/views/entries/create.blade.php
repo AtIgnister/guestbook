@@ -30,7 +30,7 @@
         </div>
         <br>
         <div class="website-field">
-            <label for="website">Website</label>
+            <label for="website">Website (optional)</label>
             <input class="md:w-1/2 w-full" value="{{ old('website') }}" type="url" id="website" name="website">
         </div>
         <br>

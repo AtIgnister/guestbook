@@ -24,7 +24,7 @@
             <input class="md:w-1/2 w-full" type="text" name="name" placeholder="Name" required>
         </div>
         <div>
-            <label for="website">Website</label>
+            <label for="website">Website (optional)</label>
             <input class="md:w-1/2 w-full" type="url" name="website" placeholder="Website">
         </div>
         <div>
