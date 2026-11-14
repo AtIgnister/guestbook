@@ -56,5 +56,8 @@ new class extends Component {
                 </tbody>
             </table>
         </div>
+
+        <h2>API Settings</h2>
+        <p>Coming soon!</p>
     </x-settings.layout>
 </section>
