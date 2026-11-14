@@ -79,8 +79,7 @@ Route::middleware(['UserBanCheck'])->group(function () {
 });
 
 // <!-- Privacy Policy Routes --!>
-Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index'])->name("privacy-policy.index");
-;
+Route::get("/privacy-policy", [PrivacyPolicyController::class, 'index'])->name("privacy-policy.index");;
 Route::get("/privacy-policy/history", [PrivacyPolicyController::class, 'list'])->name("privacy-policy.list");
 Route::get("/privacy-policy/history/{privacyPolicy}", [PrivacyPolicyController::class, 'show'])->name("privacy-policy.show");
 
@@ -215,12 +214,14 @@ Route::middleware(['auth'])->group(function () {
         ->middleware(
             when(
                 Features::canManageTwoFactorAuthentication()
-                && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
+                    && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
                 ['password.confirm'],
                 [],
             ),
         )
         ->name('two-factor.show');
+
+    Volt::route('settings/developer', 'settings.developer')->name('developer.edit');
 })->middleware(['throttle:30,1']);
 
 Route::patch('/users/{user}', [UserController::class, 'update'])
@@ -272,7 +273,7 @@ Route::middleware(['auth', 'ValidateAdmin', 'UserBanCheck'])->group(function () 
     Route::post("users/ban/{user}", [UserBanController::class, 'store'])->name('userBans.store');
 
     Route::post('users/reset/2fa/{user}', [UserController::class, 'resetTwoFactor'])
-    ->name('users.reset-2fa');
+        ->name('users.reset-2fa');
 });
 
 // <!-- User Routes --!>

@@ -7,6 +7,7 @@
                 <a class="block" href="{{ route('two-factor.show') }}" wire:navigate>{{ __('Two-Factor Auth') }}</a>
             @endif
             <a class="block" href="{{ route('appearance.edit') }}" wire:navigate>{{ __('Appearance') }}</a>
+            <a class="block" href="{{ route('developer.edit') }}" wire:navigate>{{ __('Developer Settings') }}</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
             
