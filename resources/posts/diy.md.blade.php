@@ -243,7 +243,7 @@ Instead of this, like you'd normally expect:
 <h1>This is a heading!</h1>
 ```  
 
-Long story short: You're gonna need to add some custom css to your markup, so that these fake headings displays properly.  
+Long story short: You're gonna need to add some custom css to your markup, so that these fake headings display properly.  
 Simply copy-paste somes styles for these custom classes into your existing markup:
 ```html
 + <style>
