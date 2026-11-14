@@ -43,7 +43,7 @@ new class extends Component {
                             <td class="px-6 py-5 font-medium text-zinc-900 dark:text-zinc-100">
                                 {{ $guestbook->name }}
                             </td>
-                            <td class="px-6 py-5 text-zinc-600 dark:text-zinc-400">
+                            <td class="px-6 py-5">
                                 {{ $guestbook->id }}
 
                                 <button class="block mt-2 text-sm"
