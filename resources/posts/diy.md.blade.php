@@ -1,8 +1,11 @@
 ## Creating a custom embed  
 So, you wanna create a custom guestbook embed?  
 Luckily, Guestbooks has an API that let's you do just that!  
-Once you're done with this tutorial, you'll have your very own custom embed, that works very similiarly to the official version.  
-It should be fairly simple, so once you're done, you'll be able to go ahead and add whatever new, custom functionality you want!  
+Once you're done with this tutorial, you'll have your very own custom embed, that works very similiarly to the official version - and you'll be able to go ahead and add whatever new, custom functionality you want!  
+
+### Chapters
+<a href="/blog/diy">Chapter 1: Creating a basic, read-only guestbook (Current Chapter)</a>  
+<a href="/blog/diy-chapter2">Chapter 2: Displaying optional fields</a>
 
 ### Step 1: Creating the basic HTML
 First of all, we're gonna need a bit of an HTML skeleton that we can use JS to insert all of your guestbook entries into.  
@@ -212,3 +215,104 @@ async function fetchFromApi(fetchPath) {
 ```
 Once you've added all of this code, try and refresh the page!  
 The name and content of all the guestbook entries should now show be visible.
+We're not _quite_ done now, however.
+There is still one thing left to do:  
+
+## Step 5: Adding custom heading styles  
+Guestbooks supports using markdown for guestbook entries.  
+This means that users will be able to add headings in their guestbook entries.  
+If guestbooks simply rendered those heading elements as &lt;h1&gt;'s, &lt;h2&gt;'s and so on, it would mess up the heading order of the website the guestbook is on -  
+Which would be pretty terrible for accessibility.  
+
+So, guestbooks instead replaces these elements with paragraph elements that have custom classes.  
+<br>
+Basically, this means that this guestbook comment:
+```md
+# This is a heading!
+```  
+<br>
+
+Would be turned into this:
+```html
+<p class="h1">This is a heading!</p>
+```  
+<br>  
+
+Instead of this, like you'd normally expect:
+```html
+<h1>This is a heading!</h1>
+```  
+
+Long story short: You're gonna need to add some custom css to your markup, so that these fake headings displays properly.  
+Simply copy-paste somes styles for these custom classes into your existing markup:
+```html
++ <style>
++ /* fake heading styles for guestbook entries*/
++ .h {
++     font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
++     line-height: 1.2;
+
++     margin-top: 0.7em;
++     margin-bottom: 0.5em;
+}
+
++ .h1 {
++     font-size: 2.25rem; /* 36px */
++     font-weight: 700;
++     letter-spacing: -0.02em;
++ }
+
++ .h2 {
++     font-size: 1.875rem; /* 30px */
++     font-weight: 700;
++     letter-spacing: -0.01em;
++ }
+
++ .h3 {
++     font-size: 1.5rem; /* 24px */
++     font-weight: 700;
++ }
+
++ .h4 {
++     font-size: 1.25rem; /* 20px */
++     font-weight: 600;
++ }
+
++ .h5 {
++     font-size: 1.125rem; /* 18px */
++     font-weight: 600;
++ }
+
++ .h6 {
++     font-size: 1rem; /* 16px */
++     font-weight: 600;
++ }
++ </style>
+
+<h1>My very cool guestbook</h1>
+
+<div class="guestbook-entries"></div>
+
+<script>
+// ...
+</script>
+```   
+<br>
+
+Aaaand, that's it!  
+You can obviously change these styles to whatever you like, in case you want your headings to look different.  
+The ones that are shown here will just make your headings look close enough to the default HTML headings that most browsers show. You can get a lot fancier with this, if you wanna do that.  
+<br>
+
+Anyways, that's the first Chapter of our tutorial done!  
+Congrats on making it this far!  
+<br>
+
+By now, your guestbook embed should look kind of like this:  
+![](/embed-tutorial-chapter1-finished.webp)
+
+In the next chapter, we'll go and render all of the optional fields that the guestbooks api gives us -  
+And I'll give you some suggestions for fields that you might want to display in your own, custom embed that are not shown in the official one!  
+
+<br>
+<a href="diy-chapter2">Next Chapter: Displaying optional fields</a>
