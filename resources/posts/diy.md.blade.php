@@ -234,7 +234,7 @@ Basically, this means that this guestbook comment:
 
 Would be turned into this:
 ```html
-<p class="h1">This is a heading!</p>
+<p class="h h1">This is a heading!</p>
 ```  
 <br>  
 
