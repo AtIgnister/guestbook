@@ -39,7 +39,7 @@ class BlogController extends Controller
         } else if (File::exists($htmlPath)) {
             $content = File::get($htmlPath);
         } else if (File::exists($mdPath)) {
-            $renderer = new MarkdownRenderer();
+            $renderer = new MarkdownRenderer([], true, "github-dark-high-contrast");
             $rawContent = view()->file($mdPath)->render();
             $renderedContent = $renderer->toHtml($rawContent);
             $content = (String)$renderedContent;
