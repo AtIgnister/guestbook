@@ -46,7 +46,7 @@ new class extends Component {
                             <td class="px-6 py-5 text-zinc-600 dark:text-zinc-400">
                                 {{ $guestbook->id }}
 
-                                <button class="block mt-2 text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400"
+                                <button class="block mt-2 text-sm"
                                     onclick="navigator.clipboard.writeText('{{ $guestbook->id }}')">
                                     Copy
                                 </button>
