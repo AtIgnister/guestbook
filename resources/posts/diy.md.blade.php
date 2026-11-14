@@ -5,7 +5,7 @@ Once you're done with this tutorial, you'll have your very own custom embed, tha
 
 ### Chapters
 <a href="/blog/diy">Chapter 1: Creating a basic, read-only guestbook (Current Chapter)</a>  
-<a href="/blog/diy-chapter2">Chapter 2: Displaying optional fields</a>
+<a href="/blog/diy-chapter2">Chapter 2: Displaying optional fields & showing replies</a>
 
 ### Step 1: Creating the basic HTML
 First of all, we're gonna need a bit of an HTML skeleton that we can use JS to insert all of your guestbook entries into.  
@@ -311,8 +311,8 @@ Congrats on making it this far!
 By now, your guestbook embed should look kind of like this:  
 ![](/embed-tutorial-chapter1-finished.webp)
 
-In the next chapter, we'll go and render all of the optional fields that the guestbooks api gives us -  
+In the next chapter, we'll go and render all of the optional fields that the guestbooks api gives us, as well as rendering guestbook entry replies -  
 And I'll give you some suggestions for fields that you might want to display in your own, custom embed that are not shown in the official one!  
 
 <br>
-<a href="diy-chapter2">Next Chapter: Displaying optional fields</a>
+<a href="diy-chapter2">Next Chapter: Displaying optional fields & showing replies</a>
