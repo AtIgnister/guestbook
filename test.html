@@ -1,59 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <script data-id="" src="http://127.0.0.1:8001/api/embeds/b8636980-0bdb-4a27-983f-f5eed99a9bce/embed.js"></script>
-    <hr>
+    <style>
+        /* fake heading styles for guestbook entries*/
+        .h {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            line-height: 1.2;
 
-    <!-- Guestbook Form -->
-    <div id="guestbooks___guestbook-form-container">
-    <form id="guestbooks___guestbook-form" 
-            action="https://guestbooks.meadow.cafe/guestbook/453/submit" 
-            method="post">
-        
-    <div class="guestbooks___input-container">
-        <input type="text" 
-                id="name" 
-                name="name" 
-                placeholder="name" 
-                required>
-        </div>
-        
-    <div class="guestbooks___input-container">
-        <input type="url" 
-                id="website" 
-                name="website" 
-                placeholder="website (optional)">
-        </div>
-        
-    <div id="guestbooks___challenge-answer-container"></div>
-        
-    <div class="guestbooks___input-container">
-        <textarea id="text" 
-                    name="text" 
-                    placeholder="leave your message here..." 
-                    rows="4"
-                    style="width: 100%; box-sizing: border-box; resize: vertical;"
-                    required></textarea>
-        </div>
-        
-    <button type="submit">submit</button>
-    <div id="guestbooks___error-message"></div>
-    </form>
-    </div>
+            margin-top: 0.7em;
+            margin-bottom: 0.5em;
 
-    <!-- Attribution (optional but appreciated!) -->
-    <div id="guestbooks___guestbook-made-with" style="text-align: right; margin-top: 10px;">
-    <small>powered by <a href="https://guestbooks.meadow.cafe" target="_blank">guestbooks</a></small>
-    </div>
+            scroll-margin-top: 80px;
+            /* nice for anchor links */
+        }
 
-    <!-- Messages Section -->
-    <hr>
-    <h3 id="guestbooks___guestbook-messages-header">messages</h3>
-    <div id="guestbooks___guestbook-messages-container"></div>
+        .h1 {
+            font-size: 2.25rem;
+            /* 36px */
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .h2 {
+            font-size: 1.875rem;
+            /* 30px */
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .h3 {
+            font-size: 1.5rem;
+            /* 24px */
+            font-weight: 700;
+        }
+
+        .h4 {
+            font-size: 1.25rem;
+            /* 20px */
+            font-weight: 600;
+        }
+
+        .h5 {
+            font-size: 1.125rem;
+            /* 18px */
+            font-weight: 600;
+        }
+
+        .h6 {
+            font-size: 1rem;
+            /* 16px */
+            font-weight: 600;
+        }
+    </style>
+    <h1>My very cool guestbook</h1>
+    <div class="guestbook-entries"></div>
+
+    <script>
+        const apiPath = "http://localhost:8000/api/"
+        const guestbookId = "c29eeb0f-a87f-4dae-8234-32c577516bbe"
+
+        async function fetchFromApi(fetchPath) {
+            const url = apiPath + fetchPath;
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const json = await response.json();
+                console.log(json);
+                return json;
+            } catch (error) {
+                console.error(error.message);
+                return null;
+            }
+        }
+
+        async function displayEntries(entries, target, verb = "wrote...") {
+            const entriesFragment = document.createDocumentFragment();
+
+            entries.forEach(entry => {
+                const entryContainer = document.createElement("div");
+                entryContainer.classList.add("guestbook-entry")
+
+                const entryNamePara = document.createElement("p");
+                entryNamePara.textContent = `${entry.name} ${verb}`;
+                entryNamePara.classList.add("guestbook-entry-name");
+                entryContainer.appendChild(entryNamePara);
+
+                if(entry.website) {
+                    const websiteSup = document.createElement("sup");
+                    websiteSup.textContent = "Website: ";
+
+                    const websiteAnchor = document.createElement("a");
+                    websiteAnchor.innerText = entry.website;
+                    websiteAnchor.href = entry.website;
+                    
+                    websiteSup.appendChild(websiteAnchor);
+                    entryContainer.appendChild(websiteSup);
+                }
+
+                const entryMessageDiv = document.createElement("div");
+                entryMessageDiv.innerHTML = entry.rendered_comment;
+
+                entryContainer.appendChild(entryMessageDiv);
+                entriesFragment.appendChild(entryContainer);
+
+                if(entry.replies && entry.replies.length > 0) {
+                    const replyContainer = document.createElement("div");
+                    replyContainer.classList.add("reply-container");
+                    displayEntries(entry.replies, replyContainer, "replied...");
+                    entryContainer.appendChild(replyContainer);
+                }
+            });
+
+            target.appendChild(entriesFragment);
+        }
+
+        async function init() {
+            const entries = await fetchFromApi(
+                guestbookId + "/entries/json"
+            );
+
+            if (entries && Array.isArray(entries)) {
+                const entryTarget = document.querySelector(".guestbook-entries");
+                displayEntries(entries, entryTarget);
+            }
+        }
+
+        init();
+    </script>
 </body>
+
 </html>
