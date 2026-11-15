@@ -164,7 +164,7 @@ async function fetchFromApi(fetchPath) {
 +         // we set the text content of the entry to the users name.
 +         // it's important that this is the text content, and not the innerHTML.
 +         // if we set this via innerHTML, any HTML tags inside the users name would be rendered.
-+         entryNamePara.textContent = `${entry.name} said...`;
++         entryNamePara.textContent = `${entry.name} wrote...`;
 +         // like last time, we also give the name element a class.
 +         entryNamePara.classList.add("guestbook-entry-name");
 +         // then, we add the name element to our entry container.

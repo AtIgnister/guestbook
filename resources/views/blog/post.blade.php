@@ -13,6 +13,10 @@
         .shiki .del {
             background-color: rgba(248, 82, 73, 0.411);
         }
+
+        .shiki {
+            overflow-x: scroll;
+        }
     </style>
     <div class="mx-auto max-w-content px-5 py-5  leading-relaxed">
 
